@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<!-- Game settings -->
+
+<settings>
+  <game name="Top Down Game Prototype With Sprite Sheets" />
+  <renderer width="1024" height="768"/>
+   
+  <font file="Media\Fonts\AverageSans_24.spritefont"/>
+
+  <!-- sprites -->
+   
+  <sprites path="Media\Images">
+    <sprite name="floor" file="floor.png"/>
+	 
+    <sprite name="spritesheet" file="spritesheet.png"/>
+    <sprite name="player"  sheet="spritesheet" left="0"   top="0"  right="64"  bottom="64"/>
+    <sprite name="turret"  sheet="spritesheet" left="64"  top="0"  right="128" bottom="64"/>
+    <sprite name="bullet"  sheet="spritesheet" left="135" top="0"  right="143" bottom="8"/>
+    <sprite name="bullet2" sheet="spritesheet" left="145" top="0"  right="153" bottom="8"/>
+    <sprite name="spark"   sheet="spritesheet" left="0"   top="73" right="62"  bottom="138"/>
+    <sprite name="smoke"   sheet="spritesheet" left="62"  top="73" right="128" bottom="138"/>
+  
+    <sprite name="antwalk" file="ant.png"/>
+    <sprite name="ant" sheet="antwalk" frames="4">
+      <frame index="0" left="0"   top="0" right="96"  bottom="100"/>>
+      <frame index="1" left="96"  top="0" right="192" bottom="100"/>>
+      <frame index="2" left="192" top="0" right="288" bottom="100"/>>
+      <frame index="3" left="288" top="0" right="385" bottom="100"/>>
+    </sprite>
+  </sprites>
+
+  <!-- sound -->
+  
+  <sounds  path="Media\Sounds">  
+    <sound name="gun" file="44magnum.wav" instances="8"/>
+    <sound name="ricochet" file="ricochet.wav" instances="8"/>
+    <sound name="clang" file="clang.wav" instances="4"/>
+    <sound name="grunt" file="umph.wav" instances="4"/>
+    <sound name="ow" file="ow.wav" instances="8"/>
+  </sounds>
+</settings>

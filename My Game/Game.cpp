@@ -14,6 +14,8 @@
 //Singleton
 CGame* CGame::instance = nullptr;
 
+//This is a singleton instance which can be accessed via any class that includes
+//game.h. This is so we can access any global functions if needed.
 CGame* CGame::Instance() {
 	return instance;
 } //Instance

@@ -32,6 +32,10 @@ class CPlayer: public CObject{
     void StrafeBack(); ///< Strafe back.
     
     const Vector2& GetPos() const; ///< Get position.
+
+    //Implement BuildInput
+	virtual void buildInput() override;
+	
 }; //CPlayer
 
 #endif //__L4RC_GAME_PLAYER_H__

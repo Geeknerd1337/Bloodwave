@@ -99,3 +99,11 @@ void CPlayer::SetRotSpeed(const float speed) {
 const Vector2& CPlayer::GetPos() const {
 	return m_vPos;
 } //GetPos
+
+//Implement buildInput
+void CPlayer::buildInput() {
+	//Get the State of Our Keyboard
+	if (m_pKeyboard->TriggerDown(VK_UP)) {
+		printf("W Is Pressed From Player!\n");
+	}
+}

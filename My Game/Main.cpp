@@ -4,7 +4,7 @@
 #include "Game.h"
 #include "Window.h"
 
-//#define USE_DEBUG_CONSOLE ///< Define to use a console window for debug messages.
+#define USE_DEBUG_CONSOLE ///< Define to use a console window for debug messages.
 
 #ifdef _DEBUG
 //  #include <vld.h> //Visual Leak Detector from http://vld.codeplex.com/

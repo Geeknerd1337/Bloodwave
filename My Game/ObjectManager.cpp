@@ -182,7 +182,7 @@ void CObjectManager::FindClosest(const Vector2& pos, CObject*& pObj, float& dsq)
 //for each object. This is called by the game state manager.
 void CObjectManager::BuildInput() {
     //Get the game instance
-    //g_cGame->AddConsoleOutput("HELLO");
+    CGame::Instance()->AddConsoleOutput("HELLO");
 	
 	for (auto const& p : m_stdObjectList) //for each object
 		p->buildInput(); //build input

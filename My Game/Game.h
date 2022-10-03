@@ -38,6 +38,9 @@ class CGame:
     void CreateObjects(); ///< Create game objects.
     void FollowCamera(); ///< Make camera follow player character.
 
+    static CGame* instance; // use nullptr since C++11
+   
+
   public:
     ~CGame(); ///< Destructor.
 
@@ -48,6 +51,8 @@ class CGame:
     void AddConsoleOutput(std::string s);
 
     void DrawConsoleText();
+
+	static CGame* Instance(); ///< Return the instance of the game.
 
 	
 }; //CGame

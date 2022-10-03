@@ -11,6 +11,14 @@
 #include "shellapi.h"
 #include <iostream>
 
+//Singleton
+CGame* CGame::instance = nullptr;
+
+CGame* CGame::Instance() {
+	return instance;
+} //Instance
+
+
 /// Delete the particle engine and the object manager. The renderer needs to
 /// be deleted before this destructor runs so it will be done elsewhere.
 
@@ -21,7 +29,7 @@ CGame::~CGame() {
 
 /// Create the renderer, the object manager, and the particle engine, load
 /// images and sounds, and begin the game.
-
+/// 
 void CGame::Initialize() {
 
 	m_pRenderer = new LSpriteRenderer(eSpriteMode::Batched2D);
@@ -33,12 +41,10 @@ void CGame::Initialize() {
 
 	m_pParticleEngine = new LParticleEngine2D(m_pRenderer);
 
-	//Print hello world
-	std::cout << "Hello World" << std::endl;
-	BeginGame();
+	//Set the instance
+	instance = this;
 
-	//Set the singleton instance
-	m_pInstance = this;
+	BeginGame();
 
 } //Initialize
 

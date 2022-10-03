@@ -1,11 +1,13 @@
 #include "GameCamera.h"
 #include "../Game.h"
+#include "SimpleMath.h"
 
 
 void GameCamera::HandleCamera() {
 	if (m_pPlayer == nullptr)return; //safety
 	//Get the game instance
 	CGame* pGame = CGame::Instance();
+	const float deltaTime = m_pTimer->GetFrameTime();
 
 	Vector3 vCameraPos(m_pPlayer->GetPos()); //player position
 
@@ -21,5 +23,7 @@ void GameCamera::HandleCamera() {
 	} //if
 	else vCameraPos.y = m_vWorldSize.y / 2.0f; //center vertically
 
-	m_pRenderer->SetCameraPos(vCameraPos); //camera to player
+	m_cameraPos = Vector3::Lerp(m_cameraPos, vCameraPos, deltaTime);
+
+	m_pRenderer->SetCameraPos(m_cameraPos); //camera to player
 } //FollowCamera

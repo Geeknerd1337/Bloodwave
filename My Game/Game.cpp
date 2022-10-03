@@ -13,6 +13,7 @@
 
 //Singleton
 CGame* CGame::instance = nullptr;
+GameCamera* CGame::camera = nullptr;
 
 //This is a singleton instance which can be accessed via any class that includes
 //game.h. This is so we can access any global functions if needed.
@@ -27,6 +28,7 @@ CGame* CGame::Instance() {
 CGame::~CGame() {
 	delete m_pParticleEngine;
 	delete m_pObjectManager;
+	delete camera;
 } //destructor
 
 /// Create the renderer, the object manager, and the particle engine, load
@@ -45,6 +47,9 @@ void CGame::Initialize() {
 
 	//Set the instance
 	instance = this;
+
+	//Set the camera
+	camera = new GameCamera();
 
 	BeginGame();
 
@@ -271,7 +276,8 @@ void CGame::ProcessFrame() {
 
 	m_pTimer->Tick([&]() { //all time-dependent function calls should go here
 		m_pObjectManager->move(); //move all objects
-		FollowCamera(); //make camera follow player
+		//FollowCamera(); //make camera follow player
+		camera->HandleCamera();
 		m_pParticleEngine->step(); //advance particle animation
 		});
 

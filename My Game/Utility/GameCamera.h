@@ -6,7 +6,7 @@ class CGame;
 
 class GameCamera : public CCommon {
 public:
-	void FollowPlayer();
+	void HandleCamera();
 	
 private:
 

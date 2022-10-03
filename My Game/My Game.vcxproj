@@ -171,7 +171,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Turret.cpp" />
-    <ClCompile Include="Utility\Camera.cpp" />
+    <ClCompile Include="Utility\GameCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />

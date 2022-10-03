@@ -47,9 +47,12 @@ class CObject:
   public:
     CObject(eSprite, const Vector2&); ///< Constructor.
     virtual ~CObject(); ///< Destructor.
+	//Virtual BuildINput method
+	virtual void buildInput();
 
     void move(); ///< Move object.
     void draw(); ///< Draw object.
+
 
     const bool isBullet() const; ///< Is a bullet.
 }; //CObject

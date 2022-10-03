@@ -172,3 +172,11 @@ void CObjectManager::FindClosest(const Vector2& pos, CObject*& pObj, float& dsq)
     } //if
   } //for
 } //FindClose
+
+
+//buildInput iterates over the m_stdObjectList and calls the build input method
+//for each object. This is called by the game state manager.
+void CObjectManager::BuildInput() {
+	for (auto const& p : m_stdObjectList) //for each object
+		p->buildInput(); //build input
+} //buildInput

@@ -43,6 +43,12 @@ class CGame:
     void Initialize(); ///< Initialize the game.
     void ProcessFrame(); ///< Process an animation frame.
     void Release(); ///< Release the renderer.
+
+    //Singleton instance
+	static CGame& Instance(); ///< Return the singleton instance.
+	
+	static CGame* m_pInstance; ///< The singleton instance.
+	
 }; //CGame
 
 #endif //__L4RC_GAME_GAME_H__

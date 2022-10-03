@@ -38,6 +38,12 @@ void CObject::move(){
     m_vPos += m_vVelocity*m_pTimer->GetFrameTime();
 } //move
 
+//BuildInput
+void CObject::buildInput()
+{
+	//Build the input for the object
+}
+
 /// Ask the renderer to draw the sprite described in the sprite descriptor.
 /// Note that `CObject` is derived from `LBaseObject` which is inherited from
 /// `LSpriteDesc2D`. Therefore `LSpriteRenderer::Draw(const LSpriteDesc2D*)`

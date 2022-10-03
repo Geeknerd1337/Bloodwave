@@ -45,10 +45,10 @@ class CGame:
     void ProcessFrame(); ///< Process an animation frame.
     void Release(); ///< Release the renderer.
 
-    //Singleton instance
-	static CGame& Instance(); ///< Return the singleton instance.
-	
-	static CGame* m_pInstance; ///< The singleton instance.
+    void AddConsoleOutput(std::string s);
+
+    void DrawConsoleText();
+
 	
 }; //CGame
 

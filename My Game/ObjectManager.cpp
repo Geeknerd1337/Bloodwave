@@ -11,6 +11,10 @@
 #include "ParticleEngine.h"
 #include "Helpers.h"
 #include "GameDefines.h"
+#include "Game.h"
+
+//Forward Ceclarations
+
 
 /// Create an object and put a pointer to it at the back of the object list
 /// `m_stdObjectList`, which it inherits from `LBaseObjectManager`.
@@ -177,6 +181,9 @@ void CObjectManager::FindClosest(const Vector2& pos, CObject*& pObj, float& dsq)
 //buildInput iterates over the m_stdObjectList and calls the build input method
 //for each object. This is called by the game state manager.
 void CObjectManager::BuildInput() {
+    //Get the game instance
+    //g_cGame->AddConsoleOutput("HELLO");
+	
 	for (auto const& p : m_stdObjectList) //for each object
 		p->buildInput(); //build input
 } //buildInput

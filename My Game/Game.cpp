@@ -161,7 +161,7 @@ void CGame::KeyboardHandler() {
 		if (m_pKeyboard->Down(VK_DOWN)) //strafe back
 			m_pPlayer->StrafeBack();
 	} //if
-} //KeyboardHandler
+}
 
 /// Poll the XBox controller state and respond to the controls there.
 
@@ -202,6 +202,12 @@ void CGame::DrawFrameRateText() {
 	m_pRenderer->DrawScreenText(s.c_str(), pos); //draw to screen
 } //DrawFrameRateText
 
+//Draw the current console output
+void CGame::DrawConsoleText() {
+	const Vector2 pos(0.0f, 0.0f); //hard-coded position
+	m_pRenderer->DrawScreenText(m_sConsoleOutput.c_str(), pos); //draw to screen
+} //DrawConsoleText
+
 /// Ask the object manager to draw the game objects. The renderer is notified of
 /// the start and end of the frame so that it can let Direct3D do its
 /// pipelining jiggery-pokery.
@@ -214,6 +220,7 @@ void CGame::RenderFrame() {
 	m_pParticleEngine->Draw(); //draw particles
 	//Useful method for drawing frame text
 	if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
+	DrawConsoleText(); //draw console output
 
 	m_pRenderer->EndFrame(); //required after rendering
 } //RenderFrame
@@ -250,6 +257,7 @@ void CGame::FollowCamera() {
 void CGame::ProcessFrame() {
 	ControllerHandler(); //handle controller input
 	KeyboardHandler(); //handle keyboard input
+	m_pObjectManager->BuildInput();
 	
 	m_pAudio->BeginFrame(); //notify audio player that frame has begun
 
@@ -261,3 +269,9 @@ void CGame::ProcessFrame() {
 
 	RenderFrame(); //render a frame of animation
 } //ProcessFrame
+
+
+void CGame::AddConsoleOutput(const std::string s) {
+	m_sConsoleOutput += s + "\n";
+}
+

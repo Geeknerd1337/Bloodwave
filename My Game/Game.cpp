@@ -264,8 +264,7 @@ void CGame::FollowCamera() {
 
 void CGame::ProcessFrame() {
 	ControllerHandler(); //handle controller input
-	KeyboardHandler(); //handle keyboard input
-	//m_pKeyboard->GetState();
+	KeyboardHandler(); //handle keyboard input;
 	m_pObjectManager->BuildInput();
 	
 	m_pAudio->BeginFrame(); //notify audio player that frame has begun

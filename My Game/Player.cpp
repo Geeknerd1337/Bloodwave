@@ -102,6 +102,7 @@ const Vector2& CPlayer::GetPos() const {
 
 //Implement buildInput
 void CPlayer::buildInput() {
+	
 	//Get the State of Our Keyboard
 	if (m_pKeyboard->TriggerDown(VK_UP)) {
 		printf("W Is Pressed From Player!\n");

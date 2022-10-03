@@ -14,7 +14,7 @@
     <sprite name="floor" file="floor.png"/>
 	 
     <sprite name="spritesheet" file="spritesheet.png"/>
-    <sprite name="	"  sheet="spritesheet" left="0"   top="0"  right="64"  bottom="64"/>
+    <sprite name="player"  sheet="spritesheet" left="0"   top="0"  right="64"  bottom="64"/>
     <sprite name="turret"  sheet="spritesheet" left="64"  top="0"  right="128" bottom="64"/>
     <sprite name="bullet"  sheet="spritesheet" left="135" top="0"  right="143" bottom="8"/>
     <sprite name="bullet2" sheet="spritesheet" left="145" top="0"  right="153" bottom="8"/>

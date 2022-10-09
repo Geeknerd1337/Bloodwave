@@ -168,6 +168,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Turret.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Turret.h" />

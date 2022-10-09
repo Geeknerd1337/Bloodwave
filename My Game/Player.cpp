@@ -9,7 +9,7 @@
 /// Create and initialize an player object given its initial position.
 /// \param p Initial position of player.
 
-CPlayer::CPlayer(const Vector2& p) : CObject(eSprite::Player_Idle, p) {
+CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_bIsTarget = true;
 	m_bStatic = false;
 	//Set the angle to 0 so carmella isn't just standing there

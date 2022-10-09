@@ -12,6 +12,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Turret.cpp" />
     <ClCompile Include="Utility\GameCamera.cpp" />
+    <ClCompile Include="Objects\Actor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -25,6 +26,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Turret.h" />
     <ClInclude Include="Utility\GameCamera.h" />
+    <ClInclude Include="Objects\Actor.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

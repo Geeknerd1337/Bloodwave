@@ -23,6 +23,9 @@ void CPlayer::move() {
 	const Vector2 view = GetViewVector(); //view vector
 	//TODO: Replace this with generic speed value
 	m_vPos += 200.0f * t * m_vInput;
+
+	//Print m_vInput using printf
+	printf("m_vInput: %f, %f", m_vInput.x, m_vInput.y);
 	
 	//TODO: Remove
 	if (m_vInput.x != 0.0f) {

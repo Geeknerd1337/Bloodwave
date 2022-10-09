@@ -23,7 +23,7 @@ void GameCamera::HandleCamera() {
 	} //if
 	else vCameraPos.y = m_vWorldSize.y / 2.0f; //center vertically
 
-	m_cameraPos = Vector3::SmoothStep(m_cameraPos, vCameraPos, deltaTime * 5.0);
+	m_cameraPos = Vector3::SmoothStep(m_cameraPos, vCameraPos, deltaTime * 10.0);
 
 	m_pRenderer->SetCameraPos(m_cameraPos); //camera to player
 } //FollowCamera

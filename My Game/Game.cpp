@@ -75,6 +75,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Smoke, "smoke");
 	m_pRenderer->Load(eSprite::Spark, "spark");
 	m_pRenderer->Load(eSprite::Turret, "turret");
+	m_pRenderer->Load(eSprite::Player_Idle, "player_idle");
 
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");

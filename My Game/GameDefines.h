@@ -12,10 +12,11 @@
 /// integer and used for the index of the corresponding texture in graphics
 /// memory. `Size` must be last.
 
-enum class eSprite: UINT{
-  Background, Bullet, Bullet2, Player, Turret, Smoke, Spark, Ant,
-  SpriteSheet, AntSpriteSheet,
-  Size  //MUST BE LAST
+enum class eSprite : UINT {
+	Background, Bullet, Bullet2, Player, Turret, Smoke, Spark, Ant,
+	Player_Idle,
+	SpriteSheet, AntSpriteSheet,
+	Size  //MUST BE LAST
 }; //eSprite
 
 /// \brief Sound enumerated type.
@@ -24,9 +25,9 @@ enum class eSprite: UINT{
 /// integer and used for the index of the corresponding sample. `Size` must 
 /// be last.
 
-enum class eSound: UINT{
-  Clang, Grunt, Gun, Ricochet, Ow,
-  Size  //MUST BE LAST
+enum class eSound : UINT {
+	Clang, Grunt, Gun, Ricochet, Ow,
+	Size  //MUST BE LAST
 }; //eSound
 
 #endif //__L4RC_GAME_GAMEDEFINES_H__

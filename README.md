@@ -1,3 +1,2 @@
-# BloodWave
-
-The repository for the game Bloodwave
+# Bloodwave
+A Repository for my CSCE 4210 Project Blood Wave

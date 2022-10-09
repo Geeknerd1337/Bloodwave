@@ -22,7 +22,7 @@ void CPlayer::move() {
 	const float t = m_pTimer->GetFrameTime(); //time
 	const Vector2 view = GetViewVector(); //view vector
 	//TODO: Replace this with generic speed value
-	m_vPos += 200.0f * t * m_vInput;
+	m_vPos += m_fMoveSpeed * t * m_vInput;
 	
 	//TODO: Remove
 	if (m_vInput.x != 0.0f) {

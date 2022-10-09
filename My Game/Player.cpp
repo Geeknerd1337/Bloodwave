@@ -9,36 +9,37 @@
 /// Create and initialize an player object given its initial position.
 /// \param p Initial position of player.
 
-CPlayer::CPlayer(const Vector2& p) : CObject(eSprite::Player, p) {
+CPlayer::CPlayer(const Vector2& p) : CObject(eSprite::Player_Idle, p) {
 	m_bIsTarget = true;
 	m_bStatic = false;
+	//Set the angle to 0 so carmella isn't just standing there
+	m_fRoll = 0.0;
 } //constructor
 
-/// Move and rotate in response to device input. The amount of motion and
-/// rotation speed is proportional to the frame time.
 
+//This is where we will do the majority of our work
 void CPlayer::move() {
 	const float t = m_pTimer->GetFrameTime(); //time
 	const Vector2 view = GetViewVector(); //view vector
-	m_vPos += m_fSpeed * t * view; //move forwards
-	m_fRoll += m_fRotSpeed * t; //rotate
+	//TODO: Replace this with generic speed value
+	m_vPos += 200.0f * t * m_vInput;
 
-	//Print out m_vPos and m_fRoll
+	//Print m_vInput using printf
+	printf("m_vInput: %f, %f", m_vInput.x, m_vInput.y);
 	
+	//TODO: Remove
+	if (m_vInput.x != 0.0f) {
+		if (m_vInput.x > 0.0f) {
+			printf("Setting Sprite Player Right\n");
+			SetSprite(eSprite::Player_Idle_Right);
+		}
 
-	
-	NormalizeAngle(m_fRoll); //normalize to [-pi, pi] for accuracy
+		if (m_vInput.x < 0.0f){
+			printf("Setting Sprite Player Left\n");
+			SetSprite(eSprite::Player_Idle_Left);
+		}
+	}
 
-	//strafe
-
-	const Vector2 norm = VectorNormalCC(view); //normal to view vector
-	const float delta = 40.0f * t; //change in position for strafing
-
-	if (m_bStrafeRight)m_vPos += delta * norm; //strafe right
-	else if (m_bStrafeLeft)m_vPos -= delta * norm; //strafe left
-	else if (m_bStrafeBack)m_vPos -= delta * view; //strafe back
-
-	m_bStrafeLeft = m_bStrafeRight = m_bStrafeBack = false; //reset strafe flags
 } //move
 
 /// Response to collision. If the object being collided with is a bullet, then
@@ -56,46 +57,6 @@ void CPlayer::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {
 	else CObject::CollisionResponse(norm, d, pObj);
 } //CollisionResponse
 
-/// Set the strafe left flag. This function will be called in response to
-/// device inputs.
-
-void CPlayer::StrafeLeft() {
-	m_bStrafeLeft = true;
-} //StrafeLeft
-
-/// Set the strafe right flag. This function will be called in response to
-/// device inputs.
-
-void CPlayer::StrafeRight() {
-	m_bStrafeRight = true;
-} //StrafeRight
-
-/// Set the strafe back flag. This function will be called in response to
-/// device inputs.
-
-void CPlayer::StrafeBack() {
-	m_bStrafeBack = true;
-} //StrafeBack
-
-/// Set the object's speed, assuming that the object moves in the direction of
-/// its view vector. This function will be called in response to device inputs.
-/// \param speed Speed.
-
-void CPlayer::SetSpeed(const float speed) {
-	m_fSpeed = speed;
-} //SetSpeed
-
-/// Set the object's rotational speed in revolutions per second. This function
-/// will be called in response to device inputs.
-/// \param speed Rotational speed in RPS.
-
-void CPlayer::SetRotSpeed(const float speed) {
-	m_fRotSpeed = speed;
-} //SetRotSpeed
-
-/// Reader function for position.
-/// \return Position.
-
 const Vector2& CPlayer::GetPos() const {
 	return m_vPos;
 } //GetPos
@@ -103,8 +64,36 @@ const Vector2& CPlayer::GetPos() const {
 //Implement buildInput
 void CPlayer::buildInput() {
 	
-	//Get the State of Our Keyboard
-	if (m_pKeyboard->TriggerDown(VK_UP)) {
-		printf("W Is Pressed From Player!\n");
+	float vertical = 0.0f;
+	if (m_pKeyboard->Down('W')) {
+		
+		vertical += 1.0f;
 	}
+	
+	if (m_pKeyboard->Down('S')) {
+		vertical -= 1.0f;
+	}
+	
+	float horizontal = 0.0f;
+	if (m_pKeyboard->Down('A')) {
+		horizontal -= 1.0f;
+	}
+	
+	if (m_pKeyboard->Down('D')) {
+		horizontal += 1.0f;
+	}
+
+	//Set the m_vInput vector to our horizontal and vertical values
+	m_vInput.x = horizontal;
+	m_vInput.y = vertical;
+
+	//Flips the sprite based on the horizontal movement
+	if (horizontal != 0.0f) {
+		
+	}
+
+	
+	//Normalize the vector
+	m_vInput.Normalize();
+	
 }

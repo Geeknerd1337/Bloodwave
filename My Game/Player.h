@@ -16,6 +16,9 @@ class CPlayer: public CObject{
     bool m_bStrafeLeft = false; ///< Strafe left.
     bool m_bStrafeRight = false; ///< Strafe right.
     bool m_bStrafeBack = false; ///< Strafe back.
+	
+    //Vector 2 called input
+	Vector2 m_vInput = Vector2(0, 0); ///< Input vector.
     
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 

@@ -75,7 +75,11 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Smoke, "smoke");
 	m_pRenderer->Load(eSprite::Spark, "spark");
 	m_pRenderer->Load(eSprite::Turret, "turret");
+
+	//Player
 	m_pRenderer->Load(eSprite::Player_Idle, "player_idle");
+	m_pRenderer->Load(eSprite::Player_Idle_Left, "player_idle_left");
+	m_pRenderer->Load(eSprite::Player_Idle_Right, "player_idle_right");
 
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");
@@ -109,7 +113,7 @@ void CGame::CreateObjects() {
 	m_vWorldSize.x = 4096;
 	m_vWorldSize.y = 4096;
 
-	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player, Vector2(64.0f, 64.0f));
+	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(64.0f, 64.0f));
 	m_pObjectManager->create(eSprite::Turret, Vector2(430.0f, 430.0f));
 
 	Vector2 v(128.0f, 64.0f); //initial ant position
@@ -141,40 +145,7 @@ void CGame::KeyboardHandler() {
 		m_bDrawFrameRate = !m_bDrawFrameRate;
 
 	if (m_pKeyboard->TriggerDown(VK_BACK)) //start game
-		BeginGame();
-
-	//This is so bad
-	if (m_pPlayer) { //safety
-		if (m_pKeyboard->TriggerDown(VK_UP)) //move forwards
-			m_pPlayer->SetSpeed(100.0f);
-
-		if (m_pKeyboard->TriggerUp(VK_UP)) //stop
-			m_pPlayer->SetSpeed(0.0f);
-
-		if (m_pKeyboard->TriggerDown(VK_RIGHT)) //rotate clockwise
-			m_pPlayer->SetRotSpeed(-1.0f);
-
-		if (m_pKeyboard->TriggerUp(VK_RIGHT)) //stop rotating clockwise
-			m_pPlayer->SetRotSpeed(0.0f);
-
-		if (m_pKeyboard->TriggerDown(VK_LEFT)) //rotate counterclockwise
-			m_pPlayer->SetRotSpeed(1.0f);
-
-		if (m_pKeyboard->TriggerUp(VK_LEFT)) //stop rotating counterclockwise
-			m_pPlayer->SetRotSpeed(0.0f);
-
-		if (m_pKeyboard->TriggerDown(VK_SPACE)) {
-		}
-
-		if (m_pKeyboard->Down('D')) //strafe right
-			m_pPlayer->StrafeRight();
-
-		if (m_pKeyboard->Down('A')) //strafe left
-			m_pPlayer->StrafeLeft();
-
-		if (m_pKeyboard->Down(VK_DOWN)) //strafe back
-			m_pPlayer->StrafeBack();
-	} //if
+		BeginGame(); 
 }
 
 /// Poll the XBox controller state and respond to the controls there.
@@ -184,26 +155,6 @@ void CGame::ControllerHandler() {
 
 	m_pController->GetState(); //get state of controller's controls 
 
-	//Iterate over the object list and call the buildInput method
-
-
-
-	if (m_pPlayer) { //safety
-		m_pPlayer->SetSpeed(100 * m_pController->GetRTrigger());
-		m_pPlayer->SetRotSpeed(-2.0f * m_pController->GetRThumb().x);
-
-		if (m_pController->GetButtonRSToggle()) //fire gun
-			m_pObjectManager->FireGun(m_pPlayer, eSprite::Bullet);
-
-		if (m_pController->GetDPadRight()) //strafe right
-			m_pPlayer->StrafeRight();
-
-		if (m_pController->GetDPadLeft()) //strafe left
-			m_pPlayer->StrafeLeft();
-
-		if (m_pController->GetDPadDown()) //strafe back
-			m_pPlayer->StrafeBack();
-	} //if
 } //ControllerHandler
 
 /// Draw the current frame rate to a hard-coded position in the window.
@@ -271,6 +222,7 @@ void CGame::FollowCamera() {
 void CGame::ProcessFrame() {
 	ControllerHandler(); //handle controller input
 	KeyboardHandler(); //handle keyboard input;
+	
 	m_pObjectManager->BuildInput();
 	
 	m_pAudio->BeginFrame(); //notify audio player that frame has begun

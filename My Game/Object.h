@@ -53,6 +53,8 @@ class CObject:
     void move(); ///< Move object.
     void draw(); ///< Draw object.
 
+    void SetSprite(eSprite);
+
 
     const bool isBullet() const; ///< Is a bullet.
 }; //CObject

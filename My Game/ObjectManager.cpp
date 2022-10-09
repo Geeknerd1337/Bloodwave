@@ -27,7 +27,7 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos){
 
   switch(t){ //create object of type t
     case eSprite::Ant:     pObj = new CAnt(pos); break;
-    case eSprite::Player:  pObj = new CPlayer(pos); break;
+    case eSprite::Player_Idle:  pObj = new CPlayer(pos); break;
     case eSprite::Turret:  pObj = new CTurret(pos); break;
     case eSprite::Bullet:  pObj = new CBullet(eSprite::Bullet,  pos); break;
     case eSprite::Bullet2: pObj = new CBullet(eSprite::Bullet2, pos); break;
@@ -181,6 +181,7 @@ void CObjectManager::FindClosest(const Vector2& pos, CObject*& pObj, float& dsq)
 //buildInput iterates over the m_stdObjectList and calls the build input method
 //for each object. This is called by the game state manager.
 void CObjectManager::BuildInput() {	
+    //Print the contents of m_stdObjectList
 	for (auto const& p : m_stdObjectList) //for each object
 		p->buildInput(); //build input
 } //buildInput

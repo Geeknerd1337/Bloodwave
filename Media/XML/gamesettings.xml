@@ -30,6 +30,8 @@
     </sprite>
 	
 	<sprite name="player_idle" file="player_idle.png"/>
+	<sprite name="player_idle_right" file="player_idle_right.png"/>
+	<sprite name="player_idle_left" file="player_idle_left.png"/>
   </sprites>
 
   <!-- sound -->

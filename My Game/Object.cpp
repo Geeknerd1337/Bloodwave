@@ -31,6 +31,14 @@ CObject::~CObject(){
   delete m_pGunFireEvent;
 } //destructor
 
+/// <summary>
+/// Sets the current sprite index to a given value.
+/// </summary>
+/// <param name="newSprite"></param>
+void CObject::SetSprite(eSprite newSprite) {
+	m_nSpriteIndex = (UINT)newSprite;
+}
+
 /// Move object an amount that depends on its velocity and the frame time.
 
 void CObject::move(){

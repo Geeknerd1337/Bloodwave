@@ -119,7 +119,7 @@ void CGame::CreateObjects() {
 	m_vWorldSize.y = 4096;
 
 	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(64.0f, 64.0f));
-	m_pEnemy = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(64.0f, 64.0f));
+	(CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(64.0f, 64.0f));
 	
 	m_pObjectManager->create(eSprite::Turret, Vector2(430.0f, 430.0f));
 

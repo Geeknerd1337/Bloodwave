@@ -21,6 +21,7 @@ protected:
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 
 public:
+	
     CEnemy(const Vector2& p); ///< Constructor.
 
     virtual void move(); ///< Move player object.

@@ -13,7 +13,7 @@
     <ClCompile Include="Turret.cpp" />
     <ClCompile Include="Utility\GameCamera.cpp" />
     <ClCompile Include="Objects\Actor.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Objects\Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -28,7 +28,7 @@
     <ClInclude Include="Turret.h" />
     <ClInclude Include="Utility\GameCamera.h" />
     <ClInclude Include="Objects\Actor.h" />
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Objects\Enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

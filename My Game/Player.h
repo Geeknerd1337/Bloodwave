@@ -11,26 +11,24 @@
 /// The abstract representation of the player object. The player differs from
 /// the other objects in the game in that it moves in respond to device inputs.
 
-class CPlayer: public Actor{
-  protected:  
-    bool m_bStrafeLeft = false; ///< Strafe left.
-    bool m_bStrafeRight = false; ///< Strafe right.
-    bool m_bStrafeBack = false; ///< Strafe back.
-	
-    
-    
-    virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
+class CPlayer : public Actor {
+protected:
+	bool m_bStrafeLeft = false; ///< Strafe left.
+	bool m_bStrafeRight = false; ///< Strafe right.
+	bool m_bStrafeBack = false; ///< Strafe back.
 
-  public:
-    CPlayer(const Vector2& p); ///< Constructor.
+	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 
-    virtual void move(); ///< Move player object.
-	
-    const Vector2& GetPos() const; ///< Get position.
+public:
+	CPlayer(const Vector2& p); ///< Constructor.
 
-    //Implement BuildInput
+	virtual void move(); ///< Move player object.
+
+	const Vector2& GetPos() const; ///< Get position.
+
+	//Implement BuildInput
 	virtual void buildInput() override;
-	
+
 }; //CPlayer
 
 #endif //__L4RC_GAME_PLAYER_H__

@@ -4,7 +4,7 @@
 #ifndef __L4RC_GAME_ENEMY_H__
 #define __L4RC_GAME_ENEMY_H__
 
-#include "Objects/Actor.h"
+#include "Actor.h"
 
 /// \brief The player object. 
 ///

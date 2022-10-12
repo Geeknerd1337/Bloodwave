@@ -5,7 +5,7 @@
 #include "ComponentIncludes.h"
 
 #include "Player.h"
-#include "Enemy.h"
+#include "Objects/Enemy.h"
 #include "Turret.h"
 #include "Bullet.h"
 #include "Ant.h"

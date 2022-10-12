@@ -187,3 +187,12 @@ void CObjectManager::BuildInput() {
 	for (auto const& p : m_stdObjectList) //for each object
 		p->buildInput(); //build input
 } //buildInput
+
+//buildInput iterates over the m_stdObjectList and calls the build input method
+//for each object. This is called by the game state manager.
+void CObjectManager::Simulate() {
+    
+    for (auto const& p : m_stdObjectList) {
+        p->simulate();
+    }
+} 

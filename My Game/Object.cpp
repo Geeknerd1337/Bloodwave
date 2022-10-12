@@ -39,18 +39,23 @@ void CObject::SetSprite(eSprite newSprite) {
 	m_nSpriteIndex = (UINT)newSprite;
 }
 
-/// Move object an amount that depends on its velocity and the frame time.
 
-void CObject::move(){
-  if(!m_bDead && !m_bStatic)
-    m_vPos += m_vVelocity*m_pTimer->GetFrameTime();
-} //move
 
 //BuildInput
 void CObject::buildInput()
 {
 	//Build the input for the object
 }
+
+void CObject::simulate() {
+	
+}
+
+/// Move object an amount that depends on its velocity and the frame time.
+void CObject::move() {
+	if (!m_bDead && !m_bStatic)
+		m_vPos += m_vVelocity * m_pTimer->GetFrameTime();
+} //move
 
 /// Ask the renderer to draw the sprite described in the sprite descriptor.
 /// Note that `CObject` is derived from `LBaseObject` which is inherited from

@@ -47,11 +47,27 @@ class CObject:
   public:
     CObject(eSprite, const Vector2&); ///< Constructor.
     virtual ~CObject(); ///< Destructor.
-	//Virtual BuildINput method
-	virtual void buildInput();
+	
+    /// <summary>
+	/// Build Input is called every frame and is responsible for handling input on a per object basis. This is called before simulate.
+    /// </summary>
+    virtual void buildInput();
 
-    void move(); ///< Move object.
-    void draw(); ///< Draw object.
+    /// <summary>
+    /// This method handles the simulation of all objects. It is where we will put game logic for each individual object
+	/// and gets called after buildInput() and before draw()
+    /// </summary>
+    void simulate();
+
+    /// <summary>
+    /// A method responsible for moving the object in the world. This is called after simulate.
+    /// </summary>
+    void move();
+
+    /// <summary>
+    /// A method which is responsible for actually drawing the object, called last
+    /// </summary>
+    void draw();
 
     void SetSprite(eSprite);
 

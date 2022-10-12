@@ -8,10 +8,10 @@
 #include "Object.h"
 #include "Common.h"
 
-/// \brief The object manager.
-///
-/// A collection of all of the game objects.
 
+/// <summary>
+/// A collection of all the game objects in the game
+/// </summary>
 class CObjectManager :
 	public LBaseObjectManager<CObject>,
 	public CCommon
@@ -24,11 +24,22 @@ private:
 public:
 	CObject* create(eSprite, const Vector2&); ///< Create new object.
 
+	/// <summary>
+	/// TODO: Remove this function, there's no reason this should be in the object manager
+	/// </summary>
 	void FireGun(CObject*, eSprite); ///< Fire object's gun.
 	void FindClosest(const Vector2&, CObject*&, float&); ///< Find close objects.
-	//Build input method
-	void BuildInput();
 	
-}; //CObjectManager
+	/// <summary>
+	/// Builds the input for all objects
+	/// </summary>
+	void BuildInput();
+
+	/// <summary>
+	/// Simulates all the objects in the game
+	/// </summary>
+	void Simulate();
+	
+};
 
 #endif //__L4RC_GAME_OBJECTMANAGER_H__

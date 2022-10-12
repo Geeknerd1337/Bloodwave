@@ -12,7 +12,7 @@
 CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_bIsTarget = true;
 	m_bStatic = false;
-	//Set the angle to 0 so carmella isn't just standing there
+	//Set the angle to 0 so carmilla isn't just standing there
 	m_fRoll = 0.0;
 } //constructor
 

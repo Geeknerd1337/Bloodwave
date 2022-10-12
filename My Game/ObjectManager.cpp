@@ -5,6 +5,7 @@
 #include "ComponentIncludes.h"
 
 #include "Player.h"
+#include "Enemy.h"
 #include "Turret.h"
 #include "Bullet.h"
 #include "Ant.h"
@@ -28,6 +29,7 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos){
   switch(t){ //create object of type t
     case eSprite::Ant:     pObj = new CAnt(pos); break;
     case eSprite::Player_Idle:  pObj = new CPlayer(pos); break;
+    case eSprite::Enemy_Idle: pObj = new CEnemy(pos); break;
     case eSprite::Turret:  pObj = new CTurret(pos); break;
     case eSprite::Bullet:  pObj = new CBullet(eSprite::Bullet,  pos); break;
     case eSprite::Bullet2: pObj = new CBullet(eSprite::Bullet2, pos); break;

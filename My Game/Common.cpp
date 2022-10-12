@@ -12,3 +12,4 @@ LParticleEngine2D* CCommon::m_pParticleEngine = nullptr;
 
 Vector2 CCommon::m_vWorldSize = Vector2::Zero;
 CPlayer* CCommon::m_pPlayer = nullptr;
+CEnemy* CCommon::m_pEnemy = nullptr;

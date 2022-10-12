@@ -81,6 +81,11 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Player_Idle_Left, "player_idle_left");
 	m_pRenderer->Load(eSprite::Player_Idle_Right, "player_idle_right");
 
+	//Enemy
+	m_pRenderer->Load(eSprite::Enemy_Idle, "enemy_idle");
+	m_pRenderer->Load(eSprite::Enemy_Idle_Left, "enemy_idle_left");
+	m_pRenderer->Load(eSprite::Enemy_Idle_Right, "enemy_idle_right");
+
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");
 
@@ -114,6 +119,8 @@ void CGame::CreateObjects() {
 	m_vWorldSize.y = 4096;
 
 	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(64.0f, 64.0f));
+	m_pEnemy = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(64.0f, 64.0f));
+	
 	m_pObjectManager->create(eSprite::Turret, Vector2(430.0f, 430.0f));
 
 	Vector2 v(128.0f, 64.0f); //initial ant position

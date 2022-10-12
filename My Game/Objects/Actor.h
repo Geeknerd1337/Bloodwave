@@ -13,9 +13,12 @@ protected:
 
 	//Move Speed
 	float m_fMoveSpeed = 200.0f; ///< Movement speed of the actor.
+
+	
 	
 public:
 	Actor(const Vector2& p); ///< Constructor.
+
 };
 
 #endif

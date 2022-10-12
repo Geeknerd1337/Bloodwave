@@ -57,7 +57,7 @@ class CObject:
     /// This method handles the simulation of all objects. It is where we will put game logic for each individual object
 	/// and gets called after buildInput() and before draw()
     /// </summary>
-    void simulate();
+    virtual void simulate();
 
     /// <summary>
     /// A method responsible for moving the object in the world. This is called after simulate.

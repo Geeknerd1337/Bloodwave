@@ -35,16 +35,16 @@ enum class eSound : UINT {
 /// The player state is an enumeration representing the current state of the player. This is used with a FSM
 /// to control the player logic in the CPlayer class.
 /// </summary>
-enum class PlayerState : UINT {
-	Walk, Attack, Stun, Dead, Dash
+enum class ePlayerState : UINT {
+	Idle, Attack, Stun, Dead, Dash
 };
 
 /// <summary>
 /// This represents the current state of the enemy. This is used with an FSM in the CEnemy class to
 /// effectively manage the AI of our enemy class.
 /// </summary>
-enum class EnemyState {
-	Chase, Attack, Stun, Dead
+enum class eEnemyState {
+	Idle, Chase, Attack, Stun, Dead
 };
 
 #endif //__L4RC_GAME_GAMEDEFINES_H__

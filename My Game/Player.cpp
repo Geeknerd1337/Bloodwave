@@ -6,9 +6,9 @@
 #include "Helpers.h"
 
 
-/// Create and initialize an player object given its initial position.
-/// \param p Initial position of player.
-
+/// <summary>
+/// Construct the player at a given position
+/// </summary>
 CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_bIsTarget = true;
 	m_bStatic = false;
@@ -17,7 +17,9 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 } //constructor
 
 
-//This is where we will do the majority of our work
+/// <summary>
+/// Move the player in accordance to their velocity
+/// </summary>
 void CPlayer::move() {
 	const float t = m_pTimer->GetFrameTime(); //time
 	const Vector2 view = GetViewVector(); //view vector
@@ -37,7 +39,13 @@ void CPlayer::move() {
 		}
 	}
 
-} //move
+}
+
+void CPlayer::simulate() {
+	
+}
+
+
 
 /// Response to collision. If the object being collided with is a bullet, then
 /// play a sound, otherwise call `CObject::CollisionResponse` for the default

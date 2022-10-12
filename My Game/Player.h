@@ -19,6 +19,11 @@ protected:
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 
+	/// <summary>
+	/// The current state of the player
+	/// </summary>
+	ePlayerState m_ePlayerState = ePlayerState::Idle; 
+
 public:
 	CPlayer(const Vector2& p); ///< Constructor.
 
@@ -28,6 +33,11 @@ public:
 
 	//Implement BuildInput
 	virtual void buildInput() override;
+
+	//Implement simulate
+	virtual void simulate() override;
+	
+	//
 
 }; //CPlayer
 

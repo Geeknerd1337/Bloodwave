@@ -14,6 +14,7 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_bStatic = false;
 	//Set the angle to 0 so carmilla isn't just standing there
 	m_fRoll = 0.0;
+	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
 } //constructor
 
 

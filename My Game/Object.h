@@ -28,7 +28,7 @@ class CObject:
 
   protected:
     float m_fRadius = 0; ///< Bounding circle radius.
-    Vector3 m_vBounds = Vector3(1.0f, 1.0f, 1.0f);
+    Vector3 m_vBounds = Vector3(0.0f, 0.0f, 0.0f);
 
     float m_fSpeed = 0; ///< Speed.
     float m_fRotSpeed = 0; ///< Rotational speed.

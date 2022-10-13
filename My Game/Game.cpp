@@ -66,6 +66,7 @@ void CGame::LoadImages() {
 	m_pRenderer->BeginResourceUpload();
 
 	m_pRenderer->Load(eSprite::Background, "floor");
+	m_pRenderer->Load(eSprite::Small_Square, "small_square");
 
 	m_pRenderer->Load(eSprite::SpriteSheet, "spritesheet"); //must be loaded before its sprites
 

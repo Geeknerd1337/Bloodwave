@@ -12,10 +12,11 @@
 
 class CEnemy : public Actor {
 protected:
-    bool m_bStrafeLeft = false; ///< Strafe left.
-    bool m_bStrafeRight = false; ///< Strafe right.
-    bool m_bStrafeBack = false; ///< Strafe back.
-
+	
+    /// <summary>
+    /// The current state of the enemy
+    /// </summary>
+    eEnemyState m_eEnemyState = eEnemyState::Idle;
 
 
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.

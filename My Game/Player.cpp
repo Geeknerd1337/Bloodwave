@@ -23,12 +23,10 @@ void CPlayer::HandleIdle() {
 
 	if (m_vInput.x != 0.0f) {
 		if (m_vInput.x > 0.0f) {
-			printf("Setting Sprite Player Right\n");
 			SetSprite(eSprite::Player_Idle_Right);
 		}
 
 		if (m_vInput.x < 0.0f) {
-			printf("Setting Sprite Player Left\n");
 			SetSprite(eSprite::Player_Idle_Left);
 		}
 	}

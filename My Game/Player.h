@@ -18,7 +18,11 @@ protected:
 	bool m_bStrafeBack = false; ///< Strafe back.
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
+	
+	void HandleIdle();
 
+	void HandleIdleTransitions();
+	
 	/// <summary>
 	/// The current state of the player
 	/// </summary>
@@ -36,6 +40,9 @@ public:
 
 	//Implement simulate
 	virtual void simulate() override;
+
+
+	
 	
 	//
 

@@ -24,25 +24,50 @@ void CPlayer::move() {
 	const float t = m_pTimer->GetFrameTime(); //time
 	const Vector2 view = GetViewVector(); //view vector
 	//TODO: Replace this with generic speed value
-	m_vPos += m_fMoveSpeed * t * m_vInput;
-	
-	//TODO: Remove
+	m_vPos += m_fMoveSpeed * t * m_vVelocity;
+}
+
+void CPlayer::HandleIdle() {
 	if (m_vInput.x != 0.0f) {
 		if (m_vInput.x > 0.0f) {
 			printf("Setting Sprite Player Right\n");
 			SetSprite(eSprite::Player_Idle_Right);
 		}
 
-		if (m_vInput.x < 0.0f){
+		if (m_vInput.x < 0.0f) {
 			printf("Setting Sprite Player Left\n");
 			SetSprite(eSprite::Player_Idle_Left);
 		}
 	}
-
 }
 
 void CPlayer::simulate() {
-	
+	//Switch statement for the player state
+	/*
+	The basic gist for how this is going to work is various simulations will be performed based on the value
+	of m_ePlayerState. Long story short, you will perform your relevant logic.
+	*/
+	switch (m_ePlayerState) {
+	case ePlayerState::Idle:
+		//Player Idle State
+		HandleIdle();
+		break;
+	case ePlayerState::Attack:
+		//Player Attack State
+		break;
+	case ePlayerState::Dash:
+		//Player Dash State
+		break;
+	case ePlayerState::Stun:
+		//Player Stun State
+		break;
+	case ePlayerState::Dead:
+		//Player Dead State
+		break;
+	default:
+		//Do nothing
+	}
+		
 }
 
 

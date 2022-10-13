@@ -7,6 +7,8 @@ class Actor : public CObject {
 protected:
 	//Vector 2 called input
 	Vector2 m_vInput = Vector2(0, 0); ///< Input vector.
+
+	Vector3 m_vBoundingSize = Vector3(0, 0, 0);
 	
 	//Health
 	int m_iHealth = 100; ///< Health of the actor.

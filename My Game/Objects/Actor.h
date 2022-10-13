@@ -19,6 +19,8 @@ protected:
 public:
 	Actor(const Vector2& p); ///< Constructor.
 
+	virtual void move() override;
+
 };
 
 #endif

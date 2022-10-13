@@ -17,17 +17,10 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 } //constructor
 
 
-/// <summary>
-/// Move the player in accordance to their velocity
-/// </summary>
-void CPlayer::move() {
-	const float t = m_pTimer->GetFrameTime(); //time
-	const Vector2 view = GetViewVector(); //view vector
-	//TODO: Replace this with generic speed value
-	m_vPos += m_fMoveSpeed * t * m_vVelocity;
-}
+
 
 void CPlayer::HandleIdle() {
+
 	if (m_vInput.x != 0.0f) {
 		if (m_vInput.x > 0.0f) {
 			printf("Setting Sprite Player Right\n");
@@ -39,6 +32,12 @@ void CPlayer::HandleIdle() {
 			SetSprite(eSprite::Player_Idle_Left);
 		}
 	}
+
+	m_vVelocity = m_vInput * m_fMoveSpeed;
+}
+
+void CPlayer::HandleIdleTransitions() {
+	//This is where you would hande transitions into attack, dash, death, stun, and the like
 }
 
 void CPlayer::simulate() {
@@ -51,6 +50,7 @@ void CPlayer::simulate() {
 	case ePlayerState::Idle:
 		//Player Idle State
 		HandleIdle();
+		HandleIdleTransitions();
 		break;
 	case ePlayerState::Attack:
 		//Player Attack State
@@ -64,10 +64,9 @@ void CPlayer::simulate() {
 	case ePlayerState::Dead:
 		//Player Dead State
 		break;
-	default:
-		//Do nothing
+
 	}
-		
+
 }
 
 
@@ -93,22 +92,22 @@ const Vector2& CPlayer::GetPos() const {
 
 //Implement buildInput
 void CPlayer::buildInput() {
-	
+
 	float vertical = 0.0f;
 	if (m_pKeyboard->Down('W')) {
-		
+
 		vertical += 1.0f;
 	}
-	
+
 	if (m_pKeyboard->Down('S')) {
 		vertical -= 1.0f;
 	}
-	
+
 	float horizontal = 0.0f;
 	if (m_pKeyboard->Down('A')) {
 		horizontal -= 1.0f;
 	}
-	
+
 	if (m_pKeyboard->Down('D')) {
 		horizontal += 1.0f;
 	}
@@ -119,11 +118,11 @@ void CPlayer::buildInput() {
 
 	//Flips the sprite based on the horizontal movement
 	if (horizontal != 0.0f) {
-		
+
 	}
 
-	
+
 	//Normalize the vector
 	m_vInput.Normalize();
-	
+
 }

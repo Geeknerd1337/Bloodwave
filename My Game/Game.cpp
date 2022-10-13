@@ -235,6 +235,7 @@ void CGame::ProcessFrame() {
 	m_pAudio->BeginFrame(); //notify audio player that frame has begun
 
 	m_pTimer->Tick([&]() { //all time-dependent function calls should go here
+		m_pObjectManager->Simulate();
 		m_pObjectManager->move(); //move all objects
 		//FollowCamera(); //make camera follow player
 		camera->HandleCamera();

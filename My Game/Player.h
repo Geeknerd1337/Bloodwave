@@ -19,8 +19,14 @@ protected:
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 	
+	/// <summary>
+	/// Handles the logic for the idle state
+	/// </summary>
 	void HandleIdle();
 
+	/// <summary>
+	/// Handles the logic for transitioning into other states from the idle state.
+	/// </summary>
 	void HandleIdleTransitions();
 	
 	/// <summary>
@@ -31,7 +37,7 @@ protected:
 public:
 	CPlayer(const Vector2& p); ///< Constructor.
 
-	virtual void move(); ///< Move player object.
+
 
 	const Vector2& GetPos() const; ///< Get position.
 

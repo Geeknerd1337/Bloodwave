@@ -14,7 +14,7 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 	SetSprite(eSprite::Enemy_Idle);
 } //constructor
 
-void CEnemy::move() {}
+
 
 void CEnemy::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {}
 
@@ -23,3 +23,7 @@ const Vector2& CEnemy::GetPos() const {
 } //GetPos
 
 void CEnemy::buildInput() {}
+
+void CEnemy::simulate() {
+	
+}

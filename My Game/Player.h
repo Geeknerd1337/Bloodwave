@@ -17,12 +17,22 @@ protected:
 	bool m_bStrafeRight = false; ///< Strafe right.
 	bool m_bStrafeBack = false; ///< Strafe back.
 
+	//timer to tell if dash should end yet
+	LEventTimer* m_pDashEvent = nullptr;
+	bool setVelocity = true;
+	Vector2 inputAtDashStart = Vector2(0, 0);
+
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 	
 	/// <summary>
 	/// Handles the logic for the idle state
 	/// </summary>
 	void HandleIdle();
+
+	/// <summary>
+	/// Handles the logic for the dash state
+	/// </summary>
+	void HandleDash();
 
 	/// <summary>
 	/// Handles the logic for transitioning into other states from the idle state.
@@ -32,7 +42,7 @@ protected:
 	/// <summary>
 	/// The current state of the player
 	/// </summary>
-	ePlayerState m_ePlayerState = ePlayerState::Idle; 
+	ePlayerState m_ePlayerState = ePlayerState::Dash; 
 
 public:
 	CPlayer(const Vector2& p); ///< Constructor.

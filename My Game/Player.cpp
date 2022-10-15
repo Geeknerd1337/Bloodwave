@@ -15,6 +15,9 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	//Set the angle to 0 so carmilla isn't just standing there
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
+
+	m_pDashEvent = new LEventTimer(1.0f);
+
 } //constructor
 
 
@@ -32,7 +35,39 @@ void CPlayer::HandleIdle() {
 		}
 	}
 
+
+
 	m_vVelocity = m_vInput * m_fMoveSpeed;
+}
+
+//handles the dash state of the player
+void CPlayer::HandleDash() {
+
+	
+	//dashing speed
+	m_fMoveSpeed = 800.0f;
+
+	//use bool setVelocity to set the velocity equal to what it is when you start the dash
+	//currently velocity is manually set becasue the dash state starts upon game load
+	if (setVelocity) {
+		m_vVelocity = Vector2(0, 1);
+		inputAtDashStart = m_vVelocity;
+		setVelocity = false;
+	}
+
+	//check if a second has passed, if so set the speed back, and swap states
+	if (m_pDashEvent && m_pDashEvent->Triggered()) {
+		m_fMoveSpeed = 200.0f;
+		printf("end dash");
+		setVelocity = true;
+
+		//will prolly need to detect which state we should go to
+		//and switch to that
+		//but for now, we swap into idle at the end of a dash
+		m_ePlayerState = ePlayerState::Idle;
+	}
+	 
+	m_vVelocity = inputAtDashStart * m_fMoveSpeed;
 }
 
 void CPlayer::HandleIdleTransitions() {
@@ -56,12 +91,16 @@ void CPlayer::simulate() {
 		break;
 	case ePlayerState::Dash:
 		//Player Dash State
+			HandleDash();
 		break;
 	case ePlayerState::Stun:
 		//Player Stun State
 		break;
 	case ePlayerState::Dead:
 		//Player Dead State
+		m_iHealth = 0;
+		//call gameover eventually
+		//reload the game
 		break;
 
 	}

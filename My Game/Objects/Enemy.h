@@ -18,6 +18,15 @@ protected:
     /// </summary>
     eEnemyState m_eEnemyState = eEnemyState::Idle;
 
+    //timer for idle velocity
+    LEventTimer* m_pIdleEvent = nullptr;
+    Vector2 idleVelocity = Vector2(0, 0);
+    //holds random number to determine idle velocity
+    float randomNumber;
+
+    //function for idle state
+    void handleIdle();
+
 
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 

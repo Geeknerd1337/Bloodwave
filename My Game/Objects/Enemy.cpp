@@ -5,6 +5,7 @@
 #include "ComponentIncludes.h"
 #include "Helpers.h"
 
+
 CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 	m_bIsTarget = true;
 	m_bStatic = false;
@@ -59,11 +60,30 @@ void CEnemy::handleIdle() {
 	}
 }
 
+void CEnemy::handleChase() {
+	//vector from player to enemy
+	Vector2 v = m_pPlayer->GetPos()- m_vPos;
+	
+	//if player is within chase radius, else return to idle
+	//TO DO: figure out transition phase to chase state
+	if (enemyChaseRadius > v.Length()) {
+		printf("Chasing!");
+		m_fMoveSpeed = 400.0f;
+		v.Normalize();
+		m_vVelocity = v * m_fMoveSpeed;
+	}
+	else {
+		m_eEnemyState = eEnemyState::Idle;
+		m_fMoveSpeed = 10.0f;
+	}
+}
+
 void CEnemy::simulate() {
 	
 	//Finite state machine for dictating which manages the enemies state
 	switch (m_eEnemyState) {
 	case eEnemyState::Idle:
+		//Enemy Idle State
 		handleIdle();
 		break;
 	case eEnemyState::Attack:
@@ -71,6 +91,7 @@ void CEnemy::simulate() {
 		break;
 	case eEnemyState::Chase:
 		//Enemy Chase State
+		handleChase();
 		break;
 	case eEnemyState::Stun:
 		//Enemy Stun State

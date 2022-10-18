@@ -5,6 +5,7 @@
 #define __L4RC_GAME_ENEMY_H__
 
 #include "Actor.h"
+#include "../Player.h"
 
 /// \brief The player object. 
 ///
@@ -16,16 +17,21 @@ protected:
     /// <summary>
     /// The current state of the enemy
     /// </summary>
-    eEnemyState m_eEnemyState = eEnemyState::Idle;
+    eEnemyState m_eEnemyState = eEnemyState::Chase;
 
     //timer for idle velocity
     LEventTimer* m_pIdleEvent = nullptr;
     Vector2 idleVelocity = Vector2(0, 0);
     //holds random number to determine idle velocity
     float randomNumber;
+    float enemyChaseRadius = 250.0;
+    float enemyAttackRadius;
 
     //function for idle state
     void handleIdle();
+
+    //function for chase state
+    void handleChase();
 
 
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.

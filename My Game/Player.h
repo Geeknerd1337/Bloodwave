@@ -42,12 +42,10 @@ protected:
 	/// <summary>
 	/// The current state of the player
 	/// </summary>
-	ePlayerState m_ePlayerState = ePlayerState::Dash; 
+	ePlayerState m_ePlayerState = ePlayerState::Idle; 
 
 public:
 	CPlayer(const Vector2& p); ///< Constructor.
-
-
 
 	const Vector2& GetPos() const; ///< Get position.
 

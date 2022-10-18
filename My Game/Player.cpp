@@ -15,13 +15,11 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	//Set the angle to 0 so carmilla isn't just standing there
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
-
-	m_pDashEvent = new LEventTimer(1.0f);
+	
+	//Sortened timer for dash - feels punchier
+	m_pDashEvent = new LEventTimer(0.3f);
 
 } //constructor
-
-
-
 
 void CPlayer::HandleIdle() {
 
@@ -34,8 +32,6 @@ void CPlayer::HandleIdle() {
 			SetSprite(eSprite::Player_Idle_Left);
 		}
 	}
-
-
 
 	m_vVelocity = m_vInput * m_fMoveSpeed;
 }
@@ -50,8 +46,9 @@ void CPlayer::HandleDash() {
 	//use bool setVelocity to set the velocity equal to what it is when you start the dash
 	//currently velocity is manually set becasue the dash state starts upon game load
 	if (setVelocity) {
-		m_vVelocity = Vector2(0, 1);
-		inputAtDashStart = m_vVelocity;
+		//changed m_vVelocity to m_vInput - this was causing the PC to teleport
+		printf("%f, %f", m_vInput.y, m_vInput.x);
+		inputAtDashStart = m_vInput;
 		setVelocity = false;
 	}
 
@@ -91,7 +88,7 @@ void CPlayer::simulate() {
 		break;
 	case ePlayerState::Dash:
 		//Player Dash State
-			HandleDash();
+		HandleDash();
 		break;
 	case ePlayerState::Stun:
 		//Player Stun State
@@ -106,8 +103,6 @@ void CPlayer::simulate() {
 	}
 
 }
-
-
 
 /// Response to collision. If the object being collided with is a bullet, then
 /// play a sound, otherwise call `CObject::CollisionResponse` for the default
@@ -150,6 +145,11 @@ void CPlayer::buildInput() {
 		horizontal += 1.0f;
 	}
 
+	//dash trigger
+	if (m_pKeyboard->Down(' ')) {
+		m_ePlayerState = ePlayerState::Dash;
+	}
+
 	//Set the m_vInput vector to our horizontal and vertical values
 	m_vInput.x = horizontal;
 	m_vInput.y = vertical;
@@ -158,7 +158,6 @@ void CPlayer::buildInput() {
 	if (horizontal != 0.0f) {
 
 	}
-
 
 	//Normalize the vector
 	m_vInput.Normalize();

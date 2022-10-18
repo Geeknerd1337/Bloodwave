@@ -41,7 +41,7 @@ void CPlayer::HandleDash() {
 
 	
 	//dashing speed
-	m_fMoveSpeed = 800.0f;
+	m_fMoveSpeed = m_fDashSpeed;
 
 	//use bool setVelocity to set the velocity equal to what it is when you start the dash
 	//currently velocity is manually set becasue the dash state starts upon game load
@@ -54,8 +54,8 @@ void CPlayer::HandleDash() {
 
 	//check if a second has passed, if so set the speed back, and swap states
 	if (m_pDashEvent && m_pDashEvent->Triggered()) {
-		m_fMoveSpeed = 200.0f;
-		printf("end dash");
+		m_fMoveSpeed = m_fRunSpeed;
+		printf("end dash\n");
 		setVelocity = true;
 
 		//will prolly need to detect which state we should go to

@@ -20,6 +20,8 @@ protected:
 	//timer to tell if dash should end yet
 	LEventTimer* m_pDashEvent = nullptr;
 	bool setVelocity = true;
+	float m_fRunSpeed = 200.0f;
+	float m_fDashSpeed = 800.0f;
 	Vector2 inputAtDashStart = Vector2(0, 0);
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.

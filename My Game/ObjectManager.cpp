@@ -101,6 +101,35 @@ void CObjectManager::BroadPhase() {
 		} //for
 } //BroadPhase
 
+
+std::vector<CObject*> CObjectManager::IntersectLine(const Vector2 &start,const Vector2 &end) {
+	{
+		std::vector<CObject*> objects;
+		for (CObject* pObj : m_stdObjectList) //for each object
+			if (!pObj->m_bDead) { //for each non-dead object, that is
+				//Construct a bounding box from the given object
+				BoundingBox bounds; //bounding boxes
+				bounds.Center = Vector3(pObj->m_vPos.x, pObj->m_vPos.y, 0.0f);
+				bounds.Extents = pObj->m_vBounds / 2.0f;
+
+				//Vector2 representing origin of the line
+				Vector2 origin = start;
+				//Vector2 representing direction of the line
+				Vector2 direction = end - start;
+				direction.Normalize();
+				//Float representing the distance of the line
+				float distance = (end - start).Length();
+				
+				//Check if the line intersects the bounding box
+				if (bounds.Intersects(origin, direction, distance)) {
+					//Add the intersecting object to the list
+					objects.push_back(pObj);
+				}				
+			}
+		return objects;
+	}
+}
+
 /// Perform collision detection and response for a pair of objects. Makes
 /// use of the helper function Identify() because this function may be called
 /// with the objects in an arbitrary order.

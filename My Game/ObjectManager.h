@@ -7,6 +7,7 @@
 #include "BaseObjectManager.h"
 #include "Object.h"
 #include "Common.h"
+#include <vector>
 
 
 /// <summary>
@@ -29,6 +30,9 @@ public:
 	/// </summary>
 	void FireGun(CObject*, eSprite); ///< Fire object's gun.
 	void FindClosest(const Vector2&, CObject*&, float&); ///< Find close objects.
+
+	//IntersectLine(start, end)
+	std::vector<CObject*> IntersectLine(const Vector2&, const Vector2&); ///< Find objects intersecting a line.
 	
 	/// <summary>
 	/// Builds the input for all objects

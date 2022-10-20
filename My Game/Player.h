@@ -13,14 +13,20 @@
 
 class CPlayer : public Actor {
 protected:
-	bool m_bStrafeLeft = false; ///< Strafe left.
-	bool m_bStrafeRight = false; ///< Strafe right.
-	bool m_bStrafeBack = false; ///< Strafe back.
-
-	//timer to tell if dash should end yet
+	/// <summary>
+	/// Timer which tells whether the player can dash or not
+	/// </summary>
 	LEventTimer* m_pDashEvent = nullptr;
 	bool setVelocity = true;
+
+	/// <summary>
+	/// Our run speed
+	/// </summary>
 	float m_fRunSpeed = 200.0f;
+
+	/// <summary>
+	/// The dash speed
+	/// </summary>
 	float m_fDashSpeed = 800.0f;
 	Vector2 inputAtDashStart = Vector2(0, 0);
 
@@ -30,6 +36,12 @@ protected:
 	/// Handles the logic for the idle state
 	/// </summary>
 	void HandleIdle();
+
+	/// <summary>
+	/// Boolean representing whether or not the player can currently attack
+	/// </summary>
+	/// <returns></returns>
+	bool CanAttack();
 
 	/// <summary>
 	/// Handles the logic for the dash state

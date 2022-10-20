@@ -17,7 +17,7 @@ protected:
     /// <summary>
     /// The current state of the enemy
     /// </summary>
-    eEnemyState m_eEnemyState = eEnemyState::Chase;
+    eEnemyState m_eEnemyState = eEnemyState::Idle;
 
     //timer for idle velocity
     LEventTimer* m_pIdleEvent = nullptr;
@@ -32,6 +32,8 @@ protected:
 
     //function for chase state
     void handleChase();
+
+    void handleTransitions();
 
 
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.

@@ -62,11 +62,9 @@ void CEnemy::handleChase() {
 	//vector from player to enemy
 	Vector2 v = m_pPlayer->GetPos()- m_vPos;
 
-	//PERCY OR SAM: I am leaving this for you so you know how to check if an object is the player in your attack state, I had to test
-	//because sometimes VS can get weird if it feels there's a circular dependency.
-	/*if (dynamic_cast<CPlayer*>(m_pPlayer) != nullptr) {
+	if (dynamic_cast<CPlayer*>(m_pPlayer) != nullptr) {
 		printf("I guess this worked?\n");
-	}*/
+	}
 	
 	//if player is within chase radius, else return to idle
 	//TO DO: figure out transition phase to chase state

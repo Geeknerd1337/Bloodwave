@@ -23,9 +23,7 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 
 void CEnemy::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {}
 
-const Vector2& CEnemy::GetPos() const {
-	return m_vPos;
-} //GetPos
+
 
 void CEnemy::buildInput() {}
 
@@ -67,8 +65,8 @@ void CEnemy::handleChase() {
 	//if player is within chase radius, else return to idle
 	//TO DO: figure out transition phase to chase state
 	if (enemyChaseRadius > v.Length()) {
-		printf("Chasing!\n");
-		m_fMoveSpeed = 400.0f;
+		//printf("Chasing!\n");
+		m_fMoveSpeed = 100.0f;
 		v.Normalize();
 		m_vVelocity = v * m_fMoveSpeed;
 	}

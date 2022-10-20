@@ -6,6 +6,7 @@
 
 #include "Objects/Actor.h"
 
+
 /// \brief The player object. 
 ///
 /// The abstract representation of the player object. The player differs from
@@ -28,7 +29,12 @@ protected:
 	/// The dash speed
 	/// </summary>
 	float m_fDashSpeed = 800.0f;
-	Vector2 inputAtDashStart = Vector2(0, 0);
+
+	/// <summary>
+	/// Sometimes we need to capture input when transitioning into a state
+	/// like the dash or the attack. This allows us to capture the input at that moment.
+	/// </summary>
+	Vector2 inputAtStateTransition = Vector2(0, 0);
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 	
@@ -42,6 +48,11 @@ protected:
 	/// </summary>
 	/// <returns></returns>
 	bool CanAttack();
+
+	/// <summary>
+	/// Allows us to handle the attack state.
+	/// </summary>
+	void HandleAttack();
 
 	/// <summary>
 	/// Handles the logic for the dash state
@@ -61,7 +72,7 @@ protected:
 public:
 	CPlayer(const Vector2& p); ///< Constructor.
 
-	const Vector2& GetPos() const; ///< Get position.
+	
 
 	//Implement BuildInput
 	virtual void buildInput() override;
@@ -70,7 +81,7 @@ public:
 	virtual void simulate() override;
 
 
-	
+	 
 	
 	//
 

@@ -44,6 +44,10 @@ void CObject::SetSprite(eSprite newSprite) {
 	m_nSpriteIndex = (UINT)newSprite;
 }
 
+const Vector2& CObject::GetPos() const {
+	return m_vPos;
+} //GetPos
+
 
 
 //BuildInput

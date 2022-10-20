@@ -4,6 +4,9 @@
 #include "Player.h"
 #include "ComponentIncludes.h"
 #include "Helpers.h"
+#include "ObjectManager.h"
+#include "Bullet.h"
+#include "Objects/Enemy.h"
 
 
 /// <summary>
@@ -48,7 +51,7 @@ void CPlayer::HandleDash() {
 	if (setVelocity) {
 		//changed m_vVelocity to m_vInput - this was causing the PC to teleport
 		printf("%f, %f", m_vInput.y, m_vInput.x);
-		inputAtDashStart = m_vInput;
+		inputAtStateTransition = m_vInput;
 		setVelocity = false;
 	}
 
@@ -64,7 +67,7 @@ void CPlayer::HandleDash() {
 		m_ePlayerState = ePlayerState::Idle;
 	}
 	 
-	m_vVelocity = inputAtDashStart * m_fMoveSpeed;
+	m_vVelocity = inputAtStateTransition * m_fMoveSpeed;
 }
 
 void CPlayer::HandleIdleTransitions() {
@@ -85,6 +88,7 @@ void CPlayer::simulate() {
 		break;
 	case ePlayerState::Attack:
 		//Player Attack State
+		HandleAttack();
 		break;
 	case ePlayerState::Dash:
 		//Player Dash State
@@ -104,6 +108,32 @@ void CPlayer::simulate() {
 
 }
 
+void CPlayer::HandleAttack() {
+	//Declare a Vector2 called start at the current position of the player
+	Vector2 start = this->GetPos();
+	
+	//Declare a Vector2 called end at the current position of the player plus their input
+	Vector2 end = start + inputAtStateTransition * 200.0f;
+	
+	//Declare a pointer to an array of CObjects
+	std::vector<CObject*> pObjects;
+	
+	pObjects = m_pObjectManager->IntersectLine(start, end);
+
+	//Iterate over pObjects and draw a line to each one
+	for (auto pObject : pObjects) {
+		if (dynamic_cast<CEnemy*>(pObject) != nullptr) {
+			printf("hit enemy\n");
+		}
+	}
+
+	m_ePlayerState = ePlayerState::Idle;
+}
+
+bool CPlayer::CanAttack() {
+	return true;
+}
+
 /// Response to collision. If the object being collided with is a bullet, then
 /// play a sound, otherwise call `CObject::CollisionResponse` for the default
 /// collision response.
@@ -119,9 +149,7 @@ void CPlayer::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {
 	else CObject::CollisionResponse(norm, d, pObj);
 } //CollisionResponse
 
-const Vector2& CPlayer::GetPos() const {
-	return m_vPos;
-} //GetPos
+
 
 //Implement buildInput
 void CPlayer::buildInput() {
@@ -146,8 +174,20 @@ void CPlayer::buildInput() {
 	}
 
 	//dash trigger
-	if (m_pKeyboard->Down(' ')) {
+	if (m_pKeyboard->TriggerDown(' ')) {
 		m_ePlayerState = ePlayerState::Dash;
+	}
+
+	if (m_pKeyboard->TriggerDown('E') && CanAttack()) {
+		
+		if (horizontal != 0 || vertical != 0) {
+			inputAtStateTransition = Vector2(horizontal, vertical);
+		}
+		else {
+			inputAtStateTransition = Vector2(1.0, 0.0);
+		}
+		
+		m_ePlayerState = ePlayerState::Attack;
 	}
 
 	//Set the m_vInput vector to our horizontal and vertical values

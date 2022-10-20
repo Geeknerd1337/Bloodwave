@@ -40,10 +40,7 @@ public:
 	
     CEnemy(const Vector2& p); ///< Constructor.
 
-    /// <summary>
-    /// Gets the position of he enemy
-    /// </summary>
-    const Vector2& GetPos() const;
+
 	
     virtual void buildInput() override;
 

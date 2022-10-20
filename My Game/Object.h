@@ -72,6 +72,8 @@ class CObject:
 
     void SetSprite(eSprite);
 
+    const Vector2& GetPos() const; ///< Get position.
+
 
     const bool isBullet() const; ///< Is a bullet.
 }; //CObject

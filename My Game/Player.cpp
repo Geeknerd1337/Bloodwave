@@ -18,11 +18,17 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	//Set the angle to 0 so carmilla isn't just standing there
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
-	
+
 	//Sortened timer for dash - feels punchier
-	m_pDashEvent = new LEventTimer(0.3f);
+	m_pDashEvent = new LEventTimer(0.8f);
 
 } //constructor
+
+CPlayer::~CPlayer()
+{
+	delete m_pCanDashEvent;
+	delete m_pDashEvent;
+}
 
 void CPlayer::HandleIdle() {
 
@@ -42,15 +48,16 @@ void CPlayer::HandleIdle() {
 //handles the dash state of the player
 void CPlayer::HandleDash() {
 
-	
+
 	//dashing speed
 	m_fMoveSpeed = m_fDashSpeed;
+	printf("in dash");
 
 	//use bool setVelocity to set the velocity equal to what it is when you start the dash
 	//currently velocity is manually set becasue the dash state starts upon game load
 	if (setVelocity) {
 		//changed m_vVelocity to m_vInput - this was causing the PC to teleport
-		printf("%f, %f", m_vInput.y, m_vInput.x);
+		printf("set velocity");
 		inputAtStateTransition = m_vInput;
 		setVelocity = false;
 	}
@@ -66,7 +73,7 @@ void CPlayer::HandleDash() {
 		//but for now, we swap into idle at the end of a dash
 		m_ePlayerState = ePlayerState::Idle;
 	}
-	 
+
 	m_vVelocity = inputAtStateTransition * m_fMoveSpeed;
 }
 
@@ -111,13 +118,13 @@ void CPlayer::simulate() {
 void CPlayer::HandleAttack() {
 	//Declare a Vector2 called start at the current position of the player
 	Vector2 start = this->GetPos();
-	
+
 	//Declare a Vector2 called end at the current position of the player plus their input
 	Vector2 end = start + inputAtStateTransition * 200.0f;
-	
+
 	//Declare a pointer to an array of CObjects
 	std::vector<CObject*> pObjects;
-	
+
 	pObjects = m_pObjectManager->IntersectLine(start, end);
 
 	//Iterate over pObjects and draw a line to each one
@@ -179,14 +186,14 @@ void CPlayer::buildInput() {
 	}
 
 	if (m_pKeyboard->TriggerDown('E') && CanAttack()) {
-		
+
 		if (horizontal != 0 || vertical != 0) {
 			inputAtStateTransition = Vector2(horizontal, vertical);
 		}
 		else {
 			inputAtStateTransition = Vector2(1.0, 0.0);
 		}
-		
+
 		m_ePlayerState = ePlayerState::Attack;
 	}
 

@@ -19,6 +19,11 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 	SetSprite(eSprite::Enemy_Idle);
 } //constructor
 
+CEnemy::~CEnemy()
+{
+	delete m_pIdleEvent;
+}
+
 
 
 void CEnemy::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {}

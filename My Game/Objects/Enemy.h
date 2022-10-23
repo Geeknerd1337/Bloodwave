@@ -41,6 +41,7 @@ protected:
 public:
 	
     CEnemy(const Vector2& p); ///< Constructor.
+    ~CEnemy();
 
 
 	

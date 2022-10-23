@@ -18,7 +18,11 @@ protected:
 	/// Timer which tells whether the player can dash or not
 	/// </summary>
 	LEventTimer* m_pDashEvent = nullptr;
+	LEventTimer* m_pCanDashEvent = nullptr;
 	bool setVelocity = true;
+	bool coolDown = false;
+
+	int stamina = 1000;
 
 	/// <summary>
 	/// Our run speed
@@ -37,7 +41,7 @@ protected:
 	Vector2 inputAtStateTransition = Vector2(0, 0);
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
-	
+
 	/// <summary>
 	/// Handles the logic for the idle state
 	/// </summary>
@@ -63,16 +67,17 @@ protected:
 	/// Handles the logic for transitioning into other states from the idle state.
 	/// </summary>
 	void HandleIdleTransitions();
-	
+
 	/// <summary>
 	/// The current state of the player
 	/// </summary>
-	ePlayerState m_ePlayerState = ePlayerState::Idle; 
+	ePlayerState m_ePlayerState = ePlayerState::Idle;
 
 public:
 	CPlayer(const Vector2& p); ///< Constructor.
+	~CPlayer();
 
-	
+
 
 	//Implement BuildInput
 	virtual void buildInput() override;
@@ -81,10 +86,10 @@ public:
 	virtual void simulate() override;
 
 
-	 
-	
+
+
 	//
 
 }; //CPlayer
 
-#endif //__L4RC_GAME_PLAYER_H__
+#endif //__L4RC_GAME_PLAYER_H___

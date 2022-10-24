@@ -20,7 +20,7 @@ protected:
 	LEventTimer* m_pDashEvent = nullptr;
 	LEventTimer* m_pCanDashEvent = nullptr;
 	bool setVelocity = true;
-	bool coolDown = false;
+	bool coolDownReady = true;
 
 	int stamina = 1000;
 

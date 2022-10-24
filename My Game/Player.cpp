@@ -20,7 +20,8 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
 
 	//Sortened timer for dash - feels punchier
-	m_pDashEvent = new LEventTimer(0.8f);
+	m_pDashEvent = new LEventTimer(0.3f);
+	m_pCanDashEvent = new LEventTimer(1.0f);
 
 } //constructor
 
@@ -62,15 +63,12 @@ void CPlayer::HandleDash() {
 		setVelocity = false;
 	}
 
-	//check if a second has passed, if so set the speed back, and swap states
+	//check if a second has passed, if so set the speed back, and swap states, and set cooldown
 	if (m_pDashEvent && m_pDashEvent->Triggered()) {
 		m_fMoveSpeed = m_fRunSpeed;
 		printf("end dash\n");
 		setVelocity = true;
-
-		//will prolly need to detect which state we should go to
-		//and switch to that
-		//but for now, we swap into idle at the end of a dash
+		coolDownReady = false;
 		m_ePlayerState = ePlayerState::Idle;
 	}
 
@@ -181,8 +179,15 @@ void CPlayer::buildInput() {
 	}
 
 	//dash trigger
-	if (m_pKeyboard->TriggerDown(' ')) {
+	if (m_pKeyboard->Down(' ') && coolDownReady) {
 		m_ePlayerState = ePlayerState::Dash;
+	}
+
+	//if it's in cooldown, check if cooldown should end
+	if (!coolDownReady) {
+		if (m_pCanDashEvent && m_pCanDashEvent->Triggered()) {
+			coolDownReady = true;
+		}
 	}
 
 	if (m_pKeyboard->TriggerDown('E') && CanAttack()) {

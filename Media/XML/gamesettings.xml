@@ -33,6 +33,13 @@
 	<sprite name="player_idle_right" file="player_idle_right.png"/>
 	<sprite name="player_idle_left" file="player_idle_left.png"/>
 	
+	<sprite name="player_walk" file="player_walk.png"/>
+    <sprite name="carmilla" sheet="player_walk" frames="3">
+      <frame index="0" left="0"   top="0" right="43"  bottom="78"/>>
+      <frame index="1" left="43"  top="0" right="86" bottom="78"/>>
+      <frame index="2" left="86" top="0" right="129" bottom="78"/>>
+    </sprite>
+	
 	<sprite name="enemy_idle" file="enemy_idle.png"/>
 	<sprite name="enemy_idle_right" file="enemy_idle_right.png"/>
 	<sprite name="enemy_idle_left" file="enemy_idle_left.png"/>

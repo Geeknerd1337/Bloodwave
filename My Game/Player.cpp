@@ -19,16 +19,13 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
 
-	//Sortened timer for dash - feels punchier
-	m_pDashEvent = new LEventTimer(0.3f);
-	m_pCanDashEvent = new LEventTimer(1.0f);
+
 
 } //constructor
 
 CPlayer::~CPlayer()
 {
-	delete m_pCanDashEvent;
-	delete m_pDashEvent;
+
 }
 
 void CPlayer::HandleIdle() {
@@ -46,33 +43,19 @@ void CPlayer::HandleIdle() {
 	m_vVelocity = m_vInput * m_fMoveSpeed;
 }
 
+
 //handles the dash state of the player
 void CPlayer::HandleDash() {
 
+	m_vVelocity = inputAtStateTransition * m_fDashSpeed;
 
-	//dashing speed
-	m_fMoveSpeed = m_fDashSpeed;
-	printf("in dash");
-
-	//use bool setVelocity to set the velocity equal to what it is when you start the dash
-	//currently velocity is manually set becasue the dash state starts upon game load
-	if (setVelocity) {
-		//changed m_vVelocity to m_vInput - this was causing the PC to teleport
-		printf("set velocity");
-		inputAtStateTransition = m_vInput;
-		setVelocity = false;
-	}
-
-	//check if a second has passed, if so set the speed back, and swap states, and set cooldown
-	if (m_pDashEvent && m_pDashEvent->Triggered()) {
-		m_fMoveSpeed = m_fRunSpeed;
+	//check if a a quarter has passed, if so swap states, and set cooldown
+	if ((m_pTimer->GetTime() - timeAtDashStart) > 0.25f) {
 		printf("end dash\n");
-		setVelocity = true;
 		coolDownReady = false;
 		m_ePlayerState = ePlayerState::Idle;
 	}
 
-	m_vVelocity = inputAtStateTransition * m_fMoveSpeed;
 }
 
 void CPlayer::HandleIdleTransitions() {
@@ -179,13 +162,22 @@ void CPlayer::buildInput() {
 	}
 
 	//dash trigger
-	if (m_pKeyboard->Down(' ') && coolDownReady) {
+	//and set input
+	if (m_pKeyboard->TriggerDown(' ') && coolDownReady && m_ePlayerState != ePlayerState::Dash) {
+		timeAtDashStart = m_pTimer->GetTime();
+		if (horizontal != 0 || vertical != 0) {
+			inputAtStateTransition = Vector2(horizontal, vertical);
+		}
+		else {
+			inputAtStateTransition = Vector2(1.0, 0.0);
+		}
+
 		m_ePlayerState = ePlayerState::Dash;
 	}
 
 	//if it's in cooldown, check if cooldown should end
 	if (!coolDownReady) {
-		if (m_pCanDashEvent && m_pCanDashEvent->Triggered()) {
+		if ((m_pTimer->GetTime() - timeAtDashStart) > 1.0f) {
 			coolDownReady = true;
 		}
 	}

@@ -5,6 +5,7 @@
 #define __L4RC_GAME_PLAYER_H__
 
 #include "Objects/Actor.h"
+#include "Timer.h"
 
 
 /// \brief The player object. 
@@ -17,8 +18,7 @@ protected:
 	/// <summary>
 	/// Timer which tells whether the player can dash or not
 	/// </summary>
-	LEventTimer* m_pDashEvent = nullptr;
-	LEventTimer* m_pCanDashEvent = nullptr;
+	float timeAtDashStart = 0.0f;
 	bool setVelocity = true;
 	bool coolDownReady = true;
 

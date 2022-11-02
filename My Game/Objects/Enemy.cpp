@@ -12,7 +12,7 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 	//Set the angle to 0 so enemy is standing upright
 	m_fRoll = 0.0;
 
-	m_pIdleEvent = new LEventTimer(1.0f);
+	
 	//starts in idle state, so set it to slow idle speed
 	m_fMoveSpeed = 10.0f;
 
@@ -21,7 +21,6 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 
 CEnemy::~CEnemy()
 {
-	delete m_pIdleEvent;
 }
 
 
@@ -36,7 +35,7 @@ void CEnemy::handleIdle() {
 	
 	//every second, get a new random velocity
 	//weighted towards standing still
-	if (m_pIdleEvent && m_pIdleEvent->Triggered()) {
+	if ((m_pTimer->GetTime() - m_fIdleTime) > 1.0f) {
 		randomNumber = m_pRandom->randf();
 		if (randomNumber < 0.1f) {
 			idleVelocity = Vector2(0, 1);
@@ -60,6 +59,9 @@ void CEnemy::handleIdle() {
 			idleVelocity = Vector2(0, 0);
 		}
 		m_vVelocity = idleVelocity * m_fMoveSpeed;
+
+		//set idle time to new time
+		m_fIdleTime = m_pTimer->GetTime();
 	}
 }
 

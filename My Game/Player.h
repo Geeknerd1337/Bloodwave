@@ -16,10 +16,10 @@
 class CPlayer : public Actor {
 protected:
 	/// <summary>
-	/// Timer which tells whether the player can dash or not
+	/// Time when you start dashing to decide if dash if over
+	/// cool down to decide if you can dash
 	/// </summary>
 	float timeAtDashStart = 0.0f;
-	bool setVelocity = true;
 	bool coolDownReady = true;
 
 	int stamina = 1000;

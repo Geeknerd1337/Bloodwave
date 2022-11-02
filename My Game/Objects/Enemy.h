@@ -19,8 +19,8 @@ protected:
     /// </summary>
     eEnemyState m_eEnemyState = eEnemyState::Idle;
 
-    //timer for idle velocity
-    LEventTimer* m_pIdleEvent = nullptr;
+    //float for idle time
+    float m_fIdleTime = 0.0f;
     Vector2 idleVelocity = Vector2(0, 0);
     //holds random number to determine idle velocity
     float randomNumber;

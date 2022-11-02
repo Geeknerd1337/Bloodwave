@@ -27,6 +27,13 @@ protected:
     float enemyChaseRadius = 250.0;
     float enemyAttackRadius;
 
+    //idle and chase speeds
+    float m_fIdleSpeed = 10.0f;
+    float m_fChaseSpeed = 100.0f;
+
+    //vector between enemy and player
+    Vector2 vEnemyToPlayer = Vector2(300, 300);
+
     //function for idle state
     void handleIdle();
 

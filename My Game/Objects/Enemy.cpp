@@ -58,7 +58,7 @@ void CEnemy::handleIdle() {
 		else {
 			idleVelocity = Vector2(0, 0);
 		}
-		m_vVelocity = idleVelocity * m_fMoveSpeed;
+		m_vVelocity = idleVelocity * m_fIdleSpeed;
 
 		//set idle time to new time
 		m_fIdleTime = m_pTimer->GetTime();
@@ -67,7 +67,7 @@ void CEnemy::handleIdle() {
 
 void CEnemy::handleChase() {
 	//vector from player to enemy
-	Vector2 vEnemyToPlayer = m_pPlayer->GetPos()- m_vPos;
+	vEnemyToPlayer = m_pPlayer->GetPos()- m_vPos;
 
 	//PERCY OR SAM: I am leaving this for you so you know how to check if an object is the player in your attack state, I had to test
 	//because sometimes VS can get weird if it feels there's a circular dependency.
@@ -77,21 +77,21 @@ void CEnemy::handleChase() {
 	
 	//if player is within chase radius, else return to idle
 	//TO DO: figure out transition phase to chase state
-	if (enemyChaseRadius > vEnemyToPlayer.Length()) {
 		//printf("Chasing!\n");
-		m_fMoveSpeed = 100.0f;
 		vEnemyToPlayer.Normalize();
-		m_vVelocity = vEnemyToPlayer * m_fMoveSpeed;
-	}
-	else {
-		m_eEnemyState = eEnemyState::Idle;
-		m_fMoveSpeed = 10.0f;
-	}
+		m_vVelocity = vEnemyToPlayer * m_fChaseSpeed;
+	
 }
 
 //For now, handleTransitions only calls handleChase
 void CEnemy::handleTransitions() {
-	handleChase();
+	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
+	if (enemyChaseRadius > vEnemyToPlayer.Length()) {
+		m_eEnemyState = eEnemyState::Chase;
+	}
+	else {
+		m_eEnemyState = eEnemyState::Idle;
+	}
 }
 
 void CEnemy::simulate() {
@@ -109,6 +109,7 @@ void CEnemy::simulate() {
 	case eEnemyState::Chase:
 		//Enemy Chase State
 		handleChase();
+		handleTransitions();
 		break;
 	case eEnemyState::Stun:
 		//Enemy Stun State

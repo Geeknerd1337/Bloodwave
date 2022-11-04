@@ -13,11 +13,11 @@
 /// memory. `Size` must be last.
 
 enum class eSprite : UINT {
-	Background, Bullet, Bullet2, Player, Turret, Smoke, Spark, Ant, Carmilla,
-	Player_Idle, Player_Idle_Left, Player_Idle_Right, Enemy_Idle, 
-	Enemy_Idle_Left, Enemy_Idle_Right,
+	Background, Bullet, Bullet2, Player, Turret, Smoke, Spark, Ant,
+	Player_Idle, Player_Idle_Left, Player_Idle_Right, Player_Walk,
+	Enemy_Idle, Enemy_Idle_Left, Enemy_Idle_Right,
 	Small_Square,
-	SpriteSheet, AntSpriteSheet, CarmillaSpriteSheet,
+	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheet,
 	Size  //MUST BE LAST
 }; //eSprite
 

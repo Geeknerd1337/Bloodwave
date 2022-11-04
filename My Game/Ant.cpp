@@ -37,8 +37,7 @@ CAnt::~CAnt(){
 
 void CAnt::move(){ 
   CObject::move(); //move like a default object
-  StrayFromPath(); //stray randomly left or right
-  UpdateFramenumber(); //choose current frame
+  StrayFromPath(); //stray randomly left or right //choose current frame
 } //move
 
 /// Adjust direction randomly at random intervals.
@@ -58,14 +57,7 @@ void CAnt::StrayFromPath(){
 
 /// Update the frame number in the animation sequence.
 
-void CAnt::UpdateFramenumber(){
-  const size_t n = m_pRenderer->GetNumFrames(m_nSpriteIndex); //number of frames
 
-  if(n > 1 && m_pFrameEvent && m_pFrameEvent->Triggered()){
-    m_pFrameEvent->SetDelay(100.0f/(1500.0f + fabsf(m_fSpeed)));
-    m_nCurrentFrame = (m_nCurrentFrame + 1)%n; 
-  } //if
-} //UpdateFramenumber
 
 /// Response to collision. If the ant is facing the object that is colliding
 /// with, then it rotates in its preferred direction and then calls 

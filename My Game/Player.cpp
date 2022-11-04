@@ -19,6 +19,7 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
 
+	SetSprite(eSprite::Player_Walk);
 
 
 } //constructor
@@ -63,6 +64,9 @@ void CPlayer::HandleIdleTransitions() {
 }
 
 void CPlayer::simulate() {
+	//Call base simulate
+	CObject::simulate();
+
 	//Switch statement for the player state
 	/*
 	The basic gist for how this is going to work is various simulations will be performed based on the value

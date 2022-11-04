@@ -24,20 +24,31 @@ class CObject:
   public CCommon,
   public LBaseObject
 {
-  friend class CObjectManager; ///< Object manager needs access so it can manage.
+  friend class CObjectManager;
 
   protected:
     float m_fRadius = 0; ///< Bounding circle radius.
     Vector3 m_vBounds = Vector3(0.0f, 0.0f, 0.0f);
-
-    float m_fSpeed = 0; ///< Speed.
     float m_fRotSpeed = 0; ///< Rotational speed.
-    Vector2 m_vVelocity; ///< Velocity.
+    
+    /// <summary>
+	/// Represents the velocity of the object where the x and y components make up the horizontal and vertical components of the velocity, respectively.
+    /// </summary>
+    Vector2 m_vVelocity;
+	
+	
     bool m_bStatic = true; ///< Is static (does not move).
     bool m_bIsTarget = true; ///< Is a target.
     bool m_bIsBullet = false; ///< Is a bullet.
 
-    LEventTimer* m_pGunFireEvent = nullptr; ///< Gun fire event.
+	
+    float m_fImageSpeed = 1;
+	
+	//An Event for Running the Frames of Our Animation
+    LEventTimer* m_pFrameEvent = nullptr;
+
+	//Updates the frame number of our object
+    void UpdateFramenumber();
     
     virtual void CollisionResponse(const Vector2&, float,
       CObject* = nullptr); ///< Collision response.

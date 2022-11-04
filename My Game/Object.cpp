@@ -27,13 +27,14 @@ CObject::CObject(eSprite t, const Vector2& p) :
 	
 	m_fRadius = std::max(w, h) / 2; //bounding circle radius
 
-	m_pGunFireEvent = new LEventTimer(1.0f); //timer for firing gun
-} //constructor
+	// Set the initial frame timer for the object.
+	m_pFrameEvent = new LEventTimer((1.0/60.0) * m_fImageSpeed); 
+} 
 
 /// Destructor.
 
 CObject::~CObject() {
-	delete m_pGunFireEvent;
+
 } //destructor
 
 /// <summary>
@@ -57,7 +58,7 @@ void CObject::buildInput()
 }
 
 void CObject::simulate() {
-
+	UpdateFramenumber();
 }
 
 /// Move object an amount that depends on its velocity and the frame time.
@@ -121,4 +122,20 @@ const Vector2 CObject::GetViewVector() const {
 
 const bool CObject::isBullet() const {
 	return m_bIsBullet;
-} //isBullet
+} 
+
+
+//Updating the frame number to be incremented every time the frame event runs
+void CObject::UpdateFramenumber() {
+	//This gets the number of frames in the current sprite sheet
+	const size_t n = m_pRenderer->GetNumFrames(m_nSpriteIndex); 
+
+	//If there's more than one frame, and the event has been triggered
+	if (n > 1 && m_pFrameEvent && m_pFrameEvent->Triggered()) {
+		//Trigger the frame event again at a given delay
+		m_pFrameEvent->SetDelay((1.0 / 60.0) * m_fImageSpeed);
+
+		//Incrementing the current frame up by one. 
+		m_nCurrentFrame = (m_nCurrentFrame + 1) % n;
+	} 
+}

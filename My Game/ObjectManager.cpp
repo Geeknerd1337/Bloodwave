@@ -30,7 +30,6 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos) {
 	case eSprite::Ant:     pObj = new CAnt(pos); break;
 	case eSprite::Player_Idle:  pObj = new CPlayer(pos); break;
 	case eSprite::Enemy_Idle: pObj = new CEnemy(pos); break;
-	case eSprite::Turret:  pObj = new CTurret(pos); break;
 	case eSprite::Bullet:  pObj = new CBullet(eSprite::Bullet, pos); break;
 	case eSprite::Bullet2: pObj = new CBullet(eSprite::Bullet2, pos); break;
 	default: pObj = new CObject(t, pos);
@@ -187,7 +186,6 @@ void CObjectManager::FireGun(CObject* pObj, eSprite bullet) {
 
 	d.m_nSpriteIndex = (UINT)eSprite::Spark;
 	d.m_vPos = pos;
-	d.m_vVel = pObj->m_fSpeed * view;
 	d.m_fLifeSpan = 0.25f;
 	d.m_fScaleInFrac = 0.4f;
 	d.m_fFadeOutFrac = 0.5f;

@@ -37,17 +37,24 @@ class CObject:
     Vector2 m_vVelocity;
 	
 	
+    //TODO: Remove these
     bool m_bStatic = true; ///< Is static (does not move).
     bool m_bIsTarget = true; ///< Is a target.
     bool m_bIsBullet = false; ///< Is a bullet.
 
-	
+    /// <summary>
+    /// Scalar float representing how fast our image goes relative to 60 frames a second
+    /// </summary>
     float m_fImageSpeed = 1;
 	
-	//An Event for Running the Frames of Our Animation
+    /// <summary>
+    /// An event for updating our frame number
+    /// </summary>
     LEventTimer* m_pFrameEvent = nullptr;
 
-	//Updates the frame number of our object
+    /// <summary>
+    /// Updates the frame, called from simulate method.
+    /// </summary>
     void UpdateFramenumber();
     
     virtual void CollisionResponse(const Vector2&, float,

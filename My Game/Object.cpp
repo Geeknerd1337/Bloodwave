@@ -42,6 +42,13 @@ CObject::~CObject() {
 /// </summary>
 /// <param name="newSprite"></param>
 void CObject::SetSprite(eSprite newSprite) {
+	//If the current sprite and the new sprite match, return
+	if (m_nSpriteIndex  == (UINT) newSprite) {
+		return;
+	}
+	
+
+	m_nCurrentFrame = 0;
 	m_nSpriteIndex = (UINT)newSprite;
 }
 

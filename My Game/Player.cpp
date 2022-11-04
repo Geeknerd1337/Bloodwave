@@ -19,9 +19,7 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
 
-	SetSprite(eSprite::Player_Walk);
-
-
+	m_fImageSpeed = 60 * 0.05f;
 } //constructor
 
 CPlayer::~CPlayer()
@@ -33,12 +31,16 @@ void CPlayer::HandleIdle() {
 
 	if (m_vInput.x != 0.0f) {
 		if (m_vInput.x > 0.0f) {
-			SetSprite(eSprite::Player_Idle_Right);
+			SetSprite(eSprite::Player_Walk);
 		}
 
 		if (m_vInput.x < 0.0f) {
-			SetSprite(eSprite::Player_Idle_Left);
+			SetSprite(eSprite::Player_Walk);
 		}
+	}
+
+	if (m_vInput.x == 0.0f) {
+		SetSprite(eSprite::Player_Idle);
 	}
 
 	m_vVelocity = m_vInput * m_fMoveSpeed;
@@ -85,9 +87,6 @@ void CPlayer::simulate() {
 	case ePlayerState::Dash:
 		//Player Dash State
 		HandleDash();
-		break;
-	case ePlayerState::Stun:
-		//Player Stun State
 		break;
 	case ePlayerState::Dead:
 		//Player Dead State

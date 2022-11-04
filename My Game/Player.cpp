@@ -134,10 +134,7 @@ bool CPlayer::CanAttack() {
 /// which means collision with a wall).
 
 void CPlayer::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {
-	if (pObj && pObj->isBullet())
-		m_pAudio->play(eSound::Grunt);
-
-	else CObject::CollisionResponse(norm, d, pObj);
+	CObject::CollisionResponse(norm, d, pObj);
 } //CollisionResponse
 
 

@@ -75,7 +75,6 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Bullet2, "bullet2");
 	m_pRenderer->Load(eSprite::Smoke, "smoke");
 	m_pRenderer->Load(eSprite::Spark, "spark");
-	m_pRenderer->Load(eSprite::Turret, "turret");
 
 	//Player
 	m_pRenderer->Load(eSprite::Player_Idle, "player_idle");
@@ -130,8 +129,6 @@ void CGame::CreateObjects() {
 	//reassigning player like this breaks the camera following
 	//m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Carmilla, Vector2(64.0f, 64.0f));
 	(CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(300.0f, 300.0f));
-	
-	m_pObjectManager->create(eSprite::Turret, Vector2(430.0f, 430.0f));
 
 	Vector2 v(128.0f, 64.0f); //initial ant position
 

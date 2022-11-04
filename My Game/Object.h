@@ -57,6 +57,8 @@ class CObject:
     /// Updates the frame, called from simulate method.
     /// </summary>
     void UpdateFramenumber();
+
+    virtual void ImageLooped(eSprite);
     
     virtual void CollisionResponse(const Vector2&, float,
       CObject* = nullptr); ///< Collision response.

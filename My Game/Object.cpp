@@ -132,6 +132,10 @@ const bool CObject::isBullet() const {
 } 
 
 
+void CObject::ImageLooped(eSprite sprite) {
+	//Check here
+}
+
 //Updating the frame number to be incremented every time the frame event runs
 void CObject::UpdateFramenumber() {
 	//This gets the number of frames in the current sprite sheet
@@ -141,6 +145,13 @@ void CObject::UpdateFramenumber() {
 	if (n > 1 && m_pFrameEvent && m_pFrameEvent->Triggered()) {
 		//Trigger the frame event again at a given delay
 		m_pFrameEvent->SetDelay((1.0 / 60.0) * m_fImageSpeed);
+
+		//Check the next frame
+		int nextFrame = (m_nCurrentFrame + 1 & n);
+		//If the next frame is zero, then we've reached the end of the animation, do the image call back
+		if (m_nCurrentFrame == 0) {
+			ImageLooped((eSprite)m_nSpriteIndex);
+		}
 
 		//Incrementing the current frame up by one. 
 		m_nCurrentFrame = (m_nCurrentFrame + 1) % n;

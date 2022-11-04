@@ -43,7 +43,7 @@ protected:
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 
 	/// <summary>
-	/// Handles the logic for the idle state
+	/// Handles the logic for the walk animations
 	/// </summary>
 	void HandleWalk();
 

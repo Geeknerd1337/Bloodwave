@@ -14,10 +14,10 @@
 
 enum class eSprite : UINT {
 	Background, Bullet, Bullet2, Player, Turret, Smoke, Spark, Ant,
-	Player_Idle, Player_Idle_Left, Player_Idle_Right, Player_Walk,
+	Player_Idle, Player_Idle_Left, Player_Idle_Right, Player_Walk_Left, Player_Walk_Right,
 	Enemy_Idle, Enemy_Idle_Left, Enemy_Idle_Right,
 	Small_Square,
-	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheet,
+	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheetLeft, PlayerWalkSpriteSheetRight,
 	Size  //MUST BE LAST
 }; //eSprite
 

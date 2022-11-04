@@ -30,6 +30,7 @@ class CObject:
     float m_fRadius = 0; ///< Bounding circle radius.
     Vector3 m_vBounds = Vector3(0.0f, 0.0f, 0.0f);
     float m_fRotSpeed = 0; ///< Rotational speed.
+
     
     /// <summary>
 	/// Represents the velocity of the object where the x and y components make up the horizontal and vertical components of the velocity, respectively.

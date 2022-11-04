@@ -45,7 +45,7 @@ protected:
 	/// <summary>
 	/// Handles the logic for the idle state
 	/// </summary>
-	void HandleIdle();
+	void HandleWalk();
 
 	/// <summary>
 	/// Boolean representing whether or not the player can currently attack

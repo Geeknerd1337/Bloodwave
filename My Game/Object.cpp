@@ -136,6 +136,7 @@ const bool CObject::isBullet() const {
 void CObject::UpdateFramenumber() {
 	//This gets the number of frames in the current sprite sheet
 	const size_t n = m_pRenderer->GetNumFrames(m_nSpriteIndex); 
+	
 
 	//If there's more than one frame, and the event has been triggered
 	if (n > 1 && m_pFrameEvent && m_pFrameEvent->Triggered()) {

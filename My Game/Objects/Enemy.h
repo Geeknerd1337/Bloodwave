@@ -61,6 +61,8 @@ public:
 
     virtual void TakeDamage(int damage) override;
 
+    void DeathFX();
+
 }; //CEnemy
 
 #endif //__L4RC_GAME_ENEMY_H__

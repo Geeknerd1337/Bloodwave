@@ -52,6 +52,7 @@
 	<sprite name="enemy_idle" file="enemy_idle.png"/>
 	<sprite name="enemy_idle_right" file="enemy_idle_right.png"/>
 	<sprite name="enemy_idle_left" file="enemy_idle_left.png"/>
+	<sprite name="enemy_dead" file="enemy_dead.png"/>
 	
 	<sprite name="small_square" file="SmallSquare.png"/>
 	

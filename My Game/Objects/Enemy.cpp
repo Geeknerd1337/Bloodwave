@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "ComponentIncludes.h"
 #include "Helpers.h"
+#include "Particle.h"
+#include "ParticleEngine.h"
 
 
 CEnemy::CEnemy(const Vector2& p) : Actor(p) {
@@ -40,8 +42,27 @@ void CEnemy::TakeDamage(int damage)
 	//if health is less than 0 mark as dead
 	if (m_iHealth <= 0) {
 		m_bDead = true;
+		DeathFX();
 	}
 }
+
+
+//display death sprite and death effects
+void CEnemy::DeathFX() {
+	LParticleDesc2D d; //particle descriptor
+	d.m_vPos = m_vPos; //center particle at turret center
+
+	//set sprite and particle settings
+	d.m_nSpriteIndex = (UINT)eSprite::Enemy_Dead;
+	d.m_fLifeSpan = 2.0f;
+	d.m_fMaxScale = 1.0f;
+	d.m_fScaleInFrac = 0.0f;
+	d.m_fFadeOutFrac = 0.8f;
+	d.m_fScaleOutFrac = 0;
+	m_pParticleEngine->create(d);
+
+	
+} //DeathFX
 
 void CEnemy::handleIdle() {
 	

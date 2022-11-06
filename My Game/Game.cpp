@@ -92,6 +92,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Enemy_Idle, "enemy_idle");
 	m_pRenderer->Load(eSprite::Enemy_Idle_Left, "enemy_idle_left");
 	m_pRenderer->Load(eSprite::Enemy_Idle_Right, "enemy_idle_right");
+	m_pRenderer->Load(eSprite::Enemy_Dead, "enemy_dead");
 
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");

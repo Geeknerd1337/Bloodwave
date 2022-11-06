@@ -27,6 +27,22 @@ CPlayer::~CPlayer()
 
 }
 
+int CPlayer::getPlayerHealth() {
+	return m_iHealth;
+}
+
+//reduce health by damage
+//override from actor
+void CPlayer::TakeDamage(int damage) {
+	printf("player health: %d\n", m_iHealth);
+	m_iHealth -= damage;
+
+	//if health is less than 0 mark as dead
+	if (m_iHealth <= 0) {
+		m_bDead = true;
+	}
+}
+
 void CPlayer::HandleWalk() {
 
 	if (m_vInput.x != 0.0f) {

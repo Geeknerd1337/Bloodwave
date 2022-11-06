@@ -77,18 +77,23 @@ public:
 	CPlayer(const Vector2& p); ///< Constructor.
 	~CPlayer();
 
-
-
 	//Implement BuildInput
 	virtual void buildInput() override;
 
 	//Implement simulate
 	virtual void simulate() override;
 
+	/// <summary>
+	/// Overridden TakeDamage function from actor to simulate player taking damage and death
+	/// </summary>
+	/// <param name="damage"></param>
+	virtual void TakeDamage(int damage) override;
 
-
-
-	//
+	/// <summary>
+	/// Get player health
+	/// </summary>
+	/// <returns></returns>
+	int getPlayerHealth();
 
 }; //CPlayer
 

@@ -21,11 +21,16 @@ protected:
 
     //float for idle time
     float m_fIdleTime = 0.0f;
+    
+    //float for attack time
+    float m_fAttackTime = 0.0f;
+
     Vector2 idleVelocity = Vector2(0, 0);
+    
     //holds random number to determine idle velocity
     float randomNumber;
     float enemyChaseRadius = 250.0;
-    float enemyAttackRadius;
+    float enemyAttackRadius = 10.0;
 
     //idle and chase speeds
     float m_fIdleSpeed = 10.0f;

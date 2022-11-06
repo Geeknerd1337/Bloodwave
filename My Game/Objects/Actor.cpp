@@ -13,7 +13,6 @@ void Actor::move() {
 }
 
 //take damage amount from health
-void Actor::TakeDamage(int damage)
-{
+void Actor::TakeDamage(int damage) {
 	m_iHealth -= damage;
 }

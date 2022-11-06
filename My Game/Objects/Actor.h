@@ -20,6 +20,9 @@ public:
 	Actor(const Vector2& p); ///< Constructor.
 
 	virtual void move() override;
+	
+	//reduce health by damage
+	virtual void TakeDamage(int damage);
 
 };
 

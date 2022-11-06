@@ -31,6 +31,18 @@ void CEnemy::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {}
 
 void CEnemy::buildInput() {}
 
+//reduce health by damage
+//override from actor
+void CEnemy::TakeDamage(int damage)
+{
+	m_iHealth -= damage;
+
+	//if health is less than 0 mark as dead
+	if (m_iHealth <= 0) {
+		m_bDead = true;
+	}
+}
+
 void CEnemy::handleIdle() {
 	
 	//every second, get a new random velocity
@@ -94,6 +106,10 @@ void CEnemy::handleTransitions() {
 	}
 }
 
+void CEnemy::handleAttack() {
+	
+}
+
 void CEnemy::simulate() {
 	
 	//Finite state machine for dictating which manages the enemies state
@@ -119,3 +135,4 @@ void CEnemy::simulate() {
 		break;
 	}
 }
+

@@ -40,6 +40,9 @@ protected:
     //function for chase state
     void handleChase();
 
+    //function for attack state
+    void handleAttack();
+
     void handleTransitions();
 
 
@@ -55,6 +58,8 @@ public:
     virtual void buildInput() override;
 
 	virtual void simulate() override;
+
+    virtual void TakeDamage(int damage) override;
 
 }; //CEnemy
 

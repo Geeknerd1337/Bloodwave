@@ -115,6 +115,10 @@ void CPlayer::HandleAttack() {
 	for (auto pObject : pObjects) {
 		if (dynamic_cast<CEnemy*>(pObject) != nullptr) {
 			printf("hit enemy\n");
+
+			//make all enemies hit take damage
+			//50 is test number, PLS switch once a sword damage amount is decided
+			dynamic_cast<CEnemy*>(pObject)->TakeDamage(50);
 		}
 	}
 

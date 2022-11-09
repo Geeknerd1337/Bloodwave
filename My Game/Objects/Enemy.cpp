@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "ComponentIncludes.h"
 #include "Helpers.h"
+#include "Particle.h"
+#include "ParticleEngine.h"
 
 
 CEnemy::CEnemy(const Vector2& p) : Actor(p) {
@@ -23,13 +25,40 @@ CEnemy::~CEnemy()
 {
 }
 
-
-
 void CEnemy::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {}
 
-
-
 void CEnemy::buildInput() {}
+
+//reduce health by damage
+//override from actor
+void CEnemy::TakeDamage(int damage)
+{
+	m_iHealth -= damage;
+
+	//if health is less than 0 mark as dead
+	if (m_iHealth <= 0) {
+		m_bDead = true;
+		DeathFX();
+	}
+}
+
+
+//display death sprite and death effects
+void CEnemy::DeathFX() {
+	LParticleDesc2D d; //particle descriptor
+	d.m_vPos = m_vPos; //center particle at turret center
+
+	//set sprite and particle settings
+	d.m_nSpriteIndex = (UINT)eSprite::Enemy_Dead;
+	d.m_fLifeSpan = 2.0f;
+	d.m_fMaxScale = 1.0f;
+	d.m_fScaleInFrac = 0.0f;
+	d.m_fFadeOutFrac = 0.8f;
+	d.m_fScaleOutFrac = 0;
+	m_pParticleEngine->create(d);
+
+	
+} //DeathFX
 
 void CEnemy::handleIdle() {
 	
@@ -67,30 +96,48 @@ void CEnemy::handleIdle() {
 
 void CEnemy::handleChase() {
 	//vector from player to enemy
-	vEnemyToPlayer = m_pPlayer->GetPos()- m_vPos;
+	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
 
-	//PERCY OR SAM: I am leaving this for you so you know how to check if an object is the player in your attack state, I had to test
-	//because sometimes VS can get weird if it feels there's a circular dependency.
-	/*if (dynamic_cast<CPlayer*>(m_pPlayer) != nullptr) {
-		printf("I guess this worked?\n");
-	}*/
-	
-	//if player is within chase radius, else return to idle
-	//TO DO: figure out transition phase to chase state
-		//printf("Chasing!\n");
-		vEnemyToPlayer.Normalize();
-		m_vVelocity = vEnemyToPlayer * m_fChaseSpeed;
+	vEnemyToPlayer.Normalize();
+	m_vVelocity = vEnemyToPlayer * m_fChaseSpeed;
 	
 }
 
-//For now, handleTransitions only calls handleChase
 void CEnemy::handleTransitions() {
 	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
+
+	//if player is within chase radius change state to chase, else return to idle
 	if (enemyChaseRadius > vEnemyToPlayer.Length()) {
 		m_eEnemyState = eEnemyState::Chase;
 	}
 	else {
 		m_eEnemyState = eEnemyState::Idle;
+	}
+
+	//if player is within attack radius, check if an object is the player, then set state to attack
+	if (enemyAttackRadius > vEnemyToPlayer.Length()) {
+		if (dynamic_cast<CPlayer*>(m_pPlayer) != nullptr) {
+			m_eEnemyState = eEnemyState::Attack;
+		}
+	}
+}
+
+void CEnemy::handleAttack() {
+	//get player health
+	int playerHealth = m_pPlayer->getPlayerHealth();
+	
+	//attack every second
+	if ((m_pTimer->GetTime() - m_fAttackTime) > 1.0f) {
+		//if player health is > 0, attack
+		if (playerHealth > 0) {
+			m_pPlayer->TakeDamage(15);
+		}
+
+		//return to idle after player death
+		m_eEnemyState = eEnemyState::Idle;
+
+		//set idle attack to new time
+		m_fAttackTime = m_pTimer->GetTime();
 	}
 }
 
@@ -105,6 +152,8 @@ void CEnemy::simulate() {
 		break;
 	case eEnemyState::Attack:
 		//Enemy Attack State
+		handleAttack();
+		handleTransitions();
 		break;
 	case eEnemyState::Chase:
 		//Enemy Chase State
@@ -119,3 +168,4 @@ void CEnemy::simulate() {
 		break;
 	}
 }
+

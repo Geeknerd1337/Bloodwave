@@ -11,3 +11,8 @@ void Actor::move() {
 	const float t = m_pTimer->GetFrameTime(); //time
 	m_vPos += t * m_vVelocity;
 }
+
+//take damage amount from health
+void Actor::TakeDamage(int damage) {
+	m_iHealth -= damage;
+}

@@ -19,7 +19,7 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
 
-	m_fImageSpeed = 60 * 0.05f;
+	m_fImageSpeed = 60 * 0.50f;
 } //constructor
 
 CPlayer::~CPlayer()
@@ -27,15 +27,31 @@ CPlayer::~CPlayer()
 
 }
 
-void CPlayer::HandleIdle() {
+int CPlayer::getPlayerHealth() {
+	return m_iHealth;
+}
+
+//reduce health by damage
+//override from actor
+void CPlayer::TakeDamage(int damage) {
+	printf("player health: %d\n", m_iHealth);
+	m_iHealth -= damage;
+
+	//if health is less than 0 mark as dead
+	if (m_iHealth <= 0) {
+		m_bDead = true;
+	}
+}
+
+void CPlayer::HandleWalk() {
 
 	if (m_vInput.x != 0.0f) {
 		if (m_vInput.x > 0.0f) {
-			SetSprite(eSprite::Player_Walk);
+			SetSprite(eSprite::Player_Walk_Right);
 		}
 
 		if (m_vInput.x < 0.0f) {
-			SetSprite(eSprite::Player_Walk);
+			SetSprite(eSprite::Player_Walk_Left);
 		}
 	}
 
@@ -77,7 +93,7 @@ void CPlayer::simulate() {
 	switch (m_ePlayerState) {
 	case ePlayerState::Idle:
 		//Player Idle State
-		HandleIdle();
+		HandleWalk();
 		HandleIdleTransitions();
 		break;
 	case ePlayerState::Attack:
@@ -115,6 +131,10 @@ void CPlayer::HandleAttack() {
 	for (auto pObject : pObjects) {
 		if (dynamic_cast<CEnemy*>(pObject) != nullptr) {
 			printf("hit enemy\n");
+
+			//make all enemies hit take damage
+			//50 is test number, PLS switch once a sword damage amount is decided
+			dynamic_cast<CEnemy*>(pObject)->TakeDamage(50);
 		}
 	}
 

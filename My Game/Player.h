@@ -43,9 +43,9 @@ protected:
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 
 	/// <summary>
-	/// Handles the logic for the idle state
+	/// Handles the logic for the walk animations
 	/// </summary>
-	void HandleIdle();
+	void HandleWalk();
 
 	/// <summary>
 	/// Boolean representing whether or not the player can currently attack
@@ -77,18 +77,23 @@ public:
 	CPlayer(const Vector2& p); ///< Constructor.
 	~CPlayer();
 
-
-
 	//Implement BuildInput
 	virtual void buildInput() override;
 
 	//Implement simulate
 	virtual void simulate() override;
 
+	/// <summary>
+	/// Overridden TakeDamage function from actor to simulate player taking damage and death
+	/// </summary>
+	/// <param name="damage"></param>
+	virtual void TakeDamage(int damage) override;
 
-
-
-	//
+	/// <summary>
+	/// Get player health
+	/// </summary>
+	/// <returns></returns>
+	int getPlayerHealth();
 
 }; //CPlayer
 

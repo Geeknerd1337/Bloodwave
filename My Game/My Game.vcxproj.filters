@@ -13,6 +13,7 @@
     <ClCompile Include="Utility\GameCamera.cpp" />
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\Enemy.cpp" />
+    <ClCompile Include="Utility\TimeSince.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="Utility\GameCamera.h" />
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\Enemy.h" />
+    <ClInclude Include="Utility\TimeSince.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

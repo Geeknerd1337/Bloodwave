@@ -55,6 +55,7 @@
 	<sprite name="enemy_dead" file="enemy_dead.png"/>
 	
 	<sprite name="small_square" file="SmallSquare.png"/>
+	<sprite name="health_pip" file="health_pip.png"/>
 	
   </sprites>
 

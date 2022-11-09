@@ -173,6 +173,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Utility\GameCamera.cpp" />
+    <ClCompile Include="Utility\TimeSince.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Utility\GameCamera.h" />
+    <ClInclude Include="Utility\TimeSince.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

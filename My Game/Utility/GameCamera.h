@@ -8,8 +8,9 @@ class CGame;
 class GameCamera : public CCommon, public LComponent {
 public:
 	void HandleCamera();
+	Vector3 m_cameraPos;
 	
 private:
-	Vector3 m_cameraPos;
+	
 
 };

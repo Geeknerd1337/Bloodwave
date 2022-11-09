@@ -9,6 +9,7 @@
 #include "Objects/Enemy.h"
 
 
+
 /// <summary>
 /// Construct the player at a given position
 /// </summary>
@@ -36,6 +37,7 @@ int CPlayer::getPlayerHealth() {
 void CPlayer::TakeDamage(int damage) {
 	printf("player health: %d\n", m_iHealth);
 	m_iHealth -= damage;
+	m_tTimeSinceDamaged.SetTimeSince(0.0f);
 
 	//if health is less than 0 mark as dead
 	if (m_iHealth <= 0) {
@@ -69,7 +71,7 @@ void CPlayer::HandleDash() {
 	m_vVelocity = inputAtStateTransition * m_fDashSpeed;
 
 	//check if a a quarter has passed, if so swap states, and set cooldown
-	if ((m_pTimer->GetTime() - timeAtDashStart) > 0.25f) {
+	if ((m_tTimeSinceDash.GetTimeSince()) > 0.25f) {
 		printf("end dash\n");
 		coolDownReady = false;
 		m_ePlayerState = ePlayerState::Idle;
@@ -84,6 +86,8 @@ void CPlayer::HandleIdleTransitions() {
 void CPlayer::simulate() {
 	//Call base simulate
 	CObject::simulate();
+
+	UpdateDisplayHealth();
 
 	//Switch statement for the player state
 	/*
@@ -113,6 +117,23 @@ void CPlayer::simulate() {
 
 	}
 
+}
+
+void CPlayer::UpdateDisplayHealth() {
+	const float t = m_pTimer->GetFrameTime(); //frame time
+	m_fdisplayHealth = Lerp(m_fdisplayHealth, (float)m_iHealth, t * 5.0f);
+
+	if (m_tTimeSinceDamaged.GetTimeSince() > 1.0f) {
+		m_fDisplayLastHealth = Lerp(m_fDisplayLastHealth, m_fdisplayHealth, t * 3.0f);
+	}
+}
+
+float CPlayer::getDisplayHealth() {
+	return m_fdisplayHealth;
+}
+
+float CPlayer::getDisplayLastHealth() {
+	return m_fDisplayLastHealth;
 }
 
 void CPlayer::HandleAttack() {
@@ -185,6 +206,8 @@ void CPlayer::buildInput() {
 	//and set input
 	if (m_pKeyboard->TriggerDown(' ') && coolDownReady && m_ePlayerState != ePlayerState::Dash) {
 		timeAtDashStart = m_pTimer->GetTime();
+		m_tTimeSinceDash.SetTimeSince(0.0f);
+
 		if (horizontal != 0 || vertical != 0) {
 			inputAtStateTransition = Vector2(horizontal, vertical);
 		}
@@ -197,7 +220,7 @@ void CPlayer::buildInput() {
 
 	//if it's in cooldown, check if cooldown should end
 	if (!coolDownReady) {
-		if ((m_pTimer->GetTime() - timeAtDashStart) > 1.0f) {
+		if ((m_tTimeSinceDash.GetTimeSince()) > 1.0f) {
 			coolDownReady = true;
 		}
 	}

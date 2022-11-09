@@ -6,7 +6,7 @@
 
 #include "Objects/Actor.h"
 #include "Timer.h"
-
+#include "Utility/TimeSince.h"
 
 /// \brief The player object. 
 ///
@@ -28,6 +28,9 @@ protected:
 	/// Our run speed
 	/// </summary>
 	float m_fRunSpeed = 200.0f;
+
+	float m_fdisplayHealth = 100.0f;
+	float m_fDisplayLastHealth = 100.0f;
 
 	/// <summary>
 	/// The dash speed
@@ -63,10 +66,18 @@ protected:
 	/// </summary>
 	void HandleDash();
 
+	TimeSince m_tTimeSinceDash;
+	TimeSince m_tTimeSinceDamaged;
+
 	/// <summary>
 	/// Handles the logic for transitioning into other states from the idle state.
 	/// </summary>
 	void HandleIdleTransitions();
+
+	/// <summary>
+	/// Updates the health that we use for a display using a lerp so that we can smoothly show this value transitioning in the healthbar
+	/// </summary>
+	void UpdateDisplayHealth();
 
 	/// <summary>
 	/// The current state of the player
@@ -94,6 +105,15 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	int getPlayerHealth();
+
+	
+
+	/// <summary>
+	/// Returns the players displayu health
+	/// </summary>
+	float getDisplayHealth();
+
+	float getDisplayLastHealth();
 
 }; //CPlayer
 

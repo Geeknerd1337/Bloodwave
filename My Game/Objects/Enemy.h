@@ -6,6 +6,7 @@
 
 #include "Actor.h"
 #include "../Player.h"
+#include "../Utility/TimeSince.h"
 
 /// \brief The player object. 
 ///
@@ -22,6 +23,11 @@ protected:
     //float for idle time
     float m_fIdleTime = 0.0f;
     
+    TimeSince m_tTimeSinceStunned;
+    Vector2 m_vstunDirection;
+    float m_fStunSpeed = 800.0f;
+    float m_fStunTime = 0.25f;
+    
     //float for attack time
     float m_fAttackTime = 0.0f;
 
@@ -36,6 +42,9 @@ protected:
     float m_fIdleSpeed = 10.0f;
     float m_fChaseSpeed = 100.0f;
 
+    //attack damage
+    int m_iAttackPoints = 10;
+
     //vector between enemy and player
     Vector2 vEnemyToPlayer = Vector2(300, 300);
 
@@ -49,6 +58,8 @@ protected:
     void handleAttack();
 
     void handleTransitions();
+
+    void handleStun();
 
 
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
@@ -65,6 +76,8 @@ public:
 	virtual void simulate() override;
 
     virtual void TakeDamage(int damage) override;
+
+    void SetState(eEnemyState);
 
     void DeathFX();
 

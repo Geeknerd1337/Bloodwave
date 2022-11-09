@@ -6,6 +6,7 @@
 #include "Helpers.h"
 #include "Particle.h"
 #include "ParticleEngine.h"
+#include <cmath>
 
 
 CEnemy::CEnemy(const Vector2& p) : Actor(p) {
@@ -35,10 +36,28 @@ void CEnemy::TakeDamage(int damage)
 {
 	m_iHealth -= damage;
 
+	//Get the direction to the player
+	Vector2 dir = (m_pPlayer->m_vPos - m_vPos);
+	dir.Normalize();
+	m_vstunDirection = dir * -1.0f;
+	
+	m_tTimeSinceStunned.SetTimeSince(0.0f);
+
+	SetState(eEnemyState::Stun);
+
 	//if health is less than 0 mark as dead
 	if (m_iHealth <= 0) {
 		m_bDead = true;
 		DeathFX();
+	}
+}
+
+void CEnemy::handleStun() {
+	if (m_tTimeSinceStunned.GetTimeSince() < m_fStunTime) {
+		m_vVelocity = m_vstunDirection * m_fStunSpeed;
+	}
+	else {
+		SetState(eEnemyState::Idle);
 	}
 }
 
@@ -124,13 +143,13 @@ void CEnemy::handleTransitions() {
 
 void CEnemy::handleAttack() {
 	//get player health
-	int playerHealth = m_pPlayer->getPlayerHealth();
+	int playerHealth = std::floor(m_pPlayer->getPlayerHealth());
 	
 	//attack every second
 	if ((m_pTimer->GetTime() - m_fAttackTime) > 1.0f) {
 		//if player health is > 0, attack
 		if (playerHealth > 0) {
-			m_pPlayer->TakeDamage(15);
+			m_pPlayer->TakeDamage(m_iAttackPoints);
 		}
 
 		//return to idle after player death
@@ -139,6 +158,10 @@ void CEnemy::handleAttack() {
 		//set idle attack to new time
 		m_fAttackTime = m_pTimer->GetTime();
 	}
+}
+
+void CEnemy::SetState(eEnemyState state) {
+	m_eEnemyState = state;
 }
 
 void CEnemy::simulate() {
@@ -162,6 +185,7 @@ void CEnemy::simulate() {
 		break;
 	case eEnemyState::Stun:
 		//Enemy Stun State
+		handleStun();
 		break;
 	case eEnemyState::Dead:
 		//Enemy Dead State

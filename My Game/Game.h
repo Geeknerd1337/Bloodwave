@@ -52,6 +52,8 @@ public:
 	void AddConsoleOutput(std::string s);
 
 	void DrawConsoleText();
+	void DrawHealthBar();
+
 
 	static CGame* Instance(); ///< Return the instance of the game.
 	//Static Game Camera

@@ -10,6 +10,7 @@
 
 #include "shellapi.h"
 #include <iostream>
+#include "Utility/TimeSince.h"
 
 //Singleton
 CGame* CGame::instance = nullptr;
@@ -96,6 +97,7 @@ void CGame::LoadImages() {
 
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");
+	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages
@@ -137,6 +139,10 @@ void CGame::CreateObjects() {
 		m_pObjectManager->create(eSprite::Ant, v);
 		v.x += 64.0f;
 	} //for
+
+	
+
+
 } //CreateObjects
 
 /// Call this function to start a new game. This should be re-entrant so that
@@ -201,9 +207,41 @@ void CGame::RenderFrame() {
 	//Useful method for drawing frame text
 	if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
 	DrawConsoleText(); //draw console output
+	
+	DrawHealthBar();
 
 	m_pRenderer->EndFrame(); //required after rendering
 } //RenderFrame
+
+void CGame::DrawHealthBar() {
+	float health = (float)m_pPlayer->getDisplayHealth();
+	float maxHealth = 100.0;
+
+	float numPips = 30.0f;
+	Vector2 windowOffset = Vector2(m_nWinWidth/2.0,m_nWinHeight/2.0);
+	Vector2 screenPos = camera->m_cameraPos - windowOffset;
+	
+	float lastHealthPercentage = m_pPlayer->getDisplayLastHealth() / 100.0f;
+	float healthPercentage = m_pPlayer->getDisplayHealth()/100.0f;
+
+	for (int i = 0; i < (int)(numPips * lastHealthPercentage); i++) {
+		Vector2 pos = Vector2(screenPos.x + 15 + 10 * i, screenPos.y + 20);
+		
+		LSpriteDesc2D spr;
+		spr.m_nSpriteIndex = (UINT)eSprite::Health_Pip;
+		spr.m_vPos = pos;
+		spr.m_f4Tint = Vector4(0.5, 0.5, 0.5, 1.0);
+
+		m_pRenderer->Draw(&spr);
+	}
+
+	for (int i = 0; i < (int)(numPips * healthPercentage); i++) {
+		Vector2 pos = Vector2(screenPos.x + 15 + 10 * i,screenPos.y + 20);
+		m_pRenderer->Draw(eSprite::Health_Pip, pos);
+	}
+}
+
+
 
 /// Make the camera follow the player, but don't let it get too close to the
 /// edge unless the world is smaller than the window, in which case we just

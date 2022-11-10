@@ -109,7 +109,7 @@ public:
 	
 
 	/// <summary>
-	/// Returns the players displayu health
+	/// Returns the players display health
 	/// </summary>
 	float getDisplayHealth();
 

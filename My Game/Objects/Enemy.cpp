@@ -20,6 +20,8 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 	m_fMoveSpeed = 10.0f;
 
 	SetSprite(eSprite::Enemy_Idle);
+	
+	m_fImageSpeed = 60 * 0.50f;
 } //constructor
 
 CEnemy::~CEnemy()
@@ -134,21 +136,39 @@ void CEnemy::handleChase() {
 	
 }
 
+void CEnemy::handleWalk() {
+	
+	if (m_vVelocity.x != 0.0f) {
+		if (m_vVelocity.x > 0.0f) {
+			SetSprite(eSprite::Enemy_Walk_Right);
+		}
+
+		if (m_vVelocity.x < 0.0f) {
+			SetSprite(eSprite::Enemy_Walk_Left);
+		}
+	}
+	
+	if (m_vVelocity.x == 0.0f) {
+		SetSprite(eSprite::Enemy_Idle);
+	}
+	
+}
+
 void CEnemy::handleTransitions() {
 	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
 
 	//if player is within chase radius change state to chase, else return to idle
 	if (enemyChaseRadius > vEnemyToPlayer.Length()) {
-		m_eEnemyState = eEnemyState::Chase;
+		SetState(eEnemyState::Chase);
 	}
 	else {
-		m_eEnemyState = eEnemyState::Idle;
+		SetState(eEnemyState::Idle);
 	}
 
 	//if player is within attack radius, check if an object is the player, then set state to attack
 	if (enemyAttackRadius > vEnemyToPlayer.Length()) {
 		if (dynamic_cast<CPlayer*>(m_pPlayer) != nullptr) {
-			m_eEnemyState = eEnemyState::Attack;
+			SetState(eEnemyState::Attack);
 		}
 	}
 }
@@ -165,7 +185,7 @@ void CEnemy::handleAttack() {
 		}
 
 		//return to idle after player death
-		m_eEnemyState = eEnemyState::Idle;
+		SetState(eEnemyState::Idle);
 
 		//set idle attack to new time
 		m_fAttackTime = m_pTimer->GetTime();
@@ -177,12 +197,15 @@ void CEnemy::SetState(eEnemyState state) {
 }
 
 void CEnemy::simulate() {
+	//Call base simulate
+	CObject::simulate();
 	
 	//Finite state machine for dictating which manages the enemies state
 	switch (m_eEnemyState) {
 	case eEnemyState::Idle:
 		//Enemy Idle State
 		handleIdle();
+		handleWalk();
 		handleTransitions();
 		break;
 	case eEnemyState::Attack:
@@ -193,6 +216,7 @@ void CEnemy::simulate() {
 	case eEnemyState::Chase:
 		//Enemy Chase State
 		handleChase();
+		handleWalk();
 		handleTransitions();
 		break;
 	case eEnemyState::Stun:

@@ -54,6 +54,9 @@ protected:
     //function for chase state
     void handleChase();
 
+    //walking animation for enemy
+    void handleWalk();
+
     //function for attack state
     void handleAttack();
 

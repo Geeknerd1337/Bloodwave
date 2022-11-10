@@ -228,6 +228,7 @@ void CObjectManager::BuildInput() {
 void CObjectManager::Simulate() {
 
 	for (auto const& p : m_stdObjectList) {
+
 		p->simulate();
 	}
 }

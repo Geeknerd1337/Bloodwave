@@ -14,6 +14,7 @@
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\Enemy.cpp" />
     <ClCompile Include="Utility\TimeSince.cpp" />
+    <ClCompile Include="Utility\CMouse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -29,6 +30,7 @@
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\Enemy.h" />
     <ClInclude Include="Utility\TimeSince.h" />
+    <ClInclude Include="Utility\CMouse.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

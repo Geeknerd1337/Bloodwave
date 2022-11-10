@@ -7,6 +7,7 @@
 #include "ObjectManager.h"
 #include "Bullet.h"
 #include "Objects/Enemy.h"
+#include "Utility/GameCamera.h"
 
 
 
@@ -147,6 +148,8 @@ void CPlayer::HandleAttack() {
 	std::vector<CObject*> pObjects;
 
 	pObjects = m_pObjectManager->IntersectLine(start, end);
+
+	m_pCamera->Shake(0.25f, Vector2(5.0f, 5.0f));
 
 	//Iterate over pObjects and draw a line to each one
 	for (auto pObject : pObjects) {

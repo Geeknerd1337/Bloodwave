@@ -47,7 +47,7 @@ void GameCamera::HandleCamera() {
 	}
 	
 	//Smoothly go to the new camera position with the shake offset added
-	m_cameraPos = Vector3::SmoothStep(m_cameraPos, vCameraPos, deltaTime * 10.0);
+	m_cameraPos = Vector3::SmoothStep(m_cameraPos, vCameraPos, deltaTime * 10.0) + shakeOffset;
 
 	m_pRenderer->SetCameraPos(m_cameraPos); //camera to player
 } //FollowCamera

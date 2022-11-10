@@ -14,7 +14,7 @@
 
 //Singleton
 CGame* CGame::instance = nullptr;
-GameCamera* CGame::camera = nullptr;
+
 
 //This is a singleton instance which can be accessed via any class that includes
 //game.h. This is so we can access any global functions if needed.
@@ -29,7 +29,8 @@ CGame* CGame::Instance() {
 CGame::~CGame() {
 	delete m_pParticleEngine;
 	delete m_pObjectManager;
-	delete camera;
+
+	delete m_pCamera;
 	delete m_pMouse;
 } //destructor
 
@@ -54,7 +55,7 @@ void CGame::Initialize() {
 	instance = this;
 
 	//Set the camera
-	camera = new GameCamera();
+	m_pCamera = new GameCamera();
 
 	BeginGame();
 
@@ -226,7 +227,7 @@ void CGame::DrawHealthBar() {
 
 	float numPips = 30.0f;
 	Vector2 windowOffset = Vector2(m_nWinWidth / 2.0, m_nWinHeight / 2.0);
-	Vector2 screenPos = camera->m_cameraPos - windowOffset;
+	Vector2 screenPos = m_pCamera->m_cameraPos - windowOffset;
 
 	float lastHealthPercentage = m_pPlayer->getDisplayLastHealth() / 100.0f;
 	float healthPercentage = m_pPlayer->getDisplayHealth() / 100.0f;
@@ -292,7 +293,7 @@ void CGame::ProcessFrame() {
 		m_pObjectManager->Simulate();
 		m_pObjectManager->move(); //move all objects
 		//FollowCamera(); //make camera follow player
-		camera->HandleCamera();
+		m_pCamera->HandleCamera();
 		m_pParticleEngine->step(); //advance particle animation
 		});
 

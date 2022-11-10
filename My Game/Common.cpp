@@ -13,3 +13,4 @@ CMouse* CCommon::m_pMouse = nullptr;
 
 Vector2 CCommon::m_vWorldSize = Vector2::Zero;
 CPlayer* CCommon::m_pPlayer = nullptr;
+GameCamera* CCommon::m_pCamera = nullptr;

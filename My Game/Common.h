@@ -7,6 +7,7 @@
 #include "Defines.h"
 #include "Utility/CMouse.h"
 
+
 //forward declarations to make the compiler less stroppy
 
 class CObjectManager; 
@@ -14,6 +15,7 @@ class LSpriteRenderer;
 class LParticleEngine2D;
 class CPlayer;
 class CEnemy;
+class GameCamera;
 
 /// \brief The common variables class.
 ///
@@ -31,6 +33,7 @@ class CCommon{
     static CMouse* m_pMouse; ///< The mouse.
     static Vector2 m_vWorldSize; ///< World height and width.
     static CPlayer* m_pPlayer; ///< Pointer to player character.
+    static GameCamera* m_pCamera;
 }; //CCommon
 
 #endif //__L4RC_GAME_COMMON_H__

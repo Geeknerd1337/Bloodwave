@@ -58,7 +58,7 @@ public:
 
 	static CGame* Instance(); ///< Return the instance of the game.
 	//Static Game Camera
-	static GameCamera* camera;
+
 
 
 }; //CGame

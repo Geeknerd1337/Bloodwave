@@ -38,6 +38,7 @@ private:
 	void DrawFrameRateText(); ///< Draw frame rate text to screen.
 	void CreateObjects(); ///< Create game objects.
 	void FollowCamera(); ///< Make camera follow player character.
+	void MouseHandler(); ///< The mouse handler.
 
 	static CGame* instance; // use nullptr since C++11
 

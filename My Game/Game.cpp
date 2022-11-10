@@ -30,6 +30,7 @@ CGame::~CGame() {
 	delete m_pParticleEngine;
 	delete m_pObjectManager;
 	delete camera;
+	delete m_pMouse;
 } //destructor
 
 /// Create the renderer, the object manager, and the particle engine, load
@@ -39,6 +40,9 @@ void CGame::Initialize() {
 
 	m_pRenderer = new LSpriteRenderer(eSpriteMode::Batched2D);
 	m_pRenderer->Initialize(eSprite::Size);
+	m_pMouse = new CMouse;
+	m_pMouse->Initialize();
+
 	LoadImages(); //load images from xml file list
 
 	m_pObjectManager = new CObjectManager; //set up the object manager 
@@ -140,7 +144,7 @@ void CGame::CreateObjects() {
 		v.x += 64.0f;
 	} //for
 
-	
+
 
 
 } //CreateObjects
@@ -156,8 +160,11 @@ void CGame::BeginGame() {
 	CreateObjects(); //create new objects 
 } //BeginGame
 
-/// Poll the keyboard state and respond to the key presses that happened since
-/// the last frame.
+
+
+void CGame::MouseHandler() {
+	m_pMouse->GetState();
+}
 
 void CGame::KeyboardHandler() {
 	m_pKeyboard->GetState(); //get current keyboard state 
@@ -166,7 +173,7 @@ void CGame::KeyboardHandler() {
 		m_bDrawFrameRate = !m_bDrawFrameRate;
 
 	if (m_pKeyboard->TriggerDown(VK_BACK)) //start game
-		BeginGame(); 
+		BeginGame();
 }
 
 /// Poll the XBox controller state and respond to the controls there.
@@ -207,7 +214,7 @@ void CGame::RenderFrame() {
 	//Useful method for drawing frame text
 	if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
 	DrawConsoleText(); //draw console output
-	
+
 	DrawHealthBar();
 
 	m_pRenderer->EndFrame(); //required after rendering
@@ -218,15 +225,15 @@ void CGame::DrawHealthBar() {
 	float maxHealth = 100.0;
 
 	float numPips = 30.0f;
-	Vector2 windowOffset = Vector2(m_nWinWidth/2.0,m_nWinHeight/2.0);
+	Vector2 windowOffset = Vector2(m_nWinWidth / 2.0, m_nWinHeight / 2.0);
 	Vector2 screenPos = camera->m_cameraPos - windowOffset;
-	
+
 	float lastHealthPercentage = m_pPlayer->getDisplayLastHealth() / 100.0f;
-	float healthPercentage = m_pPlayer->getDisplayHealth()/100.0f;
+	float healthPercentage = m_pPlayer->getDisplayHealth() / 100.0f;
 
 	for (int i = 0; i < (int)(numPips * lastHealthPercentage); i++) {
 		Vector2 pos = Vector2(screenPos.x + 15 + 10 * i, screenPos.y + 20);
-		
+
 		LSpriteDesc2D spr;
 		spr.m_nSpriteIndex = (UINT)eSprite::Health_Pip;
 		spr.m_vPos = pos;
@@ -236,7 +243,7 @@ void CGame::DrawHealthBar() {
 	}
 
 	for (int i = 0; i < (int)(numPips * healthPercentage); i++) {
-		Vector2 pos = Vector2(screenPos.x + 15 + 10 * i,screenPos.y + 20);
+		Vector2 pos = Vector2(screenPos.x + 15 + 10 * i, screenPos.y + 20);
 		m_pRenderer->Draw(eSprite::Health_Pip, pos);
 	}
 }
@@ -275,9 +282,10 @@ void CGame::FollowCamera() {
 void CGame::ProcessFrame() {
 	ControllerHandler(); //handle controller input
 	KeyboardHandler(); //handle keyboard input;
-	
+	MouseHandler();
+
 	m_pObjectManager->BuildInput();
-	
+
 	m_pAudio->BeginFrame(); //notify audio player that frame has begun
 
 	m_pTimer->Tick([&]() { //all time-dependent function calls should go here

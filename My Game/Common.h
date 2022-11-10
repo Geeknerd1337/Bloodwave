@@ -5,6 +5,7 @@
 #define __L4RC_GAME_COMMON_H__
 
 #include "Defines.h"
+#include "Utility/CMouse.h"
 
 //forward declarations to make the compiler less stroppy
 
@@ -27,7 +28,7 @@ class CCommon{
     static LSpriteRenderer* m_pRenderer; ///< Pointer to renderer.
     static CObjectManager* m_pObjectManager; ///< Pointer to object manager.
     static LParticleEngine2D* m_pParticleEngine; ///< Pointer to particle engine.    
-
+    static CMouse* m_pMouse; ///< The mouse.
     static Vector2 m_vWorldSize; ///< World height and width.
     static CPlayer* m_pPlayer; ///< Pointer to player character.
 }; //CCommon

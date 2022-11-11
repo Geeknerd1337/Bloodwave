@@ -235,12 +235,19 @@ void CPlayer::buildInput() {
 
 	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {
 
-		if (horizontal != 0 || vertical != 0) {
-			inputAtStateTransition = Vector2(horizontal, vertical);
-		}
-		else {
-			inputAtStateTransition = Vector2(1.0, 0.0);
-		}
+		Vector2 mousePos = m_pMouse->GetMouseWorldPos();
+		Vector2 playerPos = m_pPlayer->GetPos();
+
+		Vector2 mouseDir = mousePos - playerPos;
+		mouseDir.Normalize();
+
+		//Round the x and y components of the mouse dir
+		mouseDir.x = round(mouseDir.x);
+		mouseDir.y = round(mouseDir.y);
+
+		mouseDir.Normalize();
+
+		inputAtStateTransition = mouseDir;
 
 		m_ePlayerState = ePlayerState::Attack;
 	}

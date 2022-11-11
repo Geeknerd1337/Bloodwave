@@ -140,13 +140,17 @@ float CPlayer::getDisplayLastHealth() {
 
 void CPlayer::HandleAttack() {
 	//Declare a Vector2 called start at the current position of the player
-	Vector2 start = this->GetPos();
+	Vector2 start = this->GetPos() + inputAtStateTransition * 20.0f;
 
 	//Declare a Vector2 called end at the current position of the player plus their input
-	Vector2 end = start + inputAtStateTransition * 200.0f;
+	Vector2 end = start + inputAtStateTransition * 100.0f;
+
+	//Print the input at the state transition
+	printf("input at state transition: %f, %f\n", inputAtStateTransition.x, inputAtStateTransition.y);
 
 	//Declare a pointer to an array of CObjects
 	std::vector<CObject*> pObjects;
+
 
 	pObjects = m_pObjectManager->IntersectLine(start, end);
 
@@ -229,7 +233,7 @@ void CPlayer::buildInput() {
 		}
 	}
 
-	if (m_pKeyboard->TriggerDown('E') && CanAttack()) {
+	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {
 
 		if (horizontal != 0 || vertical != 0) {
 			inputAtStateTransition = Vector2(horizontal, vertical);

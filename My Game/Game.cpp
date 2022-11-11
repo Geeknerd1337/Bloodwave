@@ -312,7 +312,6 @@ void CGame::ProcessFrame() {
 	m_pTimer->Tick([&]() { //all time-dependent function calls should go here
 		m_pObjectManager->Simulate();
 		m_pObjectManager->move(); //move all objects
-		//FollowCamera(); //make camera follow player
 		m_pCamera->HandleCamera();
 		m_pParticleEngine->step(); //advance particle animation
 		});

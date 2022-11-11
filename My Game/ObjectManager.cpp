@@ -118,11 +118,20 @@ std::vector<CObject*> CObjectManager::IntersectLine(const Vector2 &start,const V
 				direction.Normalize();
 				//Float representing the distance of the line
 				float distance = (end - start).Length();
-				
+
+				//Why I have to do this new distance bullshit I will never know, but this 
+				//is the only way it works. It seems like intersects gets a distance for a line in a given direction
+				//And returns the *distance* to an object, so it looks like in order to properly check, we need to get the
+				//distance and compare it to the actual value. I hate you, DirectX.
+				float newDist = 0.0f;
+
 				//Check if the line intersects the bounding box
-				if (bounds.Intersects(origin, direction, distance)) {
-					//Add the intersecting object to the list
-					objects.push_back(pObj);
+				if (bounds.Intersects(origin, direction, newDist)) {
+
+					if (newDist <= distance) {
+						//Add the intersecting object to the list
+						objects.push_back(pObj);
+					}
 				}				
 			}
 		return objects;

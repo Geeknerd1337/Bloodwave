@@ -25,11 +25,14 @@ public:
 		m_yMagnitude = yMagnitude;
 		m_tTimeSinceStarted.SetTimeSince(0.0f);
 	}
+
+	
 };
 
 class GameCamera : public CCommon, public LComponent {
 public:
 	void HandleCamera();
+	bool PositionInCameraBound(Vector2 pos, float margin);
 	Vector3 m_cameraPos;
 	std::vector<ShakeInstance> m_vShakeInstances;
 

@@ -64,3 +64,13 @@ GameCamera::~GameCamera() {
 	}
 	m_vShakeInstances.clear();
 }
+
+bool GameCamera::PositionInCameraBound(Vector2 pos, float margin) {
+	CGame* pGame = CGame::Instance();
+	float left = m_cameraPos.x - (pGame->m_nWinWidth / 2.0f) - margin;
+	float right = m_cameraPos.x + (pGame->m_nWinWidth / 2.0f) + margin;
+	float top = m_cameraPos.y - (pGame->m_nWinHeight / 2.0f) - margin;
+	float bottom = m_cameraPos.y + (pGame->m_nWinHeight / 2.0f) + margin;
+
+	return pos.x > left && pos.x < right && pos.y > top && pos.y < bottom;
+}

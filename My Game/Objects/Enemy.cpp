@@ -199,6 +199,8 @@ void CEnemy::SetState(eEnemyState state) {
 void CEnemy::simulate() {
 	//Call base simulate
 	CObject::simulate();
+
+	
 	
 	//Finite state machine for dictating which manages the enemies state
 	switch (m_eEnemyState) {

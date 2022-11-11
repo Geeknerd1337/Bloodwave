@@ -43,6 +43,18 @@ public:
 	/// Simulates all the objects in the game
 	/// </summary>
 	void Simulate();
+
+	//Extend the draw method
+	virtual void draw() override;
+
+	/// <summary>
+	/// Experimental feature to draw objects in a depth order
+	/// </summary>
+	bool m_bDepthSort = true;
+
+	
+
+	void SortObjects();
 	
 };
 

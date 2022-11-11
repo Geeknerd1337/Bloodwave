@@ -226,9 +226,25 @@ void CObjectManager::BuildInput() {
 //buildInput iterates over the m_stdObjectList and calls the build input method
 //for each object. This is called by the game state manager.
 void CObjectManager::Simulate() {
-
+	
 	for (auto const& p : m_stdObjectList) {
 
 		p->simulate();
 	}
+}
+
+void CObjectManager::draw() {
+	SortObjects();
+	for (auto const& p : m_stdObjectList) {
+		
+		//Print the depth using printf
+
+		if (m_pCamera->PositionInCameraBound(p->GetPos(), 100.0f)) {
+			p->draw();
+		}
+	}
+}
+
+void CObjectManager::SortObjects() {
+	m_stdObjectList.sort([](const CObject* a, const CObject* b) { return a->m_iDepth > b->m_iDepth; });
 }

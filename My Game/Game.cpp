@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Utility/TimeSince.h"
 #include "Utility/CMouse.h"
+#include "Objects/Enemy.h"
 
 //Singleton
 CGame* CGame::instance = nullptr;
@@ -146,6 +147,12 @@ void CGame::CreateObjects() {
 	//m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Carmilla, Vector2(64.0f, 64.0f));
 	(CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(300.0f, 300.0f));
 
+	//Create 50 enemies randomly placed in the world with a random depth between -100 and100
+	for (int i = 0; i < 100; i++) {
+		Vector2 vPos = Vector2(rand() % (int)m_vWorldSize.x, rand() % (int)m_vWorldSize.y);
+		CEnemy* c = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, vPos);
+	}
+
 	Vector2 v(128.0f, 64.0f); //initial ant position
 
 	for (int i = 0; i < 12; i++) {
@@ -226,9 +233,6 @@ void CGame::RenderFrame() {
 
 	Vector2 mousePos = m_pMouse->GetMouseWorldPos();
 	Vector2 playerPos = m_pPlayer->GetPos();
-
-	//Print the camera position to the console using printf
-	printf("Camera Position: %f, %f\n", m_pCamera->m_cameraPos.x - m_nWinWidth / 2.0f, m_pCamera->m_cameraPos.y - m_nWinHeight / 2.0f);
 	
 	Vector2 mouseDir = mousePos - playerPos;
 	mouseDir.Normalize();

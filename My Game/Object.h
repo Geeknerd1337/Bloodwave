@@ -91,6 +91,8 @@ class CObject:
     /// </summary>
     void draw();
 
+    int m_iDepth = 0;
+
     void SetSprite(eSprite);
 
     const Vector2& GetPos() const; ///< Get position.

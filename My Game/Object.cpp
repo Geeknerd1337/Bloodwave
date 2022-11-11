@@ -65,6 +65,7 @@ void CObject::buildInput()
 }
 
 void CObject::simulate() {
+	m_iDepth = (int)m_vPos.y;
 	UpdateFramenumber();
 }
 

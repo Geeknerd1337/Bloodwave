@@ -6,6 +6,7 @@
 
 #include "Player.h"
 #include "Objects/Enemy.h"
+#include "Objects/FadeObject.h"
 
 #include "Bullet.h"
 #include "Ant.h"
@@ -13,7 +14,7 @@
 #include "Helpers.h"
 #include "GameDefines.h"
 #include "Game.h"
-
+#include <typeinfo>
 //Forward Ceclarations
 
 
@@ -32,12 +33,18 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos) {
 	case eSprite::Enemy_Idle: pObj = new CEnemy(pos); break;
 	case eSprite::Bullet:  pObj = new CBullet(eSprite::Bullet, pos); break;
 	case eSprite::Bullet2: pObj = new CBullet(eSprite::Bullet2, pos); break;
+	case eSprite::Fade_Object: pObj = new FadeObject(pos, t); break;
 	default: pObj = new CObject(t, pos);
 	} //switch
 
 	m_stdObjectList.push_back(pObj); //push pointer onto object list
 	return pObj; //return pointer to created object
 } //create
+
+
+
+
+
 
 /// Test whether an object's left, right, top or bottom edge has crossed the 
 /// left, right, top, bottom edge of the world, respectively. If so, then the

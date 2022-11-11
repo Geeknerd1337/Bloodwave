@@ -8,7 +8,7 @@
 #include "Object.h"
 #include "Common.h"
 #include <vector>
-
+#include <string>
 
 /// <summary>
 /// A collection of all the game objects in the game
@@ -24,6 +24,7 @@ private:
 
 public:
 	CObject* create(eSprite, const Vector2&); ///< Create new object.
+
 
 	/// <summary>
 	/// TODO: Remove this function, there's no reason this should be in the object manager

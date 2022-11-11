@@ -9,6 +9,7 @@
 #include "Objects/Enemy.h"
 #include "Utility/GameCamera.h"
 #include "Utility/CMouse.h"
+#include "Objects/FadeObject.h"
 
 
 
@@ -77,6 +78,13 @@ void CPlayer::HandleDash() {
 		printf("end dash\n");
 		coolDownReady = false;
 		m_ePlayerState = ePlayerState::Idle;
+	}
+
+	if (m_tTimeSinceDashEffect.GetTimeSince() > 0.05f) {
+		FadeObject* obj = (FadeObject*)m_pObjectManager->create(eSprite::Fade_Object, GetPos());
+		obj->Initialize(1.0f,(eSprite)m_nSpriteIndex, m_nCurrentFrame, m_iDepth + 1, m_fRoll);
+		obj->m_f4Tint = Vector4(0.0f, 0.8f, 1.0f, 0.5f);
+		m_tTimeSinceDashEffect.SetTimeSince(0.0f);
 	}
 
 }
@@ -215,6 +223,7 @@ void CPlayer::buildInput() {
 	if (m_pKeyboard->TriggerDown(' ') && coolDownReady && m_ePlayerState != ePlayerState::Dash) {
 		timeAtDashStart = m_pTimer->GetTime();
 		m_tTimeSinceDash.SetTimeSince(0.0f);
+		m_tTimeSinceDashEffect.SetTimeSince(0.0f);
 
 		if (horizontal != 0 || vertical != 0) {
 			inputAtStateTransition = Vector2(horizontal, vertical);

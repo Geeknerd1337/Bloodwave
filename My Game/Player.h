@@ -69,6 +69,7 @@ protected:
 	void HandleDash();
 
 	TimeSince m_tTimeSinceDash;
+	TimeSince m_tTimeSinceDashEffect;
 	TimeSince m_tTimeSinceDamaged;
 
 	/// <summary>

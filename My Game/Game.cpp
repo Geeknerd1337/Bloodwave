@@ -153,16 +153,6 @@ void CGame::CreateObjects() {
 		CEnemy* c = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, vPos);
 	}
 
-	Vector2 v(128.0f, 64.0f); //initial ant position
-
-	for (int i = 0; i < 12; i++) {
-		m_pObjectManager->create(eSprite::Ant, v);
-		v.x += 64.0f;
-	} //for
-
-
-
-
 } //CreateObjects
 
 /// Call this function to start a new game. This should be re-entrant so that

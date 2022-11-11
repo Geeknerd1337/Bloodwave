@@ -37,6 +37,8 @@ protected:
 	/// </summary>
 	float m_fDashSpeed = 800.0f;
 
+	Vector2 m_vMouseDirection;
+
 	/// <summary>
 	/// Sometimes we need to capture input when transitioning into a state
 	/// like the dash or the attack. This allows us to capture the input at that moment.

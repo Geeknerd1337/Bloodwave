@@ -8,6 +8,7 @@
 #include "Bullet.h"
 #include "Objects/Enemy.h"
 #include "Utility/GameCamera.h"
+#include "Utility/CMouse.h"
 
 
 
@@ -239,6 +240,10 @@ void CPlayer::buildInput() {
 
 		m_ePlayerState = ePlayerState::Attack;
 	}
+
+
+	Vector2 mousePosition = m_pMouse->Position;
+	
 
 	//Set the m_vInput vector to our horizontal and vertical values
 	m_vInput.x = horizontal;

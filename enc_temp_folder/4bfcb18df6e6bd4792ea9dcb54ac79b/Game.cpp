@@ -236,8 +236,6 @@ void CGame::RenderFrame() {
 	//Round the x and y components of the mouse dir
 	mouseDir.x = round(mouseDir.x);
 	mouseDir.y = round(mouseDir.y);
-
-	mouseDir.Normalize();
 	
 	
 	m_pRenderer->DrawLine(eSprite::Small_Square, playerPos, playerPos + mouseDir * 200.0f);

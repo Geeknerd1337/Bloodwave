@@ -5,7 +5,7 @@
 #define __L4RC_GAME_COMMON_H__
 
 #include "Defines.h"
-#include "Utility/CMouse.h"
+
 
 
 //forward declarations to make the compiler less stroppy
@@ -16,6 +16,7 @@ class LParticleEngine2D;
 class CPlayer;
 class CEnemy;
 class GameCamera;
+class CMouse;
 
 /// \brief The common variables class.
 ///

@@ -1,10 +1,28 @@
 #include "CMouse.h"
 #include "Keyboard.h"
+#include "GameCamera.h"
 #include <Mouse.h>
+#include "../Game.h"
 
 void CMouse::Initialize()
 {
 	hWnd = GetActiveWindow();
+}
+
+
+Vector2 CMouse::GetMouseWorldPos() {
+	CGame* pGame = CGame::Instance();
+	int w = pGame->m_nWinWidth;
+	int h = pGame->m_nWinHeight;
+	Vector2 winSize = Vector2((float)w, float(h));
+
+	
+	//Use the cameras position and add it to the mouses window position
+	Vector2 camPosition = m_pCamera->m_cameraPos;
+	
+	Vector2 mousePosition = (camPosition - winSize/2.0f) + Vector2(Position.x,h - Position.y);
+
+	return mousePosition;
 }
 
 

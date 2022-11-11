@@ -25,6 +25,7 @@ class CGame :
 	public LSettings,
 	public CCommon {
 	friend class GameCamera;
+	friend class CMouse;
 private:
 	bool m_bDrawFrameRate = false; ///< Draw the frame rate.
 	std::string m_sConsoleOutput = "";

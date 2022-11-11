@@ -2,6 +2,7 @@
 #pragma once
 #include <windows.h>
 #include "Defines.h"
+#include "../Common.h"
 
 /// <summary>
 	/// Enum Representing which Mouse we want to check
@@ -12,7 +13,7 @@ enum eMouseButton {
 	Middle
 };
 
-class CMouse {
+class CMouse: public CCommon {
 public:
 	/// <summary>
 	/// Initialized this mouse object.
@@ -43,6 +44,8 @@ public:
 	/// Position of the mouse
 	/// </summary>
 	Vector2 Position;
+
+	Vector2 GetMouseWorldPos();
 
 	/// <summary>
 	/// Reference to our window handler

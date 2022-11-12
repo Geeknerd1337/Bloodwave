@@ -68,9 +68,13 @@ protected:
 	/// </summary>
 	void HandleDash();
 
+	void staminaDepletion();
+	void staminaRegeneration();
+
 	TimeSince m_tTimeSinceDash;
 	TimeSince m_tTimeSinceDashEffect;
 	TimeSince m_tTimeSinceDamaged;
+	TimeSince m_tTimeSinceStaminaRegen;
 
 	/// <summary>
 	/// Handles the logic for transitioning into other states from the idle state.

@@ -159,6 +159,7 @@ void CEnemy::handleTransitions() {
 
 	//enemy chases player until a certain radius, else return to idle
 	if (enemyChaseRadius < vEnemyToPlayer.Length()) {
+		//printf("chasing\n");
 		SetState(eEnemyState::Chase);
 	}
 	else {
@@ -168,6 +169,7 @@ void CEnemy::handleTransitions() {
 	//if player is within attack radius, check if an object is the player, then set state to attack
 	if (enemyAttackRadius > vEnemyToPlayer.Length()) {
 		if (dynamic_cast<CPlayer*>(m_pPlayer) != nullptr) {
+			//printf("attacking\n");
 			SetState(eEnemyState::Attack);
 		}
 	}

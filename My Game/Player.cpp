@@ -89,6 +89,27 @@ void CPlayer::HandleDash() {
 
 }
 
+void CPlayer::staminaDepletion() {
+	
+	if (stamina > 0) {
+		stamina -= 200;
+	}
+	
+	printf("stamina: %d\t", stamina);
+}
+
+void CPlayer::staminaRegeneration() {
+	
+	if (m_tTimeSinceStaminaRegen.GetTimeSince() > 1.0f) {
+		if (stamina < 1000) {
+			stamina += 100;
+		}
+		printf("stamina regen: %d\t", stamina);
+		m_tTimeSinceStaminaRegen.SetTimeSince(0.0f);
+	}
+	
+}
+
 void CPlayer::HandleIdleTransitions() {
 	//This is where you would hande transitions into attack, dash, death, stun, and the like
 }
@@ -98,6 +119,8 @@ void CPlayer::simulate() {
 	CObject::simulate();
 
 	UpdateDisplayHealth();
+
+	staminaRegeneration();
 
 	//Switch statement for the player state
 	/*
@@ -224,6 +247,8 @@ void CPlayer::buildInput() {
 		timeAtDashStart = m_pTimer->GetTime();
 		m_tTimeSinceDash.SetTimeSince(0.0f);
 		m_tTimeSinceDashEffect.SetTimeSince(0.0f);
+
+		staminaDepletion();
 
 		if (horizontal != 0 || vertical != 0) {
 			inputAtStateTransition = Vector2(horizontal, vertical);

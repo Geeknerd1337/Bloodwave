@@ -25,7 +25,5 @@ void FadeObject::simulate() {
 		m_bDead = true;
 	}
 
-	printf("HMMM");
-
 	m_fAlpha = 1.0f - (m_tTimeSinceCreated.GetTimeSince() / m_fDuration);
 }

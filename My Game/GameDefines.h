@@ -29,7 +29,7 @@ enum class eSprite : UINT {
 /// be last.
 
 enum class eSound : UINT {
-	Clang, Grunt, Gun, Ricochet, Ow,
+	Clang, Grunt, Gun, Ricochet, Ow,Synth, 
 	Size  //MUST BE LAST
 }; //eSound
 

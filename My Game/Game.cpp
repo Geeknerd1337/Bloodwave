@@ -59,6 +59,9 @@ void CGame::Initialize() {
 	//Set the camera
 	m_pCamera = new GameCamera();
 
+	//m_pAudio->play(eSound::Synth);
+	m_pAudio->loop(eSound::Synth);
+
 	BeginGame();
 
 } //Initialize
@@ -127,6 +130,7 @@ void CGame::LoadSounds() {
 	m_pAudio->Load(eSound::Clang, "clang");
 	m_pAudio->Load(eSound::Gun, "gun");
 	m_pAudio->Load(eSound::Ricochet, "ricochet");
+	m_pAudio->Load(eSound::Synth, "synth");
 } //LoadSounds
 
 /// Release all of the DirectX12 objects by deleting the renderer.

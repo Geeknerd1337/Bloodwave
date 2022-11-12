@@ -153,10 +153,10 @@ void CGame::CreateObjects() {
 	(CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(300.0f, 300.0f));
 
 	//Create 50 enemies randomly placed in the world with a random depth between -100 and100
-	for (int i = 0; i < 100; i++) {
+	/*for (int i = 0; i < 100; i++) {
 		Vector2 vPos = Vector2(rand() % (int)m_vWorldSize.x, rand() % (int)m_vWorldSize.y);
 		CEnemy* c = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, vPos);
-	}
+	}*/
 
 } //CreateObjects
 

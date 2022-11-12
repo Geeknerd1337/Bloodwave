@@ -157,8 +157,8 @@ void CEnemy::handleWalk() {
 void CEnemy::handleTransitions() {
 	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
 
-	//if player is within chase radius change state to chase, else return to idle
-	if (enemyChaseRadius > vEnemyToPlayer.Length()) {
+	//enemy chases player until a certain radius, else return to idle
+	if (enemyChaseRadius < vEnemyToPlayer.Length()) {
 		SetState(eEnemyState::Chase);
 	}
 	else {
@@ -171,6 +171,7 @@ void CEnemy::handleTransitions() {
 			SetState(eEnemyState::Attack);
 		}
 	}
+
 }
 
 void CEnemy::handleAttack() {
@@ -183,7 +184,7 @@ void CEnemy::handleAttack() {
 		if (playerHealth > 0) {
 			m_pPlayer->TakeDamage(m_iAttackPoints);
 		}
-
+		
 		//return to idle after player death
 		SetState(eEnemyState::Idle);
 

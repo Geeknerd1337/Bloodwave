@@ -17,6 +17,7 @@ class CPlayer;
 class CEnemy;
 class GameCamera;
 class CMouse;
+class Canvas;
 
 /// \brief The common variables class.
 ///
@@ -35,6 +36,7 @@ class CCommon{
     static Vector2 m_vWorldSize; ///< World height and width.
     static CPlayer* m_pPlayer; ///< Pointer to player character.
     static GameCamera* m_pCamera;
+	static Canvas* m_pCanvas;
 }; //CCommon
 
 #endif //__L4RC_GAME_COMMON_H__

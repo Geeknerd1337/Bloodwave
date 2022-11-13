@@ -16,6 +16,8 @@
     <ClCompile Include="Utility\TimeSince.cpp" />
     <ClCompile Include="Utility\CMouse.cpp" />
     <ClCompile Include="Objects\FadeObject.cpp" />
+    <ClCompile Include="Objects\UI\Canvas.cpp" />
+    <ClCompile Include="Objects\UI\UIElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -33,6 +35,8 @@
     <ClInclude Include="Utility\TimeSince.h" />
     <ClInclude Include="Utility\CMouse.h" />
     <ClInclude Include="Objects\FadeObject.h" />
+    <ClInclude Include="Objects\UI\Canvas.h" />
+    <ClInclude Include="Objects\UI\UIElement.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

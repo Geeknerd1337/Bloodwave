@@ -31,7 +31,7 @@ CGame* CGame::Instance() {
 CGame::~CGame() {
 	delete m_pParticleEngine;
 	delete m_pObjectManager;
-
+	delete m_pCanvas;
 	delete m_pCamera;
 	delete m_pMouse;
 } //destructor

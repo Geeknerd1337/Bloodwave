@@ -10,4 +10,5 @@ public:
 	static void DrawStatBar(Vector2 pos, Vector2 size, float value, float maxValue, Vector4 color);
 	static void DrawRectangle(Vector2 pos, Vector2 size, Vector4 color);
 	static void DrawSprite(eSprite spr, Vector2 pos);
+	static void DrawAlignedText(const char* text, Vector2 pos, HorizontalAlignment hAlign, VerticalAlignment vAlign, XMVECTORF32 color);
 };

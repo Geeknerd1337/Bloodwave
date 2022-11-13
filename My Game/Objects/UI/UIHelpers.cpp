@@ -39,3 +39,11 @@ void UIHelpers::DrawSprite(eSprite spr, Vector2 pos)
 	sprDesc.m_vPos = Vector2(x,y);
 	m_pRenderer->Draw(&sprDesc);
 }
+
+void UIHelpers::DrawAlignedText(const char* text, Vector2 pos, HorizontalAlignment hAlign, VerticalAlignment vAlign, XMVECTORF32 color)
+{
+	float x = pos.x;
+	float y = m_pCanvas->m_nHeight - pos.y;
+
+	m_pRenderer->DrawAlignedText(text, Vector2(x, y), hAlign, vAlign, color);
+}

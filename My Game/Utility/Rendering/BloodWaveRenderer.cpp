@@ -42,12 +42,13 @@ void BloodWaveRenderer::DrawAlignedText(const wchar_t* text, const Vector2& pos,
 	switch (ver)
 	{
 	case VerticalAlignment::Top:
-		finalPos.y += height / 2.0f;
+		finalPos.y += height;
 		break;
 	case VerticalAlignment::Center:
+		finalPos.y += height / 2.0f;
 		break;
 	case VerticalAlignment::Bottom:
-		finalPos.y -= height / 2.0f;
+		finalPos.y -= height;
 		break;
 	}
 

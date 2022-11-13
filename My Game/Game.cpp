@@ -247,8 +247,6 @@ void CGame::RenderFrame() {
 
 	mouseDir.Normalize();
 	
-	
-	m_pRenderer->DrawLine(eSprite::Small_Square, playerPos, playerPos + mouseDir * 200.0f);
 
 	DrawHealthBar();
 

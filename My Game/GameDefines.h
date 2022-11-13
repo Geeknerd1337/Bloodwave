@@ -49,4 +49,19 @@ enum class eEnemyState {
 	Idle, Chase, Attack, Stun, Dead
 };
 
+
+/// <summary>
+/// Adding this for centering text horizontally
+/// </summary>
+enum class HorizontalAlignment{
+	Left, Center, Right
+};
+
+/// <summary>
+/// Adding this for centering text vertically
+/// </summary>
+enum class VerticalAlignment {
+	Top, Center, Bottom
+};
+
 #endif //__L4RC_GAME_GAMEDEFINES_H__

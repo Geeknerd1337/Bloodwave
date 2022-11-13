@@ -62,7 +62,7 @@ void CGame::Initialize() {
 	m_pCamera = new GameCamera();
 
 	//Set the canvas
-	m_pCanvas = new Canvas(Vector2(m_nWinHeight, m_nWinHeight));
+	m_pCanvas = new Canvas(Vector2(m_nWinWidth, m_nWinHeight));
 	m_pCanvas->Initialize();
 
 	//m_pAudio->play(eSound::Synth);

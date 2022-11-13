@@ -5,6 +5,7 @@ Vector2 UIHelpers::GetScreenPos()
 {
 	Vector2 windowOffset = Vector2(m_pCanvas->m_nWidth / 2.0, m_pCanvas->m_nHeight / 2.0);
 	Vector2 screenPos = m_pCamera->m_cameraPos - windowOffset;
+
 	return screenPos;
 }
 
@@ -22,6 +23,7 @@ void UIHelpers::DrawRectangle(Vector2 pos, Vector2 size, Vector4 color)
 	spr.m_fXScale = size.x;
 	spr.m_fYScale = size.y;
 	spr.m_f4Tint = color;
+	spr.m_fAlpha = color.w;
 	
 	m_pRenderer->Draw(&spr);
 
@@ -31,6 +33,7 @@ void UIHelpers::DrawSprite(eSprite spr, Vector2 pos)
 {
 	float x = GetScreenPos().x + pos.x;
 	float y = GetScreenPos().y + pos.y;
+	
 	LSpriteDesc2D sprDesc;
 	sprDesc.m_nSpriteIndex = (UINT)spr;
 	sprDesc.m_vPos = Vector2(x,y);

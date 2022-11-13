@@ -39,7 +39,7 @@ int CPlayer::getPlayerHealth() {
 //override from actor
 void CPlayer::TakeDamage(int damage) {
 	if (m_tiFrame.GetTimeSince() > 1.0f) {
-		printf("player health: %d\n", m_iHealth);
+		//printf("player health: %d\n", m_iHealth);
 		m_iHealth -= damage;
 		m_tTimeSinceDamaged.SetTimeSince(0.0f);
 
@@ -98,8 +98,6 @@ void CPlayer::staminaDepletion() {
 	if (stamina > 0) {
 		stamina -= 200;
 	}
-	
-	printf("stamina: %d\t", stamina);
 }
 
 void CPlayer::staminaRegeneration() {
@@ -112,7 +110,7 @@ void CPlayer::staminaRegeneration() {
 			stamina = 1000;
 		}
 
-		printf("stamina regen: %d\t", stamina);
+		//printf("stamina regen: %d\t", stamina);
 		
 		m_tTimeSinceStaminaRegen.SetTimeSince(0.0f);
 	}
@@ -186,7 +184,7 @@ void CPlayer::HandleAttack() {
 	Vector2 end = start + inputAtStateTransition * 100.0f;
 
 	//Print the input at the state transition
-	printf("input at state transition: %f, %f\n", inputAtStateTransition.x, inputAtStateTransition.y);
+	//printf("input at state transition: %f, %f\n", inputAtStateTransition.x, inputAtStateTransition.y);
 
 	//Declare a pointer to an array of CObjects
 	std::vector<CObject*> pObjects;

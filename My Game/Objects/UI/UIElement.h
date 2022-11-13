@@ -1,7 +1,8 @@
 #pragma once
 #include "../../Common.h"
-
-class UIElement : public CCommon {
+#include "ComponentIncludes.h"
+#include "Component.h"
+class UIElement : public CCommon, public LComponent {
 public: 
 	virtual void Draw();
 };

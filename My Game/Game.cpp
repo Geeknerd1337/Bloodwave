@@ -250,6 +250,8 @@ void CGame::RenderFrame() {
 
 	DrawHealthBar();
 
+	m_pCanvas->Draw();
+
 	m_pRenderer->EndFrame(); //required after rendering
 } //RenderFrame
 

@@ -43,7 +43,7 @@ CGame::~CGame() {
 /// 
 void CGame::Initialize() {
 
-	m_pRenderer = new LSpriteRenderer(eSpriteMode::Batched2D);
+	m_pRenderer = new BloodWaveRenderer(eSpriteMode::Batched2D);
 	m_pRenderer->Initialize(eSprite::Size);
 	m_pMouse = new CMouse;
 	m_pMouse->Initialize();
@@ -84,6 +84,8 @@ void CGame::LoadImages() {
 
 	m_pRenderer->Load(eSprite::Background, "floor");
 	m_pRenderer->Load(eSprite::Small_Square, "small_square");
+
+	//Someone ask me why I load small_square twice, I'll explain it then. - Josh Wilson
 	m_pRenderer->Load(eSprite::Fade_Object, "small_square");
 
 	m_pRenderer->Load(eSprite::SpriteSheet, "spritesheet"); //must be loaded before its sprites

@@ -179,6 +179,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Utility\CMouse.cpp" />
     <ClCompile Include="Utility\GameCamera.cpp" />
+    <ClCompile Include="Utility\Rendering\BloodWaveRenderer.cpp" />
     <ClCompile Include="Utility\TimeSince.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +193,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\FadeObject.h" />
+    <ClInclude Include="Utility\Rendering\BloodWaveRenderer.h" />
     <ClInclude Include="Objects\UI\Canvas.h" />
     <ClInclude Include="Objects\UI\PlayerStats.h" />
     <ClInclude Include="Objects\UI\UIElement.h" />

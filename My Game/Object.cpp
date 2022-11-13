@@ -7,6 +7,7 @@
 #include "Particle.h"
 #include "ParticleEngine.h"
 #include "Helpers.h"
+#include "Utility/Rendering/BloodWaveRenderer.h"
 
 /// Create and initialize an object given its sprite type and initial position.
 /// \param t Type of sprite.

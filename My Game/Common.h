@@ -5,7 +5,7 @@
 #define __L4RC_GAME_COMMON_H__
 
 #include "Defines.h"
-
+#include "Utility/Rendering/BloodWaveRenderer.h"
 
 
 //forward declarations to make the compiler less stroppy
@@ -18,6 +18,7 @@ class CEnemy;
 class GameCamera;
 class CMouse;
 class Canvas;
+class BloodWaveRenderer;
 
 /// \brief The common variables class.
 ///
@@ -29,7 +30,7 @@ class Canvas;
 
 class CCommon{
   protected:  
-    static LSpriteRenderer* m_pRenderer; ///< Pointer to renderer.
+    static BloodWaveRenderer* m_pRenderer; ///< Pointer to renderer.
     static CObjectManager* m_pObjectManager; ///< Pointer to object manager.
     static LParticleEngine2D* m_pParticleEngine; ///< Pointer to particle engine.    
     static CMouse* m_pMouse; ///< The mouse.

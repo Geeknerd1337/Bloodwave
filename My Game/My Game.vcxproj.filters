@@ -20,6 +20,7 @@
     <ClCompile Include="Objects\UI\UIElement.cpp" />
     <ClCompile Include="Objects\UI\PlayerStats.cpp" />
     <ClCompile Include="Objects\UI\UIHelpers.cpp" />
+    <ClCompile Include="Utility\Rendering\BloodWaveRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -41,6 +42,7 @@
     <ClInclude Include="Objects\UI\UIElement.h" />
     <ClInclude Include="Objects\UI\PlayerStats.h" />
     <ClInclude Include="Objects\UI\UIHelpers.h" />
+    <ClInclude Include="Utility\Rendering\BloodWaveRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

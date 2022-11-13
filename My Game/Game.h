@@ -10,6 +10,7 @@
 #include "Settings.h"
 #include "Player.h"
 #include "Utility/GameCamera.h"
+#include "Utility/Rendering/BloodWaveRenderer.h"
 
 /// \brief The game class.
 ///

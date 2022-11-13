@@ -144,8 +144,8 @@ void CGame::Release() {
 
 void CGame::CreateObjects() {
 	//m_pRenderer->GetSize(eSprite::Background, m_vWorldSize.x, m_vWorldSize.y); //init m_vWorldSize
-	m_vWorldSize.x = 1024;
-	m_vWorldSize.y = 1024;
+	m_vWorldSize.x = 2048;
+	m_vWorldSize.y = 2048;
 
 	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(64.0f, 64.0f));
 	//reassigning player like this breaks the camera following

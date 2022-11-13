@@ -75,6 +75,7 @@ protected:
 	TimeSince m_tTimeSinceDashEffect;
 	TimeSince m_tTimeSinceDamaged;
 	TimeSince m_tTimeSinceStaminaRegen;
+	TimeSince m_tiFrame;
 
 	/// <summary>
 	/// Handles the logic for transitioning into other states from the idle state.

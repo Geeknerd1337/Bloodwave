@@ -38,13 +38,17 @@ int CPlayer::getPlayerHealth() {
 //reduce health by damage
 //override from actor
 void CPlayer::TakeDamage(int damage) {
-	printf("player health: %d\n", m_iHealth);
-	m_iHealth -= damage;
-	m_tTimeSinceDamaged.SetTimeSince(0.0f);
+	if (m_tiFrame.GetTimeSince() > 1.0f) {
+		printf("player health: %d\n", m_iHealth);
+		m_iHealth -= damage;
+		m_tTimeSinceDamaged.SetTimeSince(0.0f);
 
-	//if health is less than 0 mark as dead
-	if (m_iHealth <= 0) {
-		m_bDead = true;
+		m_tiFrame.SetTimeSince(0.0f);
+
+		//if health is less than 0 mark as dead
+		if (m_iHealth <= 0) {
+			m_bDead = true;
+		}
 	}
 }
 

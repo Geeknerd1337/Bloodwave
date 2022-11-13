@@ -29,6 +29,11 @@ void UIHelpers::DrawRectangle(Vector2 pos, Vector2 size, Vector4 color)
 
 }
 
+void UIHelpers::DrawStatBar(Vector2 pos, Vector2 size, float value, float maxValue, Vector4 color)
+{
+	DrawRectangle(pos, Vector2(size.x * (value/maxValue), size.y), color);
+}
+
 void UIHelpers::DrawSprite(eSprite spr, Vector2 pos)
 {
 	float x = GetScreenPos().x + pos.x;

@@ -13,6 +13,8 @@
 #include "Utility/TimeSince.h"
 #include "Utility/CMouse.h"
 #include "Objects/Enemy.h"
+#include "Objects/UI/Canvas.h"
+#include "Objects/UI/UIElement.h"
 
 //Singleton
 CGame* CGame::instance = nullptr;
@@ -58,6 +60,9 @@ void CGame::Initialize() {
 
 	//Set the camera
 	m_pCamera = new GameCamera();
+
+	//Set the canvas
+	m_pCanvas = new Canvas(Vector2(m_nWinHeight, m_nWinHeight));
 
 	//m_pAudio->play(eSound::Synth);
 	m_pAudio->loop(eSound::Synth);
@@ -116,6 +121,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");
 	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
+	m_pRenderer->Load(eSprite::Single_Pixel, "single_pixel");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages
@@ -187,7 +193,7 @@ void CGame::KeyboardHandler() {
 		BeginGame();
 }
 
-/// Poll the XBox controller state and respond to the controls there.
+
 
 void CGame::ControllerHandler() {
 	if (!m_pController->IsConnected())return;

@@ -172,7 +172,9 @@
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\FadeObject.cpp" />
     <ClCompile Include="Objects\UI\Canvas.cpp" />
+    <ClCompile Include="Objects\UI\PlayerStats.cpp" />
     <ClCompile Include="Objects\UI\UIElement.cpp" />
+    <ClCompile Include="Objects\UI\UIHelpers.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Utility\CMouse.cpp" />
@@ -191,7 +193,9 @@
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\FadeObject.h" />
     <ClInclude Include="Objects\UI\Canvas.h" />
+    <ClInclude Include="Objects\UI\PlayerStats.h" />
     <ClInclude Include="Objects\UI\UIElement.h" />
+    <ClInclude Include="Objects\UI\UIHelpers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Utility\CMouse.h" />

@@ -1,6 +1,11 @@
 #include "Canvas.h"
 
 
+Canvas::Canvas(Vector2 size)
+{
+	m_nWidth = size.x;
+	m_nHeight = size.y;
+}
 
 void Canvas::AddElement(UIElement* element)
 {

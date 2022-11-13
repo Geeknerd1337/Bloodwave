@@ -6,9 +6,12 @@
 
 class Canvas : public CCommon {
 	public:
-		//Vector of UI elements
+		Canvas(Vector2 size);
 		std::vector<UIElement*> UIElements;
 		void AddElement(UIElement* element);
 		void Draw();
-	
+		int m_nWidth;
+		int m_nHeight;
+	private:
+		
 };

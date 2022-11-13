@@ -6,7 +6,7 @@
   <game name="Bloodwave" />
   <renderer width="1280" height="720"/>
    
-  <font file="Media\Fonts\AverageSans_24.spritefont"/>
+  <font file="Media\Fonts\strasua.spritefont"/>
 
   <!-- sprites -->
    

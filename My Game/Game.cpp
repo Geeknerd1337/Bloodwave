@@ -246,9 +246,6 @@ void CGame::RenderFrame() {
 	mouseDir.y = round(mouseDir.y);
 
 	mouseDir.Normalize();
-	
-
-	DrawHealthBar();
 
 	m_pCanvas->Draw();
 

@@ -101,10 +101,15 @@ void CPlayer::staminaDepletion() {
 void CPlayer::staminaRegeneration() {
 	
 	if (m_tTimeSinceStaminaRegen.GetTimeSince() > 1.0f) {
-		if (stamina < 1000) {
-			stamina += 100;
+	
+		stamina += 100;
+
+		if (stamina > 1000) {
+			stamina = 1000;
 		}
+
 		printf("stamina regen: %d\t", stamina);
+		
 		m_tTimeSinceStaminaRegen.SetTimeSince(0.0f);
 	}
 	

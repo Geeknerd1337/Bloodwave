@@ -9,9 +9,13 @@ class Canvas : public CCommon {
 		Canvas(Vector2 size);
 		std::vector<UIElement*> UIElements;
 		void AddElement(UIElement* element);
+		void Initialize();
 		void Draw();
 		int m_nWidth;
 		int m_nHeight;
+
+		
+		~Canvas();
 	private:
 		
 };

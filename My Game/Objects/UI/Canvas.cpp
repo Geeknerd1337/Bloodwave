@@ -1,5 +1,5 @@
 #include "Canvas.h"
-
+#include "PlayerStats.h"
 
 Canvas::Canvas(Vector2 size)
 {
@@ -10,6 +10,20 @@ Canvas::Canvas(Vector2 size)
 void Canvas::AddElement(UIElement* element)
 {
 	UIElements.push_back(element);
+}
+
+void Canvas::Initialize()
+{
+	AddElement(new PlayerStats());
+}
+
+Canvas::~Canvas()
+{
+	//Free every UI element in the UIElements vector
+	for (int i = 0; i < UIElements.size(); i++)
+	{
+		delete UIElements[i];
+	}
 }
 
 void Canvas::Draw()

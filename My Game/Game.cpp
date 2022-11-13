@@ -63,6 +63,7 @@ void CGame::Initialize() {
 
 	//Set the canvas
 	m_pCanvas = new Canvas(Vector2(m_nWinHeight, m_nWinHeight));
+	m_pCanvas->Initialize();
 
 	//m_pAudio->play(eSound::Synth);
 	m_pAudio->loop(eSound::Synth);

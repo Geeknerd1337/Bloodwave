@@ -71,6 +71,7 @@
     </sprite>
 	
 	<sprite name="small_square" file="SmallSquare.png"/>
+	<sprite name="single_pixel" file="single_pixel.png"/>
 	<sprite name="health_pip" file="health_pip.png"/>
 	
   </sprites>

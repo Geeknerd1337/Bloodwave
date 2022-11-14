@@ -72,6 +72,9 @@
 	
 	<sprite name="small_square" file="SmallSquare.png"/>
 	<sprite name="health_pip" file="health_pip.png"/>
+	<sprite name="blood_particle" file="blood_particle.png"/>
+	<sprite name="blood_pool" file="blood_pool.png"/>
+	<sprite name="monster_gib" file="monster_gib.png"/>
 	<sprite name="single_pixel" file="single_pixel.png"/>
 	<sprite name="small_circle" file="small_circle.png"/>
 	

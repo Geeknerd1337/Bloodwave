@@ -126,6 +126,9 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
 	m_pRenderer->Load(eSprite::Single_Pixel, "single_pixel");
 	m_pRenderer->Load(eSprite::Small_Circle, "small_circle");
+	m_pRenderer->Load(eSprite::Blood_Particle, "blood_particle");
+	m_pRenderer->Load(eSprite::Blood_Pool, "blood_pool");
+	m_pRenderer->Load(eSprite::Monster_Gib, "monster_gib");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages

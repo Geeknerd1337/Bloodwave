@@ -24,6 +24,7 @@ private:
 
 public:
 	CObject* create(eSprite, const Vector2&); ///< Create new object.
+	CObject* createDirect(CObject* obj);
 
 
 	/// <summary>

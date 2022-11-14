@@ -7,6 +7,7 @@
 #include "Particle.h"
 #include "ParticleEngine.h"
 #include <cmath>
+#include "Debris.h"
 
 
 CEnemy::CEnemy(const Vector2& p) : Actor(p) {
@@ -90,6 +91,12 @@ void CEnemy::DeathFX() {
 	d.m_fScaleOutFrac = 0;
 	m_pParticleEngine->create(d);
 
+	CObject* torso = m_pObjectManager->createDirect(new Debris(m_vPos, eSprite::Monster_Gib));
+	
+	((Debris*)torso)->SetRandomVelocity();
+	torso->m_fRoll = 0.0f;
+	//Set torso m_fRollSpeed to a random value between -100 and 100
+	((Debris*)torso)->m_fRollSpeed = (rand() % 20) - 10.0f;
 	
 } //DeathFX
 

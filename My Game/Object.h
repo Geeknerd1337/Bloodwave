@@ -89,7 +89,7 @@ class CObject:
     /// <summary>
     /// A method which is responsible for actually drawing the object, called last
     /// </summary>
-    void draw();
+    virtual void draw();
 
     virtual void drawEnd();
 

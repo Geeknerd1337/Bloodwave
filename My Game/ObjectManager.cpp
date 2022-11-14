@@ -41,7 +41,10 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos) {
 	return pObj; //return pointer to created object
 } //create
 
-
+CObject* CObjectManager::createDirect(CObject* obj){
+	m_stdObjectList.push_back(obj);
+	return obj;
+}
 
 
 

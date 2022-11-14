@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClCompile Include="Ant.cpp" />
     <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Objects\Debris.cpp" />
     <ClCompile Include="Objects\Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Helpers.cpp" />
@@ -185,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="Ant.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Objects\Debris.h" />
     <ClInclude Include="Objects\Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDefines.h" />

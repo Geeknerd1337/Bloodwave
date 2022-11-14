@@ -17,6 +17,7 @@ enum class eSprite : UINT {
 	Player_Idle, Player_Idle_Left, Player_Idle_Right, Player_Walk_Left, Player_Walk_Right,
 	Enemy_Idle, Enemy_Idle_Left, Enemy_Idle_Right, Enemy_Walk_Left, Enemy_Walk_Right, Enemy_Dead,
 	Small_Square, Health_Pip, Fade_Object, Single_Pixel, Small_Circle,
+	Blood_Particle, Blood_Pool,Monster_Gib,
 	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheetLeft, PlayerWalkSpriteSheetRight, 
 	EnemyWalkSpriteSheetLeft, EnemyWalkSpriteSheetRight,
 	Size  //MUST BE LAST

@@ -7,6 +7,7 @@
 #include "Actor.h"
 #include "../Player.h"
 #include "../Utility/TimeSince.h"
+#include "../ObjectManager.h"
 
 /// \brief The player object. 
 ///

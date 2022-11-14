@@ -93,6 +93,23 @@ void CPlayer::HandleDash() {
 
 }
 
+bool CPlayer::dashAvailable() {
+	
+	if (!coolDownReady) {
+		return false;
+	}
+	
+	if (m_ePlayerState == ePlayerState::Dash) {
+		return false;
+	}
+
+	if (stamina < 200) {
+		return false;
+	}
+
+	return true;
+}
+
 void CPlayer::staminaDepletion() {
 	
 	if (stamina > 0) {
@@ -110,7 +127,7 @@ void CPlayer::staminaRegeneration() {
 			stamina = 1000;
 		}
 
-		//printf("stamina regen: %d\t", stamina);
+		printf("stamina regen: %d\t", stamina);
 		
 		m_tTimeSinceStaminaRegen.SetTimeSince(0.0f);
 	}
@@ -250,7 +267,7 @@ void CPlayer::buildInput() {
 
 	//dash trigger
 	//and set input
-	if (m_pKeyboard->TriggerDown(' ') && coolDownReady && m_ePlayerState != ePlayerState::Dash) {
+	if (m_pKeyboard->TriggerDown(' ') && dashAvailable()) {
 		timeAtDashStart = m_pTimer->GetTime();
 		m_tTimeSinceDash.SetTimeSince(0.0f);
 		m_tTimeSinceDashEffect.SetTimeSince(0.0f);

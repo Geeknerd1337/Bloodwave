@@ -70,6 +70,7 @@ protected:
 
 	void staminaDepletion();
 	void staminaRegeneration();
+	bool dashAvailable();
 
 	TimeSince m_tTimeSinceDash;
 	TimeSince m_tTimeSinceDashEffect;

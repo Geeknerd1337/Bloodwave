@@ -125,6 +125,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Ant, "ant");
 	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
 	m_pRenderer->Load(eSprite::Single_Pixel, "single_pixel");
+	m_pRenderer->Load(eSprite::Small_Circle, "small_circle");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages

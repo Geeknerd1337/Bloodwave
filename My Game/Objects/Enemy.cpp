@@ -230,3 +230,15 @@ void CEnemy::simulate() {
 	}
 }
 
+
+void CEnemy::drawBegin() {
+	LSpriteDesc2D spr;
+	spr.m_nSpriteIndex = (UINT)eSprite::Small_Circle;
+	spr.m_f4Tint = Vector4(0.05f, 0.05f, 0.05f, 1.0f);
+	spr.m_fAlpha = 0.25f;
+	spr.m_vPos = GetPos() + Vector2(0.0f, -40.0f);
+	spr.m_fXScale = 2.0f;
+	spr.m_fYScale = 0.25f;
+
+	m_pRenderer->Draw(&spr);
+}

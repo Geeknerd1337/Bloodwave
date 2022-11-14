@@ -88,7 +88,7 @@ public:
     CEnemy(const Vector2& p); ///< Constructor.
     ~CEnemy();
 
-
+    virtual void drawBegin() override;
 	
     virtual void buildInput() override;
 

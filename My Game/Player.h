@@ -153,6 +153,9 @@ public:
 	int getPlayerHealth();
 
 	
+	virtual void drawBegin() override;
+
+	
 
 	/// <summary>
 	/// Returns the players display health

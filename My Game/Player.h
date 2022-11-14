@@ -22,15 +22,31 @@ protected:
 	float timeAtDashStart = 0.0f;
 	bool coolDownReady = true;
 
-	int stamina = 1000;
+	int m_nStamina = 1000;
+	int m_nBlood = 1000;
 
 	/// <summary>
 	/// Our run speed
 	/// </summary>
 	float m_fRunSpeed = 200.0f;
 
+	//Health
 	float m_fdisplayHealth = 100.0f;
 	float m_fDisplayLastHealth = 100.0f;
+
+	//Stamina
+	float m_fdisplayStamina = 1000.0f;
+	float m_fDisplayLastStamina = 1000.0f;
+
+	//Blood
+	float m_fdisplayBlood = 1000.0f;
+	float m_fDisplayLastBlood = 1000.0f;
+
+
+	/// <summary>
+	/// The amount of stamina needed for a dash
+	/// </summary>
+	int m_nDashCost = 250;
 
 	/// <summary>
 	/// The dash speed
@@ -68,13 +84,15 @@ protected:
 	/// </summary>
 	void HandleDash();
 
-	void staminaDepletion();
+	void staminaDepletion(int i);
 	void staminaRegeneration();
 
 	TimeSince m_tTimeSinceDash;
 	TimeSince m_tTimeSinceDashEffect;
 	TimeSince m_tTimeSinceDamaged;
 	TimeSince m_tTimeSinceStaminaRegen;
+	TimeSince m_tTimeSinceStaminaUsed;
+	TimeSince m_tTimeSinceBloodUsed;
 	TimeSince m_tiFrame;
 
 	/// <summary>
@@ -86,6 +104,10 @@ protected:
 	/// Updates the health that we use for a display using a lerp so that we can smoothly show this value transitioning in the healthbar
 	/// </summary>
 	void UpdateDisplayHealth();
+
+	void UpdateDisplayStamina();
+
+	void UpdateDisplayBlood();
 
 	/// <summary>
 	/// The current state of the player
@@ -120,8 +142,13 @@ public:
 	/// Returns the players display health
 	/// </summary>
 	float getDisplayHealth();
-
 	float getDisplayLastHealth();
+
+	float getDisplayStamina();
+	float getDisplayLastStamina();
+
+	float getDisplayBlood();
+	float getDisplayLastBlood();
 
 }; //CPlayer
 

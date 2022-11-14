@@ -8,4 +8,7 @@ class PlayerStats : public UIElement
 {
 public:
 	virtual void Draw() override;
+	void DrawHealthBar();
+	void DrawStaminaBar();
+	void DrawBloodBar();
 };

@@ -93,10 +93,14 @@ void CPlayer::HandleDash() {
 
 }
 
-void CPlayer::staminaDepletion() {
+void CPlayer::staminaDepletion(int i) {
 	
-	if (stamina > 0) {
-		stamina -= 200;
+	if (m_nStamina > 0) {
+		m_nStamina -= i;
+	}
+
+	if (m_nStamina < 0) {
+		m_nStamina = 0;
 	}
 }
 
@@ -104,10 +108,10 @@ void CPlayer::staminaRegeneration() {
 	
 	if (m_tTimeSinceStaminaRegen.GetTimeSince() > 1.0f) {
 	
-		stamina += 100;
+		m_nStamina += 100;
 
-		if (stamina > 1000) {
-			stamina = 1000;
+		if (m_nStamina > 1000) {
+			m_nStamina = 1000;
 		}
 
 		//printf("stamina regen: %d\t", stamina);
@@ -126,6 +130,8 @@ void CPlayer::simulate() {
 	CObject::simulate();
 
 	UpdateDisplayHealth();
+	UpdateDisplayStamina();
+	
 
 	staminaRegeneration();
 
@@ -168,12 +174,50 @@ void CPlayer::UpdateDisplayHealth() {
 	}
 }
 
+void CPlayer::UpdateDisplayStamina() {
+	const float t = m_pTimer->GetFrameTime(); //frame time
+	m_fdisplayStamina = Lerp(m_fdisplayStamina, (float)m_nStamina, t * 10.0f);
+	
+	if (m_tTimeSinceStaminaUsed.GetTimeSince() > 1.0f) {
+		m_fDisplayLastStamina = Lerp(m_fDisplayLastStamina, m_fdisplayStamina, t * 10.0f);
+	}
+
+}
+
+void CPlayer::UpdateDisplayBlood() 
+	{
+		const float t = m_pTimer->GetFrameTime(); //frame time
+		m_fdisplayBlood = Lerp(m_fdisplayBlood, (float)m_nBlood, t * 10.0f);
+
+		if (m_tTimeSinceBloodUsed.GetTimeSince() > 1.0f) {
+			m_fDisplayLastBlood = Lerp(m_fDisplayLastBlood, m_fdisplayBlood, t * 10.0f);
+		}
+	}
+
+
+
 float CPlayer::getDisplayHealth() {
 	return m_fdisplayHealth;
 }
 
 float CPlayer::getDisplayLastHealth() {
 	return m_fDisplayLastHealth;
+}
+
+float CPlayer::getDisplayStamina() {
+	return m_fdisplayStamina;
+}
+
+float CPlayer::getDisplayLastStamina() {
+	return m_fDisplayLastStamina;
+}
+
+float CPlayer::getDisplayBlood() {
+	return m_fdisplayBlood;
+}
+
+float CPlayer::getDisplayLastBlood() {
+	return m_fDisplayLastBlood;
 }
 
 void CPlayer::HandleAttack() {
@@ -250,12 +294,13 @@ void CPlayer::buildInput() {
 
 	//dash trigger
 	//and set input
-	if (m_pKeyboard->TriggerDown(' ') && coolDownReady && m_ePlayerState != ePlayerState::Dash) {
+	if (m_pKeyboard->TriggerDown(' ') && coolDownReady && m_ePlayerState != ePlayerState::Dash && m_nStamina >= m_nDashCost) {
 		timeAtDashStart = m_pTimer->GetTime();
 		m_tTimeSinceDash.SetTimeSince(0.0f);
 		m_tTimeSinceDashEffect.SetTimeSince(0.0f);
 
-		staminaDepletion();
+		staminaDepletion(m_nDashCost);
+		
 
 		if (horizontal != 0 || vertical != 0) {
 			inputAtStateTransition = Vector2(horizontal, vertical);

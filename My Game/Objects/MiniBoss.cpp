@@ -21,8 +21,8 @@ CMiniBoss::CMiniBoss(const Vector2& p) : CEnemy(p) {
 	m_fXScale = 1.5f;
 	m_fYScale = 1.5f;
 
-	//R, G, B tint
-	m_f4Tint = Vector4(0.5, 0.0, 1.0, 1.0);
+	//R, G, B, A tint
+	m_f4Tint = Vector4(0.5, 0.0, 1.0, 0.0);
 
 	m_fImageSpeed = 60 * 0.50f;
 }

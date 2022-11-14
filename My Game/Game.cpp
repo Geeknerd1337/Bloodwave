@@ -160,13 +160,13 @@ void CGame::CreateObjects() {
 	m_vWorldSize.x = 2048;
 	m_vWorldSize.y = 2048;
 
-	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(64.0f, 64.0f));
+	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(1024.0f, 1024.0f));
 	//reassigning player like this breaks the camera following
 	//m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Carmilla, Vector2(64.0f, 64.0f));
 	(CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(300.0f, 300.0f));
 
 	//Create 50 enemies randomly placed in the world with a random depth between -100 and100
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 10; i++) {
 		Vector2 vPos = Vector2(rand() % (int)m_vWorldSize.x, rand() % (int)m_vWorldSize.y);
 		CEnemy* c = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, vPos);
 	}

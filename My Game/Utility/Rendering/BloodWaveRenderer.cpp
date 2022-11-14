@@ -25,7 +25,8 @@ void BloodWaveRenderer::DrawAlignedText(const wchar_t* text, const Vector2& pos,
 	const float width = (float)(bounds.right - bounds.left);
 	const float height = (float)(bounds.bottom - bounds.top);
 
-	printf("%f\n", width);
+	
+
 	
 	///Switch case for the horizontal aligment which draws it
 	switch (hor)

@@ -77,6 +77,7 @@
 	<sprite name="monster_gib" file="monster_gib.png"/>
 	<sprite name="single_pixel" file="single_pixel.png"/>
 	<sprite name="small_circle" file="small_circle.png"/>
+	<sprite name="tile" file="tile.png"/>
 	
   </sprites>
 

@@ -20,7 +20,7 @@ enum class eSprite : UINT {
 	Small_Square, Health_Pip, Fade_Object, Single_Pixel, Small_Circle,
 	Blood_Particle, Blood_Pool,Monster_Gib,
 	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheetLeft, PlayerWalkSpriteSheetRight, 
-	EnemyWalkSpriteSheetLeft, EnemyWalkSpriteSheetRight,
+	EnemyWalkSpriteSheetLeft, EnemyWalkSpriteSheetRight, Tile, 
 	Size  //MUST BE LAST
 }; //eSprite
 

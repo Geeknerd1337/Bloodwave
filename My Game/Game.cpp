@@ -138,6 +138,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Blood_Particle, "blood_particle");
 	m_pRenderer->Load(eSprite::Blood_Pool, "blood_pool");
 	m_pRenderer->Load(eSprite::Monster_Gib, "monster_gib");
+	m_pRenderer->Load(eSprite::Tile, "tile");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages

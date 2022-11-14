@@ -229,8 +229,12 @@ void CGame::RenderFrame() {
 	m_pRenderer->BeginFrame(); //required before rendering
 
 	m_pRenderer->Draw(eSprite::Background, m_vWorldSize / 2.0f); //draw background
+	
+	m_pObjectManager->drawBegin(); //draw objects
 	m_pObjectManager->draw(); //draw objects 
 	m_pParticleEngine->Draw(); //draw particles
+	m_pObjectManager->drawEnd(); //draw objects 
+	
 	//Useful method for drawing frame text
 	if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
 	DrawConsoleText(); //draw console output

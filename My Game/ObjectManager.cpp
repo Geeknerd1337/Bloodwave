@@ -261,6 +261,28 @@ void CObjectManager::draw() {
 	}
 }
 
+void CObjectManager::drawEnd() {
+	for (auto const& p : m_stdObjectList) {
+
+		//Print the depth using printf
+
+		if (m_pCamera->PositionInCameraBound(p->GetPos(), 100.0f)) {
+			p->drawEnd();
+		}
+	}
+}
+
+void CObjectManager::drawBegin() {
+	for (auto const& p : m_stdObjectList) {
+
+		//Print the depth using printf
+
+		if (m_pCamera->PositionInCameraBound(p->GetPos(), 100.0f)) {
+			p->drawBegin();
+		}
+	}
+}
+
 void CObjectManager::SortObjects() {
 	m_stdObjectList.sort([](const CObject* a, const CObject* b) { return a->m_iDepth > b->m_iDepth; });
 }

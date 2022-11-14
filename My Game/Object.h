@@ -91,6 +91,10 @@ class CObject:
     /// </summary>
     void draw();
 
+    virtual void drawEnd();
+
+    virtual void drawBegin();
+
     int m_iDepth = 0;
 
     void SetSprite(eSprite);

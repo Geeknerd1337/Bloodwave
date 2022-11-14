@@ -48,6 +48,9 @@ public:
 	//Extend the draw method
 	virtual void draw() override;
 
+	void drawEnd();
+	void drawBegin();
+
 	/// <summary>
 	/// Experimental feature to draw objects in a depth order
 	/// </summary>

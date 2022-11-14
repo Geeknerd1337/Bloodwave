@@ -32,6 +32,14 @@ CObject::CObject(eSprite t, const Vector2& p) :
 	m_pFrameEvent = new LEventTimer((1.0/60.0) * m_fImageSpeed); 
 } 
 
+void CObject::drawEnd() {
+
+}
+
+void CObject::drawBegin() {
+
+}
+
 /// Destructor.
 
 CObject::~CObject() {

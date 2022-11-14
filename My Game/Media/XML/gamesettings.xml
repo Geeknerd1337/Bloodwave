@@ -79,7 +79,15 @@
 	<sprite name="monster_gib" file="monster_gib.png"/>
 	<sprite name="single_pixel" file="single_pixel.png"/>
 	<sprite name="small_circle" file="small_circle.png"/>
+	
+	
 	<sprite name="tile" file="tile.png"/>
+	<sprite name="tileSheet" sheet="tile" frames="4">
+      <frame index="0" left="0"   top="0" right="32"  bottom="32"/>>
+      <frame index="1" left="32"  top="0" right="64" bottom="32"/>>
+      <frame index="2" left="0" top="32" right="32" bottom="0"/>>
+	  <frame index="3" left="32"  top="32" right="64" bottom="0"/>>
+    </sprite>
 	
   </sprites>
 

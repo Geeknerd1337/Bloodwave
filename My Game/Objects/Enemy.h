@@ -35,6 +35,8 @@ protected:
     
     //holds random number to determine idle velocity
     float randomNumber;
+    
+    //enemy chase and attack radii
     float enemyChaseRadius = 30.0;
     float enemyAttackRadius = 30.0;
 
@@ -48,21 +50,35 @@ protected:
     //vector between enemy and player
     Vector2 vEnemyToPlayer = Vector2(300, 300);
 
-    //function for idle state
-    void handleIdle();
+    /// <summary>
+    /// Idle state for enemy
+    /// </summary>
+    void HandleIdle();
 
-    //function for chase state
-    void handleChase();
+    /// <summary>
+    /// Chase state for enemy
+    /// </summary>
+    void HandleChase();
 
-    //walking animation for enemy
-    void handleWalk();
+    /// <summary>
+    /// Handles the logic for enemy walk animations
+    /// </summary>
+    void HandleWalk();
 
-    //function for attack state
-    void handleAttack();
+    /// <summary>
+    /// Attack state for enemy
+    /// </summary>
+    void HandleAttack();
 
-    void handleTransitions();
+    /// <summary>
+    /// Executes the transitions into different enemy states
+    /// </summary>
+    void HandleTransitions();
 
-    void handleStun();
+    /// <summary>
+    /// Stun state for enemy
+    /// </summary>
+    void HandleStun();
 
 
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.

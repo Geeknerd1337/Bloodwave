@@ -54,7 +54,7 @@ void CEnemy::TakeDamage(int damage)
 	}
 }
 
-void CEnemy::handleStun() {
+void CEnemy::HandleStun() {
 	if (m_tTimeSinceStunned.GetTimeSince() < m_fStunTime) {
 		m_vVelocity = m_vstunDirection * m_fStunSpeed;
 
@@ -93,7 +93,7 @@ void CEnemy::DeathFX() {
 	
 } //DeathFX
 
-void CEnemy::handleIdle() {
+void CEnemy::HandleIdle() {
 	
 	//every second, get a new random velocity
 	//weighted towards standing still
@@ -127,7 +127,7 @@ void CEnemy::handleIdle() {
 	}
 }
 
-void CEnemy::handleChase() {
+void CEnemy::HandleChase() {
 	//vector from player to enemy
 	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
 
@@ -136,7 +136,7 @@ void CEnemy::handleChase() {
 	
 }
 
-void CEnemy::handleWalk() {
+void CEnemy::HandleWalk() {
 	
 	if (m_vVelocity.x != 0.0f) {
 		if (m_vVelocity.x > 0.0f) {
@@ -154,12 +154,11 @@ void CEnemy::handleWalk() {
 	
 }
 
-void CEnemy::handleTransitions() {
+void CEnemy::HandleTransitions() {
 	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
 
 	//enemy chases player until a certain radius, else return to idle
 	if (enemyChaseRadius < vEnemyToPlayer.Length()) {
-		//printf("chasing\n");
 		SetState(eEnemyState::Chase);
 	}
 	else {
@@ -169,14 +168,13 @@ void CEnemy::handleTransitions() {
 	//if player is within attack radius, check if an object is the player, then set state to attack
 	if (enemyAttackRadius > vEnemyToPlayer.Length()) {
 		if (dynamic_cast<CPlayer*>(m_pPlayer) != nullptr) {
-			//printf("attacking\n");
 			SetState(eEnemyState::Attack);
 		}
 	}
 
 }
 
-void CEnemy::handleAttack() {
+void CEnemy::HandleAttack() {
 	//get player health
 	int playerHealth = std::floor(m_pPlayer->getPlayerHealth());
 	
@@ -202,31 +200,29 @@ void CEnemy::SetState(eEnemyState state) {
 void CEnemy::simulate() {
 	//Call base simulate
 	CObject::simulate();
-
-	
 	
 	//Finite state machine for dictating which manages the enemies state
 	switch (m_eEnemyState) {
 	case eEnemyState::Idle:
 		//Enemy Idle State
-		handleIdle();
-		handleWalk();
-		handleTransitions();
+		HandleIdle();
+		HandleWalk();
+		HandleTransitions();
 		break;
 	case eEnemyState::Attack:
 		//Enemy Attack State
-		handleAttack();
-		handleTransitions();
+		HandleAttack();
+		HandleTransitions();
 		break;
 	case eEnemyState::Chase:
 		//Enemy Chase State
-		handleChase();
-		handleWalk();
-		handleTransitions();
+		HandleChase();
+		HandleWalk();
+		HandleTransitions();
 		break;
 	case eEnemyState::Stun:
 		//Enemy Stun State
-		handleStun();
+		HandleStun();
 		break;
 	case eEnemyState::Dead:
 		//Enemy Dead State

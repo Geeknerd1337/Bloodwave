@@ -94,6 +94,7 @@ protected:
 	TimeSince m_tTimeSinceStaminaRegen;
 	TimeSince m_tTimeSinceStaminaUsed;
 	TimeSince m_tTimeSinceBloodUsed;
+	TimeSince m_tTimeSinceLastAttack;
 	TimeSince m_tiFrame;
 
 	/// <summary>

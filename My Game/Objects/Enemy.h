@@ -81,6 +81,7 @@ protected:
     /// </summary>
     void HandleStun();
 
+	Vector2 m_vPushVelocity = Vector2(0, 0);
 
     virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
 

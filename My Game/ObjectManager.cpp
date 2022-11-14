@@ -167,10 +167,10 @@ void CObjectManager::NarrowPhase(CObject* p0, CObject* p1) {
 	
 	//Removing collision from enemies for now since we're either using box2d or bounding boxes
 	if (d > 0.0f) { //bounding circles overlap
-		//vSep.Normalize(); //vSep is now the collision normal
+		vSep.Normalize(); //vSep is now the collision normal
 		//
-		//p0->CollisionResponse(vSep, d, p1); //this changes separation of objects
-		//p1->CollisionResponse(-vSep, d, p0); //same separation and opposite normal
+		p0->CollisionResponse(vSep, d, p1); //this changes separation of objects
+		p1->CollisionResponse(-vSep, d, p0); //same separation and opposite normal
 	} //if
 } //NarrowPhase
 

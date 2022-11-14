@@ -109,14 +109,7 @@ void CObject::draw() {
 void CObject::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {
 	if (m_bDead)return; //dead, bail out
 
-	const Vector2 vOverlap = d * norm; //overlap in direction of this
-	const bool bStatic = !pObj || pObj->m_bStatic; //whether other object is static
-
-	if (!m_bStatic && !bStatic) //both objects are dynamic
-		m_vPos += vOverlap / 2; //back off this object by half
-
-	else if (!m_bStatic && bStatic) //only this object is dynamic
-		m_vPos += vOverlap; //back off this object
+	
 } //CollisionResponse
 
 /// Create a particle effect to mark the death of the object.

@@ -16,7 +16,7 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 	//Set the angle to 0 so enemy is standing upright
 	m_fRoll = 0.0;
 
-	
+	m_fRadius = 200.0f;
 	//starts in idle state, so set it to slow idle speed
 	m_fMoveSpeed = 10.0f;
 
@@ -29,7 +29,11 @@ CEnemy::~CEnemy()
 {
 }
 
-void CEnemy::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {}
+void CEnemy::CollisionResponse(const Vector2& norm, float d, CObject* pObj) {
+	if (m_vPushVelocity.Length() < 100.0f) {
+		m_vPushVelocity += norm * 10.0f * m_pTimer->GetFrameTime();
+	}
+}
 
 void CEnemy::buildInput() {}
 
@@ -139,7 +143,7 @@ void CEnemy::HandleChase() {
 	vEnemyToPlayer = m_pPlayer->GetPos() - m_vPos;
 
 	vEnemyToPlayer.Normalize();
-	m_vVelocity = vEnemyToPlayer * m_fChaseSpeed;
+	m_vVelocity = vEnemyToPlayer * m_fChaseSpeed + m_vPushVelocity;
 	
 }
 
@@ -207,6 +211,8 @@ void CEnemy::SetState(eEnemyState state) {
 void CEnemy::simulate() {
 	//Call base simulate
 	CObject::simulate();
+
+	m_vPushVelocity = m_vPushVelocity * 0.9f;
 	
 	//Finite state machine for dictating which manages the enemies state
 	switch (m_eEnemyState) {

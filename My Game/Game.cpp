@@ -13,6 +13,7 @@
 #include "Utility/TimeSince.h"
 #include "Utility/CMouse.h"
 #include "Objects/Enemy.h"
+#include "Objects/MiniBoss.h"
 #include "Objects/UI/Canvas.h"
 #include "Objects/UI/UIElement.h"
 #include "Utility/WaveManager.h"
@@ -126,6 +127,9 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::EnemyWalkSpriteSheetRight, "enemy_walk_sheet_right");
 	m_pRenderer->Load(eSprite::Enemy_Walk_Right, "enemy_walk_right");
 
+	//Mini Boss
+	m_pRenderer->Load(eSprite::Mini_Boss_Idle, "miniboss_idle");
+
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");
 	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
@@ -166,6 +170,8 @@ void CGame::CreateObjects() {
 	m_vWorldSize.y = 2048;
 
 	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(1024.0f, 1024.0f));
+
+	CMiniBoss* miniBoss = (CMiniBoss*)m_pObjectManager->create(eSprite::Mini_Boss_Idle, Vector2(1024.0f, 1024.0f));
 
 
 	//Create 50 enemies randomly placed in the world with a random depth between -100 and100

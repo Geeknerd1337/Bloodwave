@@ -70,6 +70,8 @@
 	  <frame index="3" left="64"  top="0" right="128" bottom="97"/>>
     </sprite>
 	
+	<sprite name="miniboss_idle" file="miniboss_idle.png"/>
+	
 	<sprite name="small_square" file="SmallSquare.png"/>
 	<sprite name="health_pip" file="health_pip.png"/>
 	<sprite name="blood_particle" file="blood_particle.png"/>

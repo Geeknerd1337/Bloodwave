@@ -24,6 +24,7 @@
     <ClCompile Include="Objects\Debris.cpp" />
     <ClCompile Include="Utility\WaveManager.cpp" />
     <ClCompile Include="Objects\UI\WaveUI.cpp" />
+    <ClCompile Include="Objects\MiniBoss.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -49,6 +50,7 @@
     <ClInclude Include="Objects\Debris.h" />
     <ClInclude Include="Utility\WaveManager.h" />
     <ClInclude Include="Objects\UI\WaveUI.h" />
+    <ClInclude Include="Objects\MiniBoss.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

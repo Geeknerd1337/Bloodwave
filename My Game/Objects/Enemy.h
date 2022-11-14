@@ -9,7 +9,7 @@
 #include "../Utility/TimeSince.h"
 #include "../ObjectManager.h"
 
-/// \brief The player object. 
+/// \brief The enemy object. 
 ///
 /// The abstract representation of the enemy object.
 
@@ -59,7 +59,7 @@ protected:
     /// <summary>
     /// Chase state for enemy
     /// </summary>
-    void HandleChase();
+    virtual void HandleChase(); 
 
     /// <summary>
     /// Handles the logic for enemy walk animations
@@ -69,7 +69,7 @@ protected:
     /// <summary>
     /// Attack state for enemy
     /// </summary>
-    void HandleAttack();
+    virtual void HandleAttack();
 
     /// <summary>
     /// Executes the transitions into different enemy states

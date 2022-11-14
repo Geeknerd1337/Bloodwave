@@ -93,6 +93,23 @@ void CPlayer::HandleDash() {
 
 }
 
+bool CPlayer::dashAvailable() {
+
+	if (!coolDownReady) {
+		return false;
+	}
+
+	if (m_ePlayerState == ePlayerState::Dash) {
+		return false;
+	}
+
+	if (m_nStamina < m_nDashCost) {
+		return false;
+	}
+
+	return true;
+}
+
 void CPlayer::staminaDepletion(int i) {
 	
 	if (m_nStamina > 0) {
@@ -294,7 +311,7 @@ void CPlayer::buildInput() {
 
 	//dash trigger
 	//and set input
-	if (m_pKeyboard->TriggerDown(' ') && coolDownReady && m_ePlayerState != ePlayerState::Dash && m_nStamina >= m_nDashCost) {
+	if (m_pKeyboard->TriggerDown(' ') && dashAvailable()) {
 		timeAtDashStart = m_pTimer->GetTime();
 		m_tTimeSinceDash.SetTimeSince(0.0f);
 		m_tTimeSinceDashEffect.SetTimeSince(0.0f);

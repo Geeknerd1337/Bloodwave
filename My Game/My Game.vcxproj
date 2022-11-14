@@ -176,6 +176,7 @@
     <ClCompile Include="Objects\UI\PlayerStats.cpp" />
     <ClCompile Include="Objects\UI\UIElement.cpp" />
     <ClCompile Include="Objects\UI\UIHelpers.cpp" />
+    <ClCompile Include="Objects\UI\WaveUI.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Utility\CMouse.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\FadeObject.h" />
+    <ClInclude Include="Objects\UI\WaveUI.h" />
     <ClInclude Include="Utility\Rendering\BloodWaveRenderer.h" />
     <ClInclude Include="Objects\UI\Canvas.h" />
     <ClInclude Include="Objects\UI\PlayerStats.h" />

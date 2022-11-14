@@ -23,6 +23,7 @@
     <ClCompile Include="Utility\Rendering\BloodWaveRenderer.cpp" />
     <ClCompile Include="Objects\Debris.cpp" />
     <ClCompile Include="Utility\WaveManager.cpp" />
+    <ClCompile Include="Objects\UI\WaveUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -47,6 +48,7 @@
     <ClInclude Include="Utility\Rendering\BloodWaveRenderer.h" />
     <ClInclude Include="Objects\Debris.h" />
     <ClInclude Include="Utility\WaveManager.h" />
+    <ClInclude Include="Objects\UI\WaveUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

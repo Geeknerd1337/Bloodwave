@@ -17,6 +17,7 @@ class CObjectManager :
 	public LBaseObjectManager<CObject>,
 	public CCommon
 {
+	friend class WaveManager;
 private:
 	void BroadPhase(); ///< Broad phase collision detection and response.
 	void NarrowPhase(CObject*, CObject*); ///< Narrow phase collision detection and response.

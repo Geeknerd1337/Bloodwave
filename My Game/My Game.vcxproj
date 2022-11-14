@@ -182,6 +182,7 @@
     <ClCompile Include="Utility\GameCamera.cpp" />
     <ClCompile Include="Utility\Rendering\BloodWaveRenderer.cpp" />
     <ClCompile Include="Utility\TimeSince.cpp" />
+    <ClCompile Include="Utility\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Utility\CMouse.h" />
     <ClInclude Include="Utility\GameCamera.h" />
     <ClInclude Include="Utility\TimeSince.h" />
+    <ClInclude Include="Utility\WaveManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

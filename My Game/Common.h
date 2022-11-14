@@ -19,6 +19,7 @@ class GameCamera;
 class CMouse;
 class Canvas;
 class BloodWaveRenderer;
+class WaveManager;
 
 /// \brief The common variables class.
 ///
@@ -38,6 +39,7 @@ class CCommon{
     static CPlayer* m_pPlayer; ///< Pointer to player character.
     static GameCamera* m_pCamera;
 	static Canvas* m_pCanvas;
+    static WaveManager* m_pWaveManager;
 }; //CCommon
 
 #endif //__L4RC_GAME_COMMON_H__

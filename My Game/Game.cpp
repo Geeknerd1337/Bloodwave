@@ -15,6 +15,7 @@
 #include "Objects/Enemy.h"
 #include "Objects/UI/Canvas.h"
 #include "Objects/UI/UIElement.h"
+#include "Utility/WaveManager.h"
 
 //Singleton
 CGame* CGame::instance = nullptr;
@@ -67,6 +68,10 @@ void CGame::Initialize() {
 
 	//m_pAudio->play(eSound::Synth);
 	m_pAudio->loop(eSound::Synth);
+
+	//Set the wave manager
+	m_pWaveManager = new WaveManager();
+	m_pWaveManager->Initialize();
 
 	BeginGame();
 
@@ -156,19 +161,17 @@ void CGame::Release() {
 /// Ask the object manager to create a player object, some ants, and a turret.
 
 void CGame::CreateObjects() {
-	//m_pRenderer->GetSize(eSprite::Background, m_vWorldSize.x, m_vWorldSize.y); //init m_vWorldSize
+
 	m_vWorldSize.x = 2048;
 	m_vWorldSize.y = 2048;
 
 	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(1024.0f, 1024.0f));
-	//reassigning player like this breaks the camera following
-	//m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Carmilla, Vector2(64.0f, 64.0f));
-	(CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, Vector2(300.0f, 300.0f));
+
 
 	//Create 50 enemies randomly placed in the world with a random depth between -100 and100
 	for (int i = 0; i < 10; i++) {
-		Vector2 vPos = Vector2(rand() % (int)m_vWorldSize.x, rand() % (int)m_vWorldSize.y);
-		CEnemy* c = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, vPos);
+		//Vector2 vPos = Vector2(2100, rand() % (int)m_vWorldSize.y);
+		//CEnemy* c = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, vPos);
 	}
 
 } //CreateObjects
@@ -332,6 +335,7 @@ void CGame::ProcessFrame() {
 		m_pObjectManager->Simulate();
 		m_pObjectManager->move(); //move all objects
 		m_pCamera->HandleCamera();
+		m_pWaveManager->Simulate();
 		m_pParticleEngine->step(); //advance particle animation
 		});
 

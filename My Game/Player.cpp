@@ -93,7 +93,7 @@ void CPlayer::HandleDash() {
 
 }
 
-bool CPlayer::dashAvailable() {
+bool CPlayer::DashAvailable() {
 
 	if (!coolDownReady) {
 		return false;
@@ -110,7 +110,7 @@ bool CPlayer::dashAvailable() {
 	return true;
 }
 
-void CPlayer::staminaDepletion(int i) {
+void CPlayer::StaminaDepletion(int i) {
 	
 	if (m_nStamina > 0) {
 		m_nStamina -= i;
@@ -121,7 +121,7 @@ void CPlayer::staminaDepletion(int i) {
 	}
 }
 
-void CPlayer::staminaRegeneration() {
+void CPlayer::StaminaRegeneration() {
 	
 	if (m_tTimeSinceStaminaRegen.GetTimeSince() > 1.0f) {
 	
@@ -130,12 +130,9 @@ void CPlayer::staminaRegeneration() {
 		if (m_nStamina > 1000) {
 			m_nStamina = 1000;
 		}
-
-		//printf("stamina regen: %d\t", stamina);
 		
 		m_tTimeSinceStaminaRegen.SetTimeSince(0.0f);
 	}
-	
 }
 
 void CPlayer::HandleIdleTransitions() {
@@ -149,8 +146,7 @@ void CPlayer::simulate() {
 	UpdateDisplayHealth();
 	UpdateDisplayStamina();
 	
-
-	staminaRegeneration();
+	StaminaRegeneration();
 
 	//Switch statement for the player state
 	/*
@@ -311,12 +307,12 @@ void CPlayer::buildInput() {
 
 	//dash trigger
 	//and set input
-	if (m_pKeyboard->TriggerDown(' ') && dashAvailable()) {
+	if (m_pKeyboard->TriggerDown(' ') && DashAvailable()) {
 		timeAtDashStart = m_pTimer->GetTime();
 		m_tTimeSinceDash.SetTimeSince(0.0f);
 		m_tTimeSinceDashEffect.SetTimeSince(0.0f);
 
-		staminaDepletion(m_nDashCost);
+		StaminaDepletion(m_nDashCost);
 		
 
 		if (horizontal != 0 || vertical != 0) {

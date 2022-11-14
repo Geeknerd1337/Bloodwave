@@ -75,7 +75,7 @@ protected:
 	bool CanAttack();
 
 	/// <summary>
-	/// Allows us to handle the attack state.
+	/// Allows us to handle the attack state
 	/// </summary>
 	void HandleAttack();
 
@@ -84,9 +84,23 @@ protected:
 	/// </summary>
 	void HandleDash();
 
-	void staminaDepletion(int i);
-	void staminaRegeneration();
-	bool dashAvailable();
+	/// <summary>
+	/// Depeltes the player's stamina by the dash cost
+	/// </summary>
+	/// <param name="i"></param>
+	void StaminaDepletion(int i);
+
+	/// <summary>
+	/// Regenerates the player's stamina by 100 points every second
+	/// </summary>
+	void StaminaRegeneration();
+
+	/// <summary>
+	/// Checks if the player is able to dash by the status of coolDownReady, 
+	/// whether the player is in the Dash state, and if the player has enough stamina
+	/// </summary>
+	/// <returns></returns>
+	bool DashAvailable();
 
 	TimeSince m_tTimeSinceDash;
 	TimeSince m_tTimeSinceDashEffect;

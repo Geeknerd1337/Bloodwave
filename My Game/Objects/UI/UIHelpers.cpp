@@ -52,3 +52,26 @@ void UIHelpers::DrawAlignedText(const char* text, Vector2 pos, HorizontalAlignme
 
 	m_pRenderer->DrawAlignedText(text, Vector2(x, y), hAlign, vAlign, color);
 }
+
+
+void UIHelpers::DrawAlignedTextOutline(const char* text, Vector2 pos, HorizontalAlignment hAlign, VerticalAlignment vAlign, XMVECTORF32 color, XMVECTORF32 outLineColor)
+{
+	float x = pos.x;
+	float y = m_pCanvas->m_nHeight - pos.y;
+
+	
+	
+	//Draw outline using 8 calls to aligned text (bad)
+	//In an ideal world I wouldn't be a lazy jerk and would go look to see what it takes to get SDF working for fonts
+	//in directX but considering I'm being paid a grand total of nothing to do this, I'm gonna opt out
+	m_pRenderer->DrawAlignedText(text, Vector2(x + 3.0f, y), hAlign, vAlign, outLineColor);
+	m_pRenderer->DrawAlignedText(text, Vector2(x - 3.0f, y), hAlign, vAlign, outLineColor);
+	m_pRenderer->DrawAlignedText(text, Vector2(x, y + 3.0f), hAlign, vAlign, outLineColor);
+	m_pRenderer->DrawAlignedText(text, Vector2(x, y - 3.0f), hAlign, vAlign, outLineColor);
+	m_pRenderer->DrawAlignedText(text, Vector2(x + 3.0f, y + 3.0f), hAlign, vAlign, outLineColor);
+	m_pRenderer->DrawAlignedText(text, Vector2(x - 3.0f, y - 3.0f), hAlign, vAlign, outLineColor);
+	m_pRenderer->DrawAlignedText(text, Vector2(x + 3.0f, y - 3.0f), hAlign, vAlign, outLineColor);
+	m_pRenderer->DrawAlignedText(text, Vector2(x - 3.0f, y + 3.0f), hAlign, vAlign, outLineColor);
+	
+	m_pRenderer->DrawAlignedText(text, Vector2(x, y), hAlign, vAlign, color);
+}

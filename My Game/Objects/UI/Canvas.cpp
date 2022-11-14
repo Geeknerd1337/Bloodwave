@@ -1,6 +1,6 @@
 #include "Canvas.h"
 #include "PlayerStats.h"
-
+#include "WaveUI.h"
 Canvas::Canvas(Vector2 size)
 {
 	m_nWidth = size.x;
@@ -15,6 +15,7 @@ void Canvas::AddElement(UIElement* element)
 void Canvas::Initialize()
 {
 	AddElement(new PlayerStats());
+	AddElement(new WaveUI());
 }
 
 Canvas::~Canvas()

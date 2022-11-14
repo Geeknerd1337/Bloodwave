@@ -23,7 +23,7 @@ protected:
 	bool coolDownReady = true;
 
 	int m_nStamina = 1000;
-	int m_nBlood = 1000;
+	float m_nBlood = 0.0f;
 
 	/// <summary>
 	/// Our run speed
@@ -39,8 +39,8 @@ protected:
 	float m_fDisplayLastStamina = 1000.0f;
 
 	//Blood
-	float m_fdisplayBlood = 1000.0f;
-	float m_fDisplayLastBlood = 1000.0f;
+	float m_fdisplayBlood = 0.0f;
+	float m_fDisplayLastBlood = 0.0f;
 
 
 	/// <summary>

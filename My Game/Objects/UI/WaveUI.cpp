@@ -40,7 +40,7 @@ void WaveUI::Draw() {
 	}
 
 	if (m_pWaveManager->m_bWaveStarted) {
-		timerY = Lerp(timerY, windowHeight + 64.0f, 10.0f * t);
+		timerY = Lerp(timerY, windowHeight + 86.0f, 10.0f * t);
 
 		enemiesX = Lerp(enemiesX, x, 8.0f * t);
 	}

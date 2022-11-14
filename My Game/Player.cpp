@@ -145,8 +145,14 @@ void CPlayer::simulate() {
 
 	UpdateDisplayHealth();
 	UpdateDisplayStamina();
+	UpdateDisplayBlood();
 	
 	StaminaRegeneration();
+
+
+	if (m_nBlood > 0 && m_tTimeSinceLastAttack.GetTimeSince() > 1.0f) {
+		m_nBlood -= 100.0f * m_pTimer->GetFrameTime();
+	}
 
 	//Switch statement for the player state
 	/*
@@ -249,7 +255,20 @@ void CPlayer::HandleAttack() {
 
 	pObjects = m_pObjectManager->IntersectLine(start, end);
 
-	m_pCamera->Shake(0.25f, Vector2(5.0f, 5.0f));
+	
+
+	//If pObjects has more than one enemy
+	if (pObjects.size() > 0) {
+		//then we hit something
+		m_pCamera->Shake(0.25f, Vector2(5.0f, 5.0f));
+		m_nBlood += 50.0f;
+		
+		m_tTimeSinceLastAttack.SetTimeSince(0.0f);
+
+		if (m_nBlood > 1000.0f) {
+			m_nBlood = 1000.0f;
+		}
+	}
 
 	//Iterate over pObjects and draw a line to each one
 	for (auto pObject : pObjects) {

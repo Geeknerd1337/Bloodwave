@@ -42,6 +42,14 @@ private:
 	void FollowCamera(); ///< Make camera follow player character.
 	void MouseHandler(); ///< The mouse handler.
 
+	//TODO: Move to its own class
+	void DrawTiles();
+	void InitializeTileMap();
+
+	//2d Int Array of the tilemap
+	int m_tileMap[64][64];
+	
+
 	static CGame* instance; // use nullptr since C++11
 
 

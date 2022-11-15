@@ -2,7 +2,7 @@
 /// \brief Code for the game class CGame.
 
 #include "Game.h"
-
+#include <random>
 #include "GameDefines.h"
 #include "SpriteRenderer.h"
 #include "ComponentIncludes.h"
@@ -73,6 +73,8 @@ void CGame::Initialize() {
 	//Set the wave manager
 	m_pWaveManager = new WaveManager();
 	m_pWaveManager->Initialize();
+
+	InitializeTileMap();
 
 	BeginGame();
 
@@ -243,8 +245,9 @@ void CGame::DrawConsoleText() {
 void CGame::RenderFrame() {
 	m_pRenderer->BeginFrame(); //required before rendering
 
-	m_pRenderer->Draw(eSprite::Background, m_vWorldSize / 2.0f); //draw background
-	
+	DrawTiles();
+
+
 	m_pObjectManager->drawBegin(); //draw objects
 	m_pObjectManager->draw(); //draw objects 
 	m_pParticleEngine->Draw(); //draw particles
@@ -349,6 +352,46 @@ void CGame::ProcessFrame() {
 
 	RenderFrame(); //render a frame of animation
 } //ProcessFrame
+
+void CGame::DrawTiles() {
+	//Iterate over the entire map in 32x32 tiles
+	for (int i = 0; i < 2048; i+= 32) {
+		for (int j = 0; j < 2048; j+= 32) {
+			LSpriteDesc2D spr;
+			spr.m_vPos = Vector2(i, j);
+			spr.m_nSpriteIndex = (UINT)eSprite::TileSheet;
+
+			//Get the tile index from the map
+			int x = i / 32;
+			int y = j / 32;
+			spr.m_nCurrentFrame = m_tileMap[x][y];
+
+
+			m_pRenderer->Draw(&spr);
+		}
+	}
+}
+
+void CGame::InitializeTileMap() {
+	//Initialize the 2d Array
+	for (int i = 0; i < 64; i += 1) {
+		for (int j = 0; j < 64; j += 1) {
+			std::random_device rd;
+			std::mt19937 gen(rd());
+			std::uniform_real_distribution<> dis(0.0f, 1.0f);
+
+			m_tileMap[i][j] = 3;
+
+			if (dis(gen) < 0.05) {
+				m_tileMap[i][j] = 0;
+			}
+
+			if (dis(gen) < 0.025) {
+				m_tileMap[i][j] = 2;
+			}
+		}
+	}
+}
 
 
 void CGame::AddConsoleOutput(const std::string s) {

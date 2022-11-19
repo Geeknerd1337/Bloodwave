@@ -276,6 +276,7 @@ void CPlayer::HandleAttack() {
 
 			//make all enemies hit take damage
 			dynamic_cast<CEnemy*>(pObject)->TakeDamage(m_iAttackPoints);
+			
 		}
 	}
 

@@ -2,6 +2,7 @@
 /// \brief Code for the mini boss object class CMiniBoss
 
 #include "MiniBoss.h"
+#include <cmath>
 
 CMiniBoss::CMiniBoss(const Vector2& p) : CEnemy(p) {
 	m_bIsTarget = true;
@@ -30,7 +31,22 @@ CMiniBoss::CMiniBoss(const Vector2& p) : CEnemy(p) {
 CMiniBoss::~CMiniBoss() {}
 
 void CMiniBoss::HandleAttack() {
-	
+	//get player health
+	int playerHealth = std::floor(m_pPlayer->getPlayerHealth());
+
+	//attack every second
+	if ((m_pTimer->GetTime() - m_fAttackTime) > 1.0f) {
+		//if player health is > 0, attack
+		if (playerHealth > 0) {
+			m_pPlayer->TakeDamage(m_iAttackPoints);
+		}
+
+		//return to idle after player death
+		SetState(eEnemyState::Idle);
+
+		//set idle attack to new time
+		m_fAttackTime = m_pTimer->GetTime();
+	}
 }
 
 void CMiniBoss::simulate() {

@@ -20,7 +20,7 @@ protected:
     //virtual void HandleWalk();
 
     /// <summary>
-    /// Attack state for enemy
+    /// Attack state for mini boss, override for larger attack points
     /// </summary>
     virtual void HandleAttack();
 

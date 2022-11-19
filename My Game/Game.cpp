@@ -175,8 +175,6 @@ void CGame::CreateObjects() {
 
 	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(1024.0f, 1024.0f));
 
-	//CMiniBoss* miniBoss = (CMiniBoss*)m_pObjectManager->create(eSprite::Mini_Boss_Idle, Vector2(1024.0f, 1024.0f));
-
 
 	//Create 50 enemies randomly placed in the world with a random depth between -100 and100
 	for (int i = 0; i < 10; i++) {

@@ -28,3 +28,42 @@ CMiniBoss::CMiniBoss(const Vector2& p) : CEnemy(p) {
 }
 
 CMiniBoss::~CMiniBoss() {}
+
+void CMiniBoss::HandleAttack() {
+	
+}
+
+void CMiniBoss::simulate() {
+	//Call base simulate
+	CObject::simulate();
+
+	m_vPushVelocity = m_vPushVelocity * 0.9f;
+
+	//Finite state machine for dictating which manages the enemies state
+	switch (m_eEnemyState) {
+	case eEnemyState::Idle:
+		//Enemy Idle State
+		HandleIdle();
+		HandleWalk();
+		HandleTransitions();
+		break;
+	case eEnemyState::Attack:
+		//Enemy Attack State
+		HandleAttack();
+		HandleTransitions();
+		break;
+	case eEnemyState::Chase:
+		//Enemy Chase State
+		HandleChase();
+		HandleWalk();
+		HandleTransitions();
+		break;
+	case eEnemyState::Stun:
+		//Enemy Stun State
+		HandleStun();
+		break;
+	case eEnemyState::Dead:
+		//Enemy Dead State
+		break;
+	}
+}

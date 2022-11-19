@@ -39,7 +39,7 @@ int CPlayer::getPlayerHealth() {
 //override from actor
 void CPlayer::TakeDamage(int damage) {
 	if (m_tiFrame.GetTimeSince() > 1.0f) {
-		//printf("player health: %d\n", m_iHealth);
+		printf("player health: %d\n", m_iHealth);
 		m_iHealth -= damage;
 		m_tTimeSinceDamaged.SetTimeSince(0.0f);
 
@@ -273,11 +273,9 @@ void CPlayer::HandleAttack() {
 	//Iterate over pObjects and draw a line to each one
 	for (auto pObject : pObjects) {
 		if (dynamic_cast<CEnemy*>(pObject) != nullptr) {
-			printf("hit enemy\n");
 
 			//make all enemies hit take damage
-			//50 is test number, PLS switch once a sword damage amount is decided
-			dynamic_cast<CEnemy*>(pObject)->TakeDamage(50);
+			dynamic_cast<CEnemy*>(pObject)->TakeDamage(m_iAttackPoints);
 		}
 	}
 

@@ -64,7 +64,7 @@ protected:
     /// <summary>
     /// Handles the logic for enemy walk animations
     /// </summary>
-    void HandleWalk();
+    virtual void HandleWalk();
 
     /// <summary>
     /// Attack state for enemy
@@ -74,12 +74,12 @@ protected:
     /// <summary>
     /// Executes the transitions into different enemy states
     /// </summary>
-    void HandleTransitions();
+    virtual void HandleTransitions();
 
     /// <summary>
     /// Stun state for enemy
     /// </summary>
-    void HandleStun();
+    virtual void HandleStun();
 
 	Vector2 m_vPushVelocity = Vector2(0, 0);
 

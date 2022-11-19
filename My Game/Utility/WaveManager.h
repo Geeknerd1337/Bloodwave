@@ -7,7 +7,7 @@ class WaveManager : public CCommon, public LComponent {
 public:
 	void Initialize();
 	
-	float m_fTimeBetweenWaves = 10.0f;
+	float m_fTimeBetweenWaves = 5.0f;
 	TimeSince m_tTimeSinceLastWave;
 	int m_iCurrentWave = 0;
 	int m_iEnemiesPerWave = 10;
@@ -16,6 +16,7 @@ public:
 	int EnemyCount();
 	void EndWave();
 	void Simulate();
+	void SpawnMiniBoss();
 
 	bool m_bWaveStarted;
 };

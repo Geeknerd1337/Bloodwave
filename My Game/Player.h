@@ -30,6 +30,9 @@ protected:
 	/// </summary>
 	float m_fRunSpeed = 200.0f;
 
+	//Attack points
+	int m_iAttackPoints = 40;
+
 	//Health
 	float m_fdisplayHealth = 100.0f;
 	float m_fDisplayLastHealth = 100.0f;

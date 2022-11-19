@@ -173,6 +173,7 @@
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\FadeObject.cpp" />
     <ClCompile Include="Objects\MiniBoss.cpp" />
+    <ClCompile Include="Objects\SpitterEnemy.cpp" />
     <ClCompile Include="Objects\UI\Canvas.cpp" />
     <ClCompile Include="Objects\UI\PlayerStats.cpp" />
     <ClCompile Include="Objects\UI\UIElement.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\FadeObject.h" />
     <ClInclude Include="Objects\MiniBoss.h" />
+    <ClInclude Include="Objects\SpitterEnemy.h" />
     <ClInclude Include="Objects\UI\WaveUI.h" />
     <ClInclude Include="Utility\Rendering\BloodWaveRenderer.h" />
     <ClInclude Include="Objects\UI\Canvas.h" />

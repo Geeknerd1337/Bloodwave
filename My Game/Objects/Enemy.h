@@ -100,7 +100,7 @@ public:
 
     void SetState(eEnemyState);
 
-    void DeathFX();
+   virtual void DeathFX();
 
 }; //CEnemy
 

@@ -6,9 +6,13 @@ class CSpitterEnemy :
 {
 protected:
     virtual void HandleStun() override;
+    virtual void HandleAttack() override;
+
 
 public:
     CSpitterEnemy(const Vector2& p);
     ~CSpitterEnemy();
+
+    virtual void DeathFX() override;
 };
 

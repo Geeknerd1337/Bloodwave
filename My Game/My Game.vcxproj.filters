@@ -26,6 +26,7 @@
     <ClCompile Include="Objects\UI\WaveUI.cpp" />
     <ClCompile Include="Objects\MiniBoss.cpp" />
     <ClCompile Include="Objects\SpitterEnemy.cpp" />
+    <ClCompile Include="Objects\Acid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Objects\UI\WaveUI.h" />
     <ClInclude Include="Objects\MiniBoss.h" />
     <ClInclude Include="Objects\SpitterEnemy.h" />
+    <ClInclude Include="Objects\Acid.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

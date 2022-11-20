@@ -21,7 +21,7 @@ CSpitterEnemy::CSpitterEnemy(const Vector2& p) : CEnemy(p) {
 	m_f4Tint = Vector4(0.5, 0, 0.5, 1);
 
 	m_fImageSpeed = 60 * 0.50f;
-	m_iAttackPoints = 100;
+	m_iAttackPoints = 20;
 } //constructor
 
 CSpitterEnemy::~CSpitterEnemy()
@@ -59,7 +59,7 @@ void CSpitterEnemy::HandleAttack()
 	if ((m_pTimer->GetTime() - m_fAttackTime) > 1.0f) {
 		//if player health is > 0, attack
 		if (playerHealth > 0) {
-			m_pPlayer->TakeDamage(m_iAttackPoints);
+			m_pObjectManager->ThrowAcid(this, eSprite::Acid);
 		}
 
 		//return to idle after player death

@@ -9,6 +9,7 @@
 #include "Objects/MiniBoss.h"
 #include "Objects/SpitterEnemy.h"
 #include "Objects/FadeObject.h"
+#include "Objects/Acid.h"
 
 #include "Bullet.h"
 #include "Ant.h"
@@ -38,6 +39,7 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos) {
 	case eSprite::Bullet:  pObj = new CBullet(eSprite::Bullet, pos); break;
 	case eSprite::Bullet2: pObj = new CBullet(eSprite::Bullet2, pos); break;
 	case eSprite::Fade_Object: pObj = new FadeObject(pos, t); break;
+	case eSprite::Acid: pObj = new CAcid(t, pos); break;
 	default: pObj = new CObject(t, pos);
 	} //switch
 
@@ -49,7 +51,6 @@ CObject* CObjectManager::createDirect(CObject* obj){
 	m_stdObjectList.push_back(obj);
 	return obj;
 }
-
 
 
 
@@ -288,6 +289,22 @@ void CObjectManager::drawBegin() {
 			p->drawBegin();
 		}
 	}
+}
+
+void CObjectManager::ThrowAcid(CObject* pObj, eSprite spr)
+{
+	const Vector2 view = pObj->GetViewVector(); //firing object view vector
+	const float w0 = 0.5f * m_pRenderer->GetWidth(pObj->m_nSpriteIndex); //firing object width
+	const float w1 = m_pRenderer->GetWidth(spr); //bullet width
+	const Vector2 pos = pObj->m_vPos + (w0 + w1) * view;
+	CObject* pAcid = create(spr, pos); //create bullet
+
+	const Vector2 norm = VectorNormalCC(view); //normal to view direction
+	const float m = 2.0f * m_pRandom->randf() - 1.0f; //random deflection magnitude
+	const Vector2 deflection = 0.01f * m * norm; //random deflection
+
+	pAcid->m_vVelocity = Vector2(0,0);
+	pAcid->m_fRoll = pObj->m_fRoll;
 }
 
 void CObjectManager::SortObjects() {

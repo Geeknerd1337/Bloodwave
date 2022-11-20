@@ -58,7 +58,7 @@ public:
 	/// </summary>
 	bool m_bDepthSort = true;
 
-	
+	void ThrowAcid(CObject* pObj, eSprite spr);
 
 	void SortObjects();
 	

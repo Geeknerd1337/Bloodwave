@@ -104,6 +104,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Bullet2, "bullet2");
 	m_pRenderer->Load(eSprite::Smoke, "smoke");
 	m_pRenderer->Load(eSprite::Spark, "spark");
+	m_pRenderer->Load(eSprite::Acid, "acid");
 
 	//Player
 	m_pRenderer->Load(eSprite::Player_Idle, "player_idle");

@@ -1,6 +1,7 @@
 #pragma once
 #include "Enemy.h"
 
+//special enemy type that throws acid to do damage
 class CSpitterEnemy :
     public CEnemy
 {

@@ -6,6 +6,8 @@
 #include <cmath>
 #include "Debris.h"
 
+//constructor
+//for now this enemy is just tinted purple
 CSpitterEnemy::CSpitterEnemy(const Vector2& p) : CEnemy(p) {
 	m_bIsTarget = true;
 	m_bStatic = false;
@@ -28,7 +30,7 @@ CSpitterEnemy::~CSpitterEnemy()
 {
 }
 
-
+//stun overridden so i can tint it back to purple
 void CSpitterEnemy::HandleStun() {
 	if (m_tTimeSinceStunned.GetTimeSince() < m_fStunTime) {
 		m_vVelocity = m_vstunDirection * m_fStunSpeed;
@@ -50,6 +52,7 @@ void CSpitterEnemy::HandleStun() {
 	}
 }
 
+//instead of just doing damage, we spawn acid from object manager
 void CSpitterEnemy::HandleAttack()
 {
 	//get player health

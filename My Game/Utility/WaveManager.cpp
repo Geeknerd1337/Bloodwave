@@ -69,7 +69,7 @@ void WaveManager::StartWave() {
 				break;
 			}
 
-			m_pObjectManager->create(eSprite::Enemy_Idle, pos);
+			m_pObjectManager->create(eSprite::SpitterEnemy_Idle, pos);
 		}
 	}
 	

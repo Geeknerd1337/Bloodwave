@@ -34,6 +34,7 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos) {
 	case eSprite::Player_Idle:  pObj = new CPlayer(pos); break;
 	case eSprite::Enemy_Idle: pObj = new CEnemy(pos); break;
 	case eSprite::Mini_Boss_Idle: pObj = new CMiniBoss(pos); break;
+	case eSprite::SpitterEnemy_Idle: pObj = new CSpitterEnemy(pos); break;
 	case eSprite::Bullet:  pObj = new CBullet(eSprite::Bullet, pos); break;
 	case eSprite::Bullet2: pObj = new CBullet(eSprite::Bullet2, pos); break;
 	case eSprite::Fade_Object: pObj = new FadeObject(pos, t); break;

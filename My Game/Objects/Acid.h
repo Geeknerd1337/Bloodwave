@@ -8,6 +8,8 @@ protected:
 		CObject* = nullptr); ///< Collision response.
 	virtual void DeathFX(); ///< Death special effects.
 
+	int m_iDamage = 20;
+
 public:
 	CAcid(eSprite t, const Vector2& p);
 	~CAcid();

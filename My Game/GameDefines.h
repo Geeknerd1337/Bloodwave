@@ -23,7 +23,7 @@ enum class eSprite : UINT {
 	EnemyWalkSpriteSheetLeft, EnemyWalkSpriteSheetRight, Tile, TileSheet,
 	SpitterEnemyWalkSpriteSheetLeft, SpitterEnemyWalkSpriteSheetRight,
 	SpitterEnemy_Idle, SpitterEnemy_Idle_Right, SpitterEnemy_Walk_Left, SpitterEnemy_Walk_Right, SpitterEnemy_Dead,
-	SpitterMonster_Gib,Acid,
+	SpitterMonster_Gib,Acid,Win,
 	Size  //MUST BE LAST
 }; //eSprite
 

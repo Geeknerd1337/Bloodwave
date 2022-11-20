@@ -2,6 +2,9 @@
 #include "../ObjectManager.h"
 #include "../Objects/Enemy.h"
 #include "../Objects/MiniBoss.h"
+#include "./Particle.h"
+#include "./ParticleEngine.h"
+#include "GameCamera.h"
 void WaveManager::Initialize() {
 	m_tTimeSinceLastWave.SetTimeSince(0.0f);
 	
@@ -12,7 +15,21 @@ void WaveManager::Simulate() {
 	
 	//Start the wave if it hasn't been started yet
 	if (m_tTimeSinceLastWave.GetTimeSince() > m_fTimeBetweenWaves) {
-		if (!m_bWaveStarted) {
+		if (m_iCurrentWave == 10 && EnemyCount() <= 0) {
+
+			LParticleDesc2D d; //particle descriptor
+
+			d.m_nSpriteIndex = (UINT)eSprite::Win;
+			d.m_vPos = Vector2(m_pCamera->m_cameraPos.x,m_pCamera->m_cameraPos.y);
+			d.m_fLifeSpan = 5.0f;
+			d.m_fMaxScale = 1.8f;
+			d.m_fScaleInFrac = 0.0f;
+			d.m_fFadeOutFrac = 0.8f;
+			d.m_fScaleOutFrac = d.m_fFadeOutFrac;
+
+			m_pParticleEngine->create(d);
+		}
+		else if (!m_bWaveStarted) {
 			StartWave();
 			m_bWaveStarted = true;
 		}

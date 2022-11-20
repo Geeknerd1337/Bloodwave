@@ -6,7 +6,7 @@
 void CAcid::CollisionResponse(const Vector2&, float, CObject* pObj)
 {
 	if (dynamic_cast<CPlayer*>(pObj) == m_pPlayer) {
-		m_pPlayer->TakeDamage(50);
+		m_pPlayer->TakeDamage(m_iDamage);
 	}
 
 	

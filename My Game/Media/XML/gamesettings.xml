@@ -101,6 +101,7 @@
 	<sprite name="single_pixel" file="single_pixel.png"/>
 	<sprite name="small_circle" file="small_circle.png"/>
 	<sprite name="acid" file="acid.png"/>
+	<sprite name="win" file="win.png"/>
 	
 	
 	<sprite name="tile" file="tile.png"/>

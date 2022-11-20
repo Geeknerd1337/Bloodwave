@@ -71,12 +71,33 @@
     </sprite>
 	
 	<sprite name="miniboss_idle" file="miniboss_idle.png"/>
+
+	<sprite name="spitterenemy_idle" file="spitterenemy_idle.png"/>
+	<sprite name="spitterenemy_idle_right" file="spitterenemy_idle_right.png"/>
+	<sprite name="spitterenemy_dead" file="spitterenemy_dead.png"/>
+
+	<sprite name="spitterenemy_walk_sheet_left" file="spitterenemy_walk_left.png"/>
+    <sprite name="spitterenemy_walk_left" sheet="spitterenemy_walk_sheet_left" frames="4">
+      <frame index="0" left="0"   top="0" right="64"  bottom="97"/>>
+      <frame index="1" left="64"  top="0" right="128" bottom="97"/>>
+      <frame index="2" left="128" top="0" right="192" bottom="97"/>>
+	  <frame index="3" left="64"  top="0" right="128" bottom="97"/>>
+    </sprite>
+	
+	<sprite name="spitterenemy_walk_sheet_right" file="spitterenemy_walk_right.png"/>
+    <sprite name="spitterenemy_walk_right" sheet="spitterenemy_walk_sheet_right" frames="4">
+      <frame index="0" left="0"   top="0" right="64"  bottom="97"/>>
+      <frame index="1" left="64"  top="0" right="128" bottom="97"/>>
+      <frame index="2" left="128" top="0" right="192" bottom="97"/>>
+	  <frame index="3" left="64"  top="0" right="128" bottom="97"/>>
+    </sprite>
 	
 	<sprite name="small_square" file="SmallSquare.png"/>
 	<sprite name="health_pip" file="health_pip.png"/>
 	<sprite name="blood_particle" file="blood_particle.png"/>
 	<sprite name="blood_pool" file="blood_pool.png"/>
 	<sprite name="monster_gib" file="monster_gib.png"/>
+	<sprite name="spittermonster_gib" file="spittermonster_gib.png"/>
 	<sprite name="single_pixel" file="single_pixel.png"/>
 	<sprite name="small_circle" file="small_circle.png"/>
 	

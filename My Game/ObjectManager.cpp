@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Objects/Enemy.h"
 #include "Objects/MiniBoss.h"
+#include "Objects/SpitterEnemy.h"
 #include "Objects/FadeObject.h"
 
 #include "Bullet.h"

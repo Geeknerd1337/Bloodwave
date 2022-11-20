@@ -14,6 +14,7 @@
 #include "Utility/CMouse.h"
 #include "Objects/Enemy.h"
 #include "Objects/MiniBoss.h"
+#include "Objects/SpitterEnemy.h"
 #include "Objects/UI/Canvas.h"
 #include "Objects/UI/UIElement.h"
 #include "Utility/WaveManager.h"
@@ -132,6 +133,17 @@ void CGame::LoadImages() {
 	//Mini Boss
 	m_pRenderer->Load(eSprite::Mini_Boss_Idle, "miniboss_idle");
 
+	//spitter enemy
+	m_pRenderer->Load(eSprite::SpitterEnemy_Idle, "spitterenemy_idle");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Idle_Right, "spitterenemy_idle_right");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Dead, "spitterenemy_dead");
+
+	m_pRenderer->Load(eSprite::SpitterEnemyWalkSpriteSheetLeft, "spitterenemy_walk_sheet_left");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Walk_Left, "spitterenemy_walk_left");
+
+	m_pRenderer->Load(eSprite::SpitterEnemyWalkSpriteSheetRight, "spitterenemy_walk_sheet_right");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Walk_Right, "spitterenemy_walk_right");
+
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
 	m_pRenderer->Load(eSprite::Ant, "ant");
 	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
@@ -140,6 +152,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Blood_Particle, "blood_particle");
 	m_pRenderer->Load(eSprite::Blood_Pool, "blood_pool");
 	m_pRenderer->Load(eSprite::Monster_Gib, "monster_gib");
+	m_pRenderer->Load(eSprite::SpitterMonster_Gib, "spittermonster_gib");
 	m_pRenderer->Load(eSprite::Tile, "tile");
 	m_pRenderer->Load(eSprite::TileSheet, "tileSheet");
 

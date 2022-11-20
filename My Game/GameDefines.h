@@ -21,6 +21,9 @@ enum class eSprite : UINT {
 	Blood_Particle, Blood_Pool,Monster_Gib,
 	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheetLeft, PlayerWalkSpriteSheetRight, 
 	EnemyWalkSpriteSheetLeft, EnemyWalkSpriteSheetRight, Tile, TileSheet,
+	SpitterEnemyWalkSpriteSheetLeft, SpitterEnemyWalkSpriteSheetRight,
+	SpitterEnemy_Idle, SpitterEnemy_Idle_Right, SpitterEnemy_Walk_Left, SpitterEnemy_Walk_Right, SpitterEnemy_Dead,
+	SpitterMonster_Gib,
 	Size  //MUST BE LAST
 }; //eSprite
 

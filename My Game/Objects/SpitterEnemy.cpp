@@ -20,7 +20,7 @@ CSpitterEnemy::CSpitterEnemy(const Vector2& p) : CEnemy(p) {
 
 	SetSprite(eSprite::SpitterEnemy_Idle);
 
-	m_f4Tint = Vector4(0.5, 0, 0.5, 1);
+	m_f4Tint = Vector4(0.0, 0.5, 0.5, 1);
 
 	m_fImageSpeed = 60 * 0.50f;
 	m_iAttackPoints = 20;
@@ -43,12 +43,12 @@ void CSpitterEnemy::HandleStun() {
 			m_f4Tint = Vector4(1.0, 0.0, 0.0, 1.0);
 		}
 		else {
-			m_f4Tint = Vector4(0.5, 0.0, 0.5, 1.0);
+			m_f4Tint = Vector4(0.0, 0.5, 0.5, 1.0);
 		}
 	}
 	else {
 		SetState(eEnemyState::Idle);
-		m_f4Tint = Vector4(0.5, 0.0, 0.5, 1.0);
+		m_f4Tint = Vector4(0.0, 0.5, 0.5, 1.0);
 	}
 }
 
@@ -80,7 +80,7 @@ void CSpitterEnemy::DeathFX() {
 
 	//set sprite and particle settings
 	d.m_nSpriteIndex = (UINT)eSprite::SpitterEnemy_Dead;
-	d.m_f4Tint = Vector4(0.5, 0, 0.5, 1);
+	d.m_f4Tint = Vector4(0.0, 0.5, 0.5, 1);
 	d.m_fLifeSpan = 2.0f;
 	d.m_fMaxScale = 1.0f;
 	d.m_fScaleInFrac = 0.0f;
@@ -89,7 +89,7 @@ void CSpitterEnemy::DeathFX() {
 	m_pParticleEngine->create(d);
 
 	CObject* torso = m_pObjectManager->createDirect(new Debris(m_vPos, eSprite::SpitterMonster_Gib));
-	torso->m_f4Tint = Vector4(0.5, 0, 0.5, 1);
+	torso->m_f4Tint = Vector4(0.0, 0.5, 0.5, 1);
 
 	((Debris*)torso)->SetRandomVelocity();
 	torso->m_fRoll = 0.0f;

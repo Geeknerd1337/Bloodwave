@@ -38,7 +38,7 @@ int CPlayer::getPlayerHealth() {
 //reduce health by damage
 //override from actor
 void CPlayer::TakeDamage(int damage) {
-	if (m_tiFrame.GetTimeSince() > 1.0f) {
+	if (m_tiFrame.GetTimeSince() > 1.0f && shieldOn == false) {
 		printf("player health: %d\n", m_iHealth);
 		m_iHealth -= damage;
 		m_tTimeSinceDamaged.SetTimeSince(0.0f);
@@ -214,6 +214,11 @@ void CPlayer::UpdateDisplayBlood()
 	}
 
 
+void CPlayer::BloodBeam()
+{
+}
+
+
 
 float CPlayer::getDisplayHealth() {
 	return m_fdisplayHealth;
@@ -356,6 +361,42 @@ void CPlayer::buildInput() {
 		if ((m_tTimeSinceDash.GetTimeSince()) > 1.0f) {
 			coolDownReady = true;
 		}
+	}
+
+	//stat buff blood ability
+	if (m_pKeyboard->TriggerDown('1') && m_nBlood > bloodStatBuffCost) {
+		statBuffOn = true;
+		m_tStatBuff.SetTimeSince(0.0f);
+
+		m_nBlood -= bloodStatBuffCost;
+
+		//buff stats
+		m_iAttackPoints = 70;
+		m_fMoveSpeed = 300.0f;
+		m_nDashCost = 150.0f;
+	}
+
+	//end stat buff
+	if (statBuffOn && m_tStatBuff.GetTimeSince() > 5.0f) {
+		statBuffOn = false;
+
+		//set stats to normal
+		m_iAttackPoints = 40;
+		m_fMoveSpeed = 200.0f;
+		m_nDashCost = 250.0f;
+	}
+
+	//invincibility shield blood ability
+	if (m_pKeyboard->TriggerDown('2') && m_nBlood > bloodShieldCost) {
+		shieldOn = true;
+		m_tiShield.SetTimeSince(0.0f);
+
+		m_nBlood -= bloodShieldCost;
+	}
+
+	//end shield
+	if (shieldOn && m_tiShield.GetTimeSince() > 5.0f) {
+		shieldOn = false;
 	}
 
 	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {

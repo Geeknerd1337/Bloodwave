@@ -113,6 +113,9 @@ protected:
 	TimeSince m_tTimeSinceBloodUsed;
 	TimeSince m_tTimeSinceLastAttack;
 	TimeSince m_tiFrame;
+	TimeSince m_tStatBuff;
+	TimeSince m_tiShield;
+	TimeSince m_tiBeam;
 
 	/// <summary>
 	/// Handles the logic for transitioning into other states from the idle state.
@@ -127,6 +130,16 @@ protected:
 	void UpdateDisplayStamina();
 
 	void UpdateDisplayBlood();
+
+	//blood abilites
+	void BloodBeam();
+
+	const int bloodStatBuffCost = 555;
+	const int bloodShieldCost = 666;
+	const int bloodBeamCost = 444;
+
+	bool statBuffOn = false;
+	bool shieldOn = false;
 
 	/// <summary>
 	/// The current state of the player

@@ -2,6 +2,7 @@
 /// \brief Code for the mini boss object class CMiniBoss
 
 #include "MiniBoss.h"
+#include "../../My Game/Helpers.h"
 #include <cmath>
 
 CMiniBoss::CMiniBoss(const Vector2& p) : CEnemy(p) {
@@ -36,6 +37,31 @@ CMiniBoss::CMiniBoss(const Vector2& p) : CEnemy(p) {
 
 CMiniBoss::~CMiniBoss() {}
 
+void CMiniBoss::TakeDamage(int damage) {
+	if (m_tiFrame.GetTimeSince() > 1.0f) {
+		m_iHealth -= damage;
+
+		//Get the direction to the player
+		Vector2 dir = (m_pPlayer->m_vPos - m_vPos);
+		dir.Normalize();
+		m_vstunDirection = dir * -1.0f;
+
+		m_tTimeSinceStunned.SetTimeSince(0.0f);
+
+		SetState(eEnemyState::Stun);
+
+		m_tTimeSinceDamaged.SetTimeSince(0.0f);
+
+		m_tiFrame.SetTimeSince(0.0f);
+
+		//if health is less than 0 mark as dead
+		if (m_iHealth <= 0) {
+			m_bDead = true;
+			DeathFX();
+		}
+	}
+}
+
 //setting tint to purple, and tuned stun time and speed to less overall
 void CMiniBoss::HandleStun() {
 	if (m_tTimeSinceStunned.GetTimeSince() < m_fStunTime) {
@@ -55,5 +81,61 @@ void CMiniBoss::HandleStun() {
 	else {
 		SetState(eEnemyState::Idle);
 		m_f4Tint = Vector4(0.5, 0.0, 1.0, 0.0);
+	}
+}
+
+float CMiniBoss::GetDisplayHealth() {
+	return m_fDisplayHealth;
+}
+
+float CMiniBoss::GetDisplayLastHealth() {
+	return m_fDisplayLastHealth;
+}
+
+//Update display health
+void CMiniBoss::UpdateDisplayHealth() {
+	const float t = m_pTimer->GetFrameTime(); //frame time
+	m_fDisplayHealth = Lerp(m_fDisplayHealth, (float)m_iHealth, t * 5.0f);
+
+	if (m_tTimeSinceDamaged.GetTimeSince() > 1.0f) {
+		m_fDisplayLastHealth = Lerp(m_fDisplayLastHealth, m_fDisplayHealth, t * 3.0f);
+	}
+}
+
+void CMiniBoss::simulate() {
+	
+	//Call base simulate
+	CObject::simulate();
+
+	UpdateDisplayHealth();
+
+	m_vPushVelocity = m_vPushVelocity * 0.9f;
+
+	//Finite state machine for dictating which manages the enemies state
+	switch (m_eEnemyState) {
+	case eEnemyState::Idle:
+		//Enemy Idle State
+		HandleIdle();
+		HandleWalk();
+		HandleTransitions();
+		break;
+	case eEnemyState::Attack:
+		//Enemy Attack State
+		HandleAttack();
+		HandleTransitions();
+		break;
+	case eEnemyState::Chase:
+		//Enemy Chase State
+		HandleChase();
+		HandleWalk();
+		HandleTransitions();
+		break;
+	case eEnemyState::Stun:
+		//Enemy Stun State
+		HandleStun();
+		break;
+	case eEnemyState::Dead:
+		//Enemy Dead State
+		break;
 	}
 }

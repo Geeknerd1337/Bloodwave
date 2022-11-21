@@ -1,6 +1,8 @@
 #include "Canvas.h"
 #include "PlayerStats.h"
 #include "WaveUI.h"
+#include "MiniBossStats.h"
+
 Canvas::Canvas(Vector2 size)
 {
 	m_nWidth = size.x;
@@ -16,6 +18,7 @@ void Canvas::Initialize()
 {
 	AddElement(new PlayerStats());
 	AddElement(new WaveUI());
+	//AddElement(new MiniBossStats());
 }
 
 Canvas::~Canvas()

@@ -5,11 +5,11 @@
 #include "./Particle.h"
 #include "./ParticleEngine.h"
 #include "GameCamera.h"
+
 void WaveManager::Initialize() {
 	m_tTimeSinceLastWave.SetTimeSince(0.0f);
 	
 }
-
 
 void WaveManager::Simulate() {
 	
@@ -94,7 +94,7 @@ void WaveManager::StartWave() {
 		}
 	}
 	
-	//if the current wave counter == 4 (i.e. it's wave 5 by the time simulate calls this),  spawn mini boss
+	//if the current wave counter == 4 (i.e. it's wave 5 by the time simulate calls this), spawn mini boss
 	if (m_iCurrentWave == 4) {
 		SpawnMiniBoss();
 	}
@@ -103,14 +103,14 @@ void WaveManager::StartWave() {
 }
 
 int WaveManager::EnemyCount(){
-int count = 0;
-//Iterate over m_stdObjectList on the object manager and increment count if the object is an enemy
-for (auto it = m_pObjectManager->m_stdObjectList.begin(); it != m_pObjectManager->m_stdObjectList.end(); it++) {
-	if (dynamic_cast<CEnemy*>(*it) != nullptr) {
-		count++;
+	int count = 0;
+	//Iterate over m_stdObjectList on the object manager and increment count if the object is an enemy
+	for (auto it = m_pObjectManager->m_stdObjectList.begin(); it != m_pObjectManager->m_stdObjectList.end(); it++) {
+		if (dynamic_cast<CEnemy*>(*it) != nullptr) {
+			count++;
+		}
 	}
-}
-return count;
+	return count;
 }
 
 void WaveManager::SpawnMiniBoss() {

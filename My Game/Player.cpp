@@ -385,11 +385,6 @@ void CPlayer::buildInput() {
 	m_vInput.x = horizontal;
 	m_vInput.y = vertical;
 
-	//Flips the sprite based on the horizontal movement
-	if (horizontal != 0.0f) {
-
-	}
-
 	//Normalize the vector
 	m_vInput.Normalize();
 

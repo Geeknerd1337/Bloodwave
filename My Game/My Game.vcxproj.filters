@@ -27,6 +27,7 @@
     <ClCompile Include="Objects\MiniBoss.cpp" />
     <ClCompile Include="Objects\SpitterEnemy.cpp" />
     <ClCompile Include="Objects\Acid.cpp" />
+    <ClCompile Include="Objects\UI\MiniBossStats.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
@@ -55,6 +56,7 @@
     <ClInclude Include="Objects\MiniBoss.h" />
     <ClInclude Include="Objects\SpitterEnemy.h" />
     <ClInclude Include="Objects\Acid.h" />
+    <ClInclude Include="Objects\UI\MiniBossStats.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

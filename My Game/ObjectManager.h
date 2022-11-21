@@ -60,6 +60,9 @@ public:
 
 	void ThrowAcid(CObject* pObj, eSprite spr);
 
+	//TODO: Make script to get MiniBossHealth
+	//void GetMiniBoss(CObject* pObj);
+
 	void SortObjects();
 	
 };

@@ -39,8 +39,7 @@ void CEnemy::buildInput() {}
 
 //reduce health by damage
 //override from actor
-void CEnemy::TakeDamage(int damage)
-{
+void CEnemy::TakeDamage(int damage) {
 	m_iHealth -= damage;
 
 	//Get the direction to the player

@@ -310,6 +310,10 @@ void CObjectManager::ThrowAcid(CObject* pObj, eSprite spr)
 	pAcid->m_fRoll = pObj->m_fRoll;
 }
 
+//void CObjectManager::GetMiniBoss(CObject* pObj) {
+//
+//}
+
 void CObjectManager::SortObjects() {
 	m_stdObjectList.sort([](const CObject* a, const CObject* b) { return a->m_iDepth > b->m_iDepth; });
 }

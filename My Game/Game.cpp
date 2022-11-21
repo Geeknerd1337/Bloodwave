@@ -190,13 +190,6 @@ void CGame::CreateObjects() {
 
 	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(1024.0f, 1024.0f));
 
-
-	//Create 50 enemies randomly placed in the world with a random depth between -100 and100
-	for (int i = 0; i < 10; i++) {
-		//Vector2 vPos = Vector2(2100, rand() % (int)m_vWorldSize.y);
-		//CEnemy* c = (CEnemy*)m_pObjectManager->create(eSprite::Enemy_Idle, vPos);
-	}
-
 } //CreateObjects
 
 /// Call this function to start a new game. This should be re-entrant so that

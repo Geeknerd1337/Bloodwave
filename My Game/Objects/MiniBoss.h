@@ -6,13 +6,6 @@
 
 class CMiniBoss : public CEnemy {
 protected:
-	int m_iAttackPoints = 25;
-    int m_iHealth = 250;
-
-    /// <summary>
-    /// Chase state for enemy
-    /// </summary>
-    //virtual void HandleChase();
 
     /// <summary>
     /// Handles the logic for enemy walk animations
@@ -20,26 +13,13 @@ protected:
     //virtual void HandleWalk();
 
     /// <summary>
-    /// Attack state for mini boss, override for larger attack points
-    /// </summary>
-    virtual void HandleAttack();
-
-    /// <summary>
-    /// Executes the transitions into different enemy states
-    /// </summary>
-    //virtual void HandleTransitions();
-
-    /// <summary>
     /// Stun state for enemy
     /// </summary>
-    //virtual void HandleStun();
+    virtual void HandleStun();
 
 public:
 	CMiniBoss(const Vector2& p);
-	~CMiniBoss();
+    ~CMiniBoss();
 
-    virtual void simulate() override;
-
-    
 };
 #endif

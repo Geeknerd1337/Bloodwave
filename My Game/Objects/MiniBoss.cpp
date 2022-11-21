@@ -25,61 +25,35 @@ CMiniBoss::CMiniBoss(const Vector2& p) : CEnemy(p) {
 	//R, G, B, A tint
 	m_f4Tint = Vector4(0.5, 0.0, 1.0, 0.0);
 
+	m_iAttackPoints = 25;
+	m_iHealth = 250;
+	m_fStunSpeed = 500.0f;
+	m_fStunTime = 0.10f;
+	m_fChaseSpeed = 150.0f;
+
 	m_fImageSpeed = 60 * 0.50f;
 }
 
 CMiniBoss::~CMiniBoss() {}
 
-void CMiniBoss::HandleAttack() {
-	//get player health
-	int playerHealth = std::floor(m_pPlayer->getPlayerHealth());
+//setting tint to purple, and tuned stun time and speed to less overall
+void CMiniBoss::HandleStun() {
+	if (m_tTimeSinceStunned.GetTimeSince() < m_fStunTime) {
+		m_vVelocity = m_vstunDirection * m_fStunSpeed;
 
-	//attack every second
-	if ((m_pTimer->GetTime() - m_fAttackTime) > 1.0f) {
-		//if player health is > 0, attack
-		if (playerHealth > 0) {
-			m_pPlayer->TakeDamage(m_iAttackPoints);
+		//Get the sin using m_ptimer
+		float sin = std::sin(m_pTimer->GetTime() * 100.0f);
+
+		if (sin > 0) {
+			//Set the image tint to red
+			m_f4Tint = Vector4(1.0, 0.0, 0.0, 1.0);
 		}
-
-		//return to idle after player death
-		SetState(eEnemyState::Idle);
-
-		//set idle attack to new time
-		m_fAttackTime = m_pTimer->GetTime();
+		else {
+			m_f4Tint = Vector4(0.5, 0.0, 1.0, 0.0);
+		}
 	}
-}
-
-void CMiniBoss::simulate() {
-	//Call base simulate
-	CObject::simulate();
-
-	m_vPushVelocity = m_vPushVelocity * 0.9f;
-
-	//Finite state machine for dictating which manages the enemies state
-	switch (m_eEnemyState) {
-	case eEnemyState::Idle:
-		//Enemy Idle State
-		HandleIdle();
-		HandleWalk();
-		HandleTransitions();
-		break;
-	case eEnemyState::Attack:
-		//Enemy Attack State
-		HandleAttack();
-		HandleTransitions();
-		break;
-	case eEnemyState::Chase:
-		//Enemy Chase State
-		HandleChase();
-		HandleWalk();
-		HandleTransitions();
-		break;
-	case eEnemyState::Stun:
-		//Enemy Stun State
-		HandleStun();
-		break;
-	case eEnemyState::Dead:
-		//Enemy Dead State
-		break;
+	else {
+		SetState(eEnemyState::Idle);
+		m_f4Tint = Vector4(0.5, 0.0, 1.0, 0.0);
 	}
 }

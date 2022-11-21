@@ -61,6 +61,10 @@ void WaveManager::EndWave() {
 
 void WaveManager::StartWave() {
 	//printf("Wave Start\n");
+
+	if (m_iCurrentWave == 0) {
+		SpawnMiniBoss();
+	}
 	
 	//if current wave counter != 4, spawn enemies normally
 	if (m_iCurrentWave != 4) {

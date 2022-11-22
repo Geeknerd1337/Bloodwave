@@ -136,6 +136,9 @@ protected:
 	const int bloodStatBuffCost = 555;
 	const int bloodShieldCost = 666;
 	const int bloodBeamCost = 444;
+	const int bloodHealCost = 999;
+
+	const int bloodHealAmount = 66;
 
 	bool statBuffOn = false;
 	bool shieldOn = false;

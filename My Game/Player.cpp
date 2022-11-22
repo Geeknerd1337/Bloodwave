@@ -412,9 +412,16 @@ void CPlayer::buildInput() {
 
 	}
 
-	if (m_pKeyboard->TriggerDown('3') && m_nBlood > bloodBeamCost) {
+	//blood heal ability
+	if (m_pKeyboard->TriggerDown('4') && m_nBlood > bloodHealCost) {
+		m_nBlood -= bloodHealCost;
 
-		m_nBlood -= bloodBeamCost;
+		m_iHealth += bloodHealAmount;
+
+		//make sure health can't be over 100
+		if (m_iHealth > 100) {
+			m_iHealth = 100;
+		}
 	}
 
 	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {

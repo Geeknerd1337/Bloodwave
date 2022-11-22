@@ -5,6 +5,9 @@
 #include "Common.h"
 #include "Objects/Enemy.h"
 
+
+//if it collides with object, check if it's an enemy
+//if so, damage enemy
 void CBeam::CollisionResponse(const Vector2&, float, CObject* pObj)
 {
 		if (dynamic_cast<CEnemy*>(pObj) != nullptr) {
@@ -14,6 +17,7 @@ void CBeam::CollisionResponse(const Vector2&, float, CObject* pObj)
 		}
 }
 
+//death particle
 void CBeam::DeathFX()
 {
 	LParticleDesc2D d; //particle descriptor
@@ -29,6 +33,7 @@ void CBeam::DeathFX()
 	m_pParticleEngine->create(d); //create particle
 }
 
+//create beam object
 CBeam::CBeam(eSprite t, const Vector2& p) : CObject(t, p)
 {
 	m_bIsBullet = true;
@@ -39,6 +44,8 @@ CBeam::CBeam(eSprite t, const Vector2& p) : CObject(t, p)
 	killTimer.SetTimeSince(0.0f);
 }
 
+
+//check if we should destroy object with timer
 void CBeam::simulate() {
 	m_iDepth = (int)m_vPos.y;
 	UpdateFramenumber();

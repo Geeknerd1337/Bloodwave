@@ -10,6 +10,7 @@
 #include "Objects/SpitterEnemy.h"
 #include "Objects/FadeObject.h"
 #include "Objects/Acid.h"
+#include "Beam.h"
 
 #include "Bullet.h"
 #include "Ant.h"
@@ -36,7 +37,7 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos) {
 	case eSprite::Enemy_Idle: pObj = new CEnemy(pos); break;
 	case eSprite::Mini_Boss_Idle: pObj = new CMiniBoss(pos); break;
 	case eSprite::SpitterEnemy_Idle: pObj = new CSpitterEnemy(pos); break;
-	case eSprite::Bullet:  pObj = new CBullet(eSprite::Bullet, pos); break;
+	case eSprite::Bullet:  pObj = new CBeam(eSprite::Bullet, pos); break;
 	case eSprite::Bullet2: pObj = new CBullet(eSprite::Bullet2, pos); break;
 	case eSprite::Fade_Object: pObj = new FadeObject(pos, t); break;
 	case eSprite::Acid: pObj = new CAcid(t, pos); break;
@@ -309,6 +310,31 @@ void CObjectManager::ThrowAcid(CObject* pObj, eSprite spr)
 	pAcid->m_vVelocity = Vector2(0,0);
 	pAcid->m_fRoll = pObj->m_fRoll;
 }
+
+//create a beam object for the blood beam ability
+void CObjectManager::FireBeam(CObject* pObj, eSprite spr, bool left) {
+
+	const Vector2 view = pObj->GetViewVector(); //player view vector
+	
+	//create beam object
+
+	CObject* pBeam = create(spr, pObj->m_vPos); //create bullet
+
+	const Vector2 norm = VectorNormalCC(view); //normal to view direction
+	const float m = 2.0f * m_pRandom->randf() - 1.0f; //random deflection magnitude
+	const Vector2 deflection = 0.01f * m * norm; //random deflection
+
+	
+	pBeam->m_vVelocity = pObj->m_vVelocity + 500.0f * (view + deflection);
+	pBeam->m_fRoll = pObj->m_fRoll;
+
+	//if player is facing left, make beam travel left
+	if (left) {
+		pBeam->m_vVelocity.x *= -2.0f;
+	}
+	
+
+} //FireGun
 
 //void CObjectManager::GetMiniBoss(CObject* pObj) {
 //

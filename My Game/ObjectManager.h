@@ -60,6 +60,8 @@ public:
 
 	void ThrowAcid(CObject* pObj, eSprite spr);
 
+	void FireBeam(CObject* pObj, eSprite spr, bool left);
+
 	//TODO: Make script to get MiniBossHealth
 	//void GetMiniBoss(CObject* pObj);
 

@@ -399,6 +399,22 @@ void CPlayer::buildInput() {
 		shieldOn = false;
 	}
 
+	if (m_pKeyboard->TriggerDown('3') && m_nBlood > -1) {
+		//m_nBlood -= bloodBeamCost;
+		if (m_vVelocity.x < 0) {
+			m_pObjectManager->FireBeam(this, eSprite::Bullet, true);
+		}
+		else {
+			m_pObjectManager->FireBeam(this, eSprite::Bullet, false);
+		}
+
+	}
+
+	if (m_pKeyboard->TriggerDown('3') && m_nBlood > bloodBeamCost) {
+
+		m_nBlood -= bloodBeamCost;
+	}
+
 	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {
 
 		Vector2 mousePos = m_pMouse->GetMouseWorldPos();

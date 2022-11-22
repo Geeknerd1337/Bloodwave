@@ -115,7 +115,6 @@ protected:
 	TimeSince m_tiFrame;
 	TimeSince m_tStatBuff;
 	TimeSince m_tiShield;
-	TimeSince m_tiBeam;
 
 	/// <summary>
 	/// Handles the logic for transitioning into other states from the idle state.

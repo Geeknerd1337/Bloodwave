@@ -35,7 +35,7 @@ class CObject:
     /// <summary>
 	/// Represents the velocity of the object where the x and y components make up the horizontal and vertical components of the velocity, respectively.
     /// </summary>
-    Vector2 m_vVelocity;
+   Vector2 m_vVelocity;
 	
 	
     //TODO: Remove these
@@ -67,6 +67,7 @@ class CObject:
     const Vector2 GetViewVector() const; ///< Compute view vector.
 
   public:
+
     CObject(eSprite, const Vector2&); ///< Constructor.
     virtual ~CObject(); ///< Destructor.
 	

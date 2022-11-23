@@ -18,7 +18,7 @@ void Canvas::Initialize()
 {
 	AddElement(new PlayerStats());
 	AddElement(new WaveUI());
-	//AddElement(new MiniBossStats());
+	AddElement(new MiniBossStats());
 }
 
 Canvas::~Canvas()

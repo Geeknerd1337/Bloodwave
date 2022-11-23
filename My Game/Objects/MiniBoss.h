@@ -35,9 +35,9 @@ public:
     float GetDisplayHealth();
     float GetDisplayLastHealth();
 
-    virtual void simulate() override;
+    virtual void simulate();
 
-    virtual void TakeDamage(int damage) override;
+    virtual void TakeDamage(int damage);
 
 };
 #endif

@@ -35,7 +35,7 @@ protected:
     Vector2 idleVelocity = Vector2(0, 0);
     
     //holds random number to determine idle velocity
-    float randomNumber;
+    float randomNumber = 0.0;
     
     //enemy chase and attack radii
     float enemyChaseRadius = 30.0;

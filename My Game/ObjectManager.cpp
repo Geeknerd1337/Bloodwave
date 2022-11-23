@@ -336,9 +336,14 @@ void CObjectManager::FireBeam(CObject* pObj, eSprite spr, bool left) {
 
 } //FireGun
 
-//void CObjectManager::GetMiniBoss(CObject* pObj) {
-//
-//}
+CObject* CObjectManager::GetMiniBoss() {
+
+	for (auto const& p : m_stdObjectList) {
+		if (dynamic_cast<CMiniBoss*>(p) != nullptr) {
+			return p;
+		}
+	}
+}
 
 void CObjectManager::SortObjects() {
 	m_stdObjectList.sort([](const CObject* a, const CObject* b) { return a->m_iDepth > b->m_iDepth; });

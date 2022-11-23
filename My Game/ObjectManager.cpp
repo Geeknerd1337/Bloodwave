@@ -336,6 +336,7 @@ void CObjectManager::FireBeam(CObject* pObj, eSprite spr, bool left) {
 
 } //FireGun
 
+//Returns the obj pointer to MiniBoss
 CObject* CObjectManager::GetMiniBoss() {
 
 	for (auto const& p : m_stdObjectList) {

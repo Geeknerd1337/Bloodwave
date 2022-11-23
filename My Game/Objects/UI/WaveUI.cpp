@@ -21,7 +21,6 @@ void WaveUI::Draw() {
 	float h = 48.0f;
 	float x = (windowWidth / 2.0f) - w/2.0f;
 	float y = windowHeight - h;
-
 	
 
 	if (m_pWaveManager->m_iCurrentWave != 0) {
@@ -29,7 +28,6 @@ void WaveUI::Draw() {
 		std::string waveText = "WAVE " + std::to_string(m_pWaveManager->m_iCurrentWave);
 		UIHelpers::DrawAlignedText(waveText.c_str(), Vector2(x + w / 2.0f, y + h / 2.0f), HorizontalAlignment::Center, VerticalAlignment::Center, Colors::White);
 	}
-
 
 
 	if (m_pWaveManager->m_iCurrentWave == 0) {

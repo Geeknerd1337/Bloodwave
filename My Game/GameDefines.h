@@ -14,12 +14,14 @@
 
 enum class eSprite : UINT {
 	Background, Bullet, Bullet2, Player, Turret, Smoke, Spark, Ant,
-	Player_Idle, Player_Idle_Left, Player_Idle_Right, Player_Walk_Left, Player_Walk_Right,
+	Player_Idle, Player_Idle_Left, Player_Idle_Right, Player_Walk_Left, Player_Walk_Right, 
+	Player_Attack_Left, Player_Attack_Right,
 	Enemy_Idle, Enemy_Idle_Left, Enemy_Idle_Right, Enemy_Walk_Left, Enemy_Walk_Right, Enemy_Dead,
 	Mini_Boss_Idle,
 	Small_Square, Health_Pip, Fade_Object, Single_Pixel, Small_Circle,
 	Blood_Particle, Blood_Pool,Monster_Gib,
-	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheetLeft, PlayerWalkSpriteSheetRight, 
+	SpriteSheet, AntSpriteSheet, PlayerWalkSpriteSheetLeft, PlayerWalkSpriteSheetRight,
+	PlayerAttackSpriteSheetLeft, PlayerAttackSpriteSheetRight,
 	EnemyWalkSpriteSheetLeft, EnemyWalkSpriteSheetRight, Tile, TileSheet,
 	SpitterEnemyWalkSpriteSheetLeft, SpitterEnemyWalkSpriteSheetRight,
 	SpitterEnemy_Idle, SpitterEnemy_Idle_Right, SpitterEnemy_Walk_Left, SpitterEnemy_Walk_Right, SpitterEnemy_Dead,

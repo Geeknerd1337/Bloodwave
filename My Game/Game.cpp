@@ -111,12 +111,19 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Player_Idle_Left, "player_idle_left");
 	m_pRenderer->Load(eSprite::Player_Idle_Right, "player_idle_right");
 
-	//Carmilla walk
+	//Player walk
 	m_pRenderer->Load(eSprite::PlayerWalkSpriteSheetLeft, "player_walk_sheet_left");
 	m_pRenderer->Load(eSprite::Player_Walk_Left, "player_walk_left");
 
 	m_pRenderer->Load(eSprite::PlayerWalkSpriteSheetRight, "player_walk_sheet_right");
 	m_pRenderer->Load(eSprite::Player_Walk_Right, "player_walk_right");
+
+	//Player attack
+	m_pRenderer->Load(eSprite::PlayerAttackSpriteSheetLeft, "player_attack_sheet_left");
+	m_pRenderer->Load(eSprite::Player_Attack_Left, "player_attack_left");
+
+	m_pRenderer->Load(eSprite::PlayerAttackSpriteSheetRight, "player_attack_sheet_right");
+	m_pRenderer->Load(eSprite::Player_Attack_Right, "player_attack_right");
 
 	//Enemy
 	m_pRenderer->Load(eSprite::Enemy_Idle, "enemy_idle");

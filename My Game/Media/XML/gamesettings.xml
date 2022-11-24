@@ -49,6 +49,18 @@
 	  <frame index="3" left="43"  top="0" right="86" bottom="78"/>>
     </sprite>
 	
+	<sprite name="player_attack_sheet_left" file="player_attack_left.png"/>
+    <sprite name="player_attack_left" sheet="player_attack_sheet_left" frames="2">
+      <frame index="0" left="0"   top="0" right="64"  bottom="89"/>>
+      <frame index="1" left="64"  top="0" right="128" bottom="89"/>>
+    </sprite>
+	
+	<sprite name="player_attack_sheet_right" file="player_attack_right.png"/>
+    <sprite name="player_attack_right" sheet="player_attack_sheet_right" frames="2">
+      <frame index="0" left="0"   top="0" right="64"  bottom="89"/>>
+      <frame index="1" left="64"  top="0" right="128" bottom="89"/>>
+    </sprite>
+	
 	<sprite name="enemy_idle" file="enemy_idle.png"/>
 	<sprite name="enemy_idle_right" file="enemy_idle_right.png"/>
 	<sprite name="enemy_idle_left" file="enemy_idle_left.png"/>

@@ -371,7 +371,7 @@ void CPlayer::buildInput() {
 		m_nBlood -= bloodStatBuffCost;
 
 		//buff stats
-		m_iAttackPoints = 70;
+		m_iAttackPoints = 55;
 		m_fMoveSpeed = 300.0f;
 		m_nDashCost = 150.0f;
 	}

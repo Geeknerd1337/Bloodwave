@@ -66,6 +66,9 @@ public:
 	CObject* GetMiniBoss();
 
 	void SortObjects();
+
+	//marked if game stops running, so we stop input and screen drawing
+	bool gameStatus = true;
 	
 };
 

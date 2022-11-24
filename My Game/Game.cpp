@@ -46,6 +46,7 @@ CGame::~CGame() {
 /// 
 void CGame::Initialize() {
 
+
 	m_pRenderer = new BloodWaveRenderer(eSpriteMode::Batched2D);
 	m_pRenderer->Initialize(eSprite::Size);
 	m_pMouse = new CMouse;
@@ -217,13 +218,15 @@ void CGame::MouseHandler() {
 }
 
 void CGame::KeyboardHandler() {
-	m_pKeyboard->GetState(); //get current keyboard state 
+	if (m_pObjectManager->gameStatus) {
+		m_pKeyboard->GetState(); //get current keyboard state 
 
-	if (m_pKeyboard->TriggerDown(VK_F2)) //toggle frame rate
-		m_bDrawFrameRate = !m_bDrawFrameRate;
+		if (m_pKeyboard->TriggerDown(VK_F2)) //toggle frame rate
+			m_bDrawFrameRate = !m_bDrawFrameRate;
 
-	if (m_pKeyboard->TriggerDown(VK_BACK)) //start game
-		BeginGame();
+		if (m_pKeyboard->TriggerDown(VK_BACK)) //start game
+			BeginGame();
+	}
 }
 
 
@@ -256,35 +259,37 @@ void CGame::DrawConsoleText() {
 /// pipelining jiggery-pokery.
 
 void CGame::RenderFrame() {
-	m_pRenderer->BeginFrame(); //required before rendering
 
-	DrawTiles();
+		m_pRenderer->BeginFrame(); //required before rendering
+
+		DrawTiles();
 
 
-	m_pObjectManager->drawBegin(); //draw objects
-	m_pObjectManager->draw(); //draw objects 
-	m_pParticleEngine->Draw(); //draw particles
-	m_pObjectManager->drawEnd(); //draw objects 
+		m_pObjectManager->drawBegin(); //draw objects
+		m_pObjectManager->draw(); //draw objects 
+		m_pParticleEngine->Draw(); //draw particles
+		m_pObjectManager->drawEnd(); //draw objects 
+
+		//Useful method for drawing frame text
+		if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
+		DrawConsoleText(); //draw console output
+
+		Vector2 mousePos = m_pMouse->GetMouseWorldPos();
+		Vector2 playerPos = m_pPlayer->GetPos();
+
+		Vector2 mouseDir = mousePos - playerPos;
+		mouseDir.Normalize();
+
+		//Round the x and y components of the mouse dir
+		mouseDir.x = round(mouseDir.x);
+		mouseDir.y = round(mouseDir.y);
+
+		mouseDir.Normalize();
+
+		m_pCanvas->Draw();
+
+		m_pRenderer->EndFrame(); //required after rendering
 	
-	//Useful method for drawing frame text
-	if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
-	DrawConsoleText(); //draw console output
-
-	Vector2 mousePos = m_pMouse->GetMouseWorldPos();
-	Vector2 playerPos = m_pPlayer->GetPos();
-	
-	Vector2 mouseDir = mousePos - playerPos;
-	mouseDir.Normalize();
-
-	//Round the x and y components of the mouse dir
-	mouseDir.x = round(mouseDir.x);
-	mouseDir.y = round(mouseDir.y);
-
-	mouseDir.Normalize();
-
-	m_pCanvas->Draw();
-
-	m_pRenderer->EndFrame(); //required after rendering
 } //RenderFrame
 
 void CGame::DrawHealthBar() {

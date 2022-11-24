@@ -15,6 +15,8 @@ protected:
 	//damage it does
 	int m_iDamage = 20;
 
+	float scale = 1.0f;
+
 	//timer to check if we should kill acid object
 	TimeSince killTimer;
 

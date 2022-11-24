@@ -24,6 +24,8 @@ CSpitterEnemy::CSpitterEnemy(const Vector2& p) : CEnemy(p) {
 
 	m_fImageSpeed = 60 * 0.50f;
 	m_iAttackPoints = 20;
+
+	enemyAttackRadius = 60;
 } //constructor
 
 CSpitterEnemy::~CSpitterEnemy()

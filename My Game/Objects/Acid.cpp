@@ -48,6 +48,10 @@ void CAcid::simulate()
 	m_iDepth = (int)m_vPos.y;
 	UpdateFramenumber();
 
+	scale += 0.01f;
+
+	m_fXScale = m_fYScale = scale;
+
 	if (killTimer.GetTimeSince() > 2.0f) {
 		m_bDead = true;
 		DeathFX();

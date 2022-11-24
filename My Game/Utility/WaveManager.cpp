@@ -5,6 +5,8 @@
 #include "./Particle.h"
 #include "./ParticleEngine.h"
 #include "GameCamera.h"
+#include "../ObjectManager.h"
+
 
 void WaveManager::Initialize() {
 	m_tTimeSinceLastWave.SetTimeSince(0.0f);
@@ -16,6 +18,7 @@ void WaveManager::Simulate() {
 	//Start the wave if it hasn't been started yet
 	if (m_tTimeSinceLastWave.GetTimeSince() > m_fTimeBetweenWaves) {
 		if (m_iCurrentWave == 10 && EnemyCount() <= 0) {
+			m_pObjectManager->gameStatus = false;
 
 			LParticleDesc2D d; //particle descriptor
 
@@ -24,8 +27,7 @@ void WaveManager::Simulate() {
 			d.m_fLifeSpan = 5.0f;
 			d.m_fMaxScale = 1.8f;
 			d.m_fScaleInFrac = 0.0f;
-			d.m_fFadeOutFrac = 0.8f;
-			d.m_fScaleOutFrac = d.m_fFadeOutFrac;
+			
 
 			m_pParticleEngine->create(d);
 		}

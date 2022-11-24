@@ -1,15 +1,18 @@
 #include "PlayerStats.h"
 #include "UIHelpers.h"
 #include "../../Player.h"
+#include "../../ObjectManager.h"
+#include "../../Common.h"
 
 
 void PlayerStats::Draw()
 {
-	const float t = m_pTimer->GetTime();
-	DrawHealthBar();
-	DrawStaminaBar();
-	DrawBloodBar();
-	
+	if (m_pObjectManager->gameStatus) {
+		const float t = m_pTimer->GetTime();
+		DrawHealthBar();
+		DrawStaminaBar();
+		DrawBloodBar();
+	}
 }
 
 void PlayerStats::DrawHealthBar() {

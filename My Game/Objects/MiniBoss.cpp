@@ -116,7 +116,7 @@ void CMiniBoss::simulate() {
 	case eEnemyState::Idle:
 		//Enemy Idle State
 		HandleIdle();
-		HandleWalk();
+		PlayWalkAnimation();
 		HandleTransitions();
 		break;
 	case eEnemyState::Attack:
@@ -127,7 +127,7 @@ void CMiniBoss::simulate() {
 	case eEnemyState::Chase:
 		//Enemy Chase State
 		HandleChase();
-		HandleWalk();
+		PlayWalkAnimation();
 		HandleTransitions();
 		break;
 	case eEnemyState::Stun:

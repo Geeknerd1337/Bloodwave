@@ -31,7 +31,7 @@ protected:
 	float m_fRunSpeed = 200.0f;
 
 	//Attack points
-	int m_iAttackPoints = 40;
+	int m_iAttackPoints = 20;
 
 	//Health
 	float m_fdisplayHealth = 100.0f;
@@ -65,11 +65,16 @@ protected:
 	Vector2 inputAtStateTransition = Vector2(0, 0);
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
+	
+	/// <summary>
+	/// The player's attack animation
+	/// </summary>
+	void PlayAttackAnimation();
 
 	/// <summary>
 	/// Handles the logic for the walk animations
 	/// </summary>
-	void HandleWalk();
+	void PlayWalkAnimation();
 
 	/// <summary>
 	/// Boolean representing whether or not the player can currently attack

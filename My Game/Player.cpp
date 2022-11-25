@@ -52,7 +52,29 @@ void CPlayer::TakeDamage(int damage) {
 	}
 }
 
-void CPlayer::HandleWalk() {
+void CPlayer::PlayAttackAnimation() {
+	
+	m_fImageSpeed = 60 * 0.20f;
+
+	if (inputAtStateTransition.x != 0.0f) {
+		if (inputAtStateTransition.x > 0.0) {
+			SetSprite(eSprite::Player_Attack_Right);
+		}
+		if (inputAtStateTransition.x < 0.0) {
+			SetSprite(eSprite::Player_Attack_Left);
+		}
+	}
+
+	if (inputAtStateTransition.x == 0.0f) {
+		SetSprite(eSprite::Player_Idle);
+	}
+
+	m_vVelocity = m_vInput * m_fMoveSpeed;
+}
+
+void CPlayer::PlayWalkAnimation() {
+
+	m_fImageSpeed = 60 * 0.50f;
 
 	if (m_vInput.x != 0.0f) {
 		if (m_vInput.x > 0.0f) {
@@ -79,7 +101,6 @@ void CPlayer::HandleDash() {
 
 	//check if a a quarter has passed, if so swap states, and set cooldown
 	if ((m_tTimeSinceDash.GetTimeSince()) > 0.25f) {
-		printf("end dash\n");
 		coolDownReady = false;
 		m_ePlayerState = ePlayerState::Idle;
 	}
@@ -162,11 +183,12 @@ void CPlayer::simulate() {
 	switch (m_ePlayerState) {
 	case ePlayerState::Idle:
 		//Player Idle State
-		HandleWalk();
+		PlayWalkAnimation();
 		HandleIdleTransitions();
 		break;
 	case ePlayerState::Attack:
 		//Player Attack State
+		PlayAttackAnimation();
 		HandleAttack();
 		break;
 	case ePlayerState::Dash:
@@ -250,31 +272,11 @@ void CPlayer::HandleAttack() {
 
 	//Declare a Vector2 called end at the current position of the player plus their input
 	Vector2 end = start + inputAtStateTransition * 100.0f;
-
-	//Print the input at the state transition
-	//printf("input at state transition: %f, %f\n", inputAtStateTransition.x, inputAtStateTransition.y);
-
+	
 	//Declare a pointer to an array of CObjects
 	std::vector<CObject*> pObjects;
 
-
 	pObjects = m_pObjectManager->IntersectLine(start, end);
-
-	
-
-	//If pObjects has more than one enemy
-	if (pObjects.size() > 0) {
-		//then we hit something
-		m_pCamera->Shake(0.25f, Vector2(5.0f, 5.0f));
-
-		//moved adding to blood counter to below, so that you only get blood for hitting enemies
-		//m_nBlood += 50.0f;
-		
-		//m_tTimeSinceLastAttack.SetTimeSince(0.0f);
-		/*if (m_nBlood > 1000.0f) {
-			m_nBlood = 1000.0f;
-		}*/
-	}
 
 	//Iterate over pObjects and draw a line to each one
 	for (auto pObject : pObjects) {
@@ -282,6 +284,9 @@ void CPlayer::HandleAttack() {
 
 			//make all enemies hit take damage
 			dynamic_cast<CEnemy*>(pObject)->TakeDamage(m_iAttackPoints);
+			
+			//shake cam once enemies take damange
+			m_pCamera->Shake(0.25f, Vector2(2.0f, 2.0f));
 
 			m_nBlood += 50.0f;
 			m_tTimeSinceLastAttack.SetTimeSince(0.0f);
@@ -424,7 +429,7 @@ void CPlayer::buildInput() {
 		}
 	}
 
-	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {
+	if (m_pMouse->TriggerDown(eMouseButton::Left) && CanAttack()) {
 
 		Vector2 mousePos = m_pMouse->GetMouseWorldPos();
 		Vector2 playerPos = m_pPlayer->GetPos();

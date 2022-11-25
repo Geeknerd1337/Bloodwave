@@ -146,7 +146,7 @@ void CEnemy::HandleChase() {
 	
 }
 
-void CEnemy::HandleWalk() {
+void CEnemy::PlayWalkAnimation() {
 	
 	if (m_vVelocity.x != 0.0f) {
 		if (m_vVelocity.x > 0.0f) {
@@ -218,7 +218,7 @@ void CEnemy::simulate() {
 	case eEnemyState::Idle:
 		//Enemy Idle State
 		HandleIdle();
-		HandleWalk();
+		PlayWalkAnimation();
 		HandleTransitions();
 		break;
 	case eEnemyState::Attack:
@@ -229,7 +229,7 @@ void CEnemy::simulate() {
 	case eEnemyState::Chase:
 		//Enemy Chase State
 		HandleChase();
-		HandleWalk();
+		PlayWalkAnimation();
 		HandleTransitions();
 		break;
 	case eEnemyState::Stun:

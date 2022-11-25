@@ -64,7 +64,7 @@ protected:
     /// <summary>
     /// Handles the logic for enemy walk animations
     /// </summary>
-    virtual void HandleWalk();
+    virtual void PlayWalkAnimation();
 
     /// <summary>
     /// Attack state for enemy

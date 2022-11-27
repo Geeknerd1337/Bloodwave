@@ -5,6 +5,8 @@
 #include "../../Common.h"
 
 
+
+
 void PlayerStats::Draw()
 {
 	//show bars if game is running
@@ -17,6 +19,10 @@ void PlayerStats::Draw()
 		//show info if the bool is toggled on
 		if (m_pPlayer->showInfo) {
 			InfoText();
+		}
+		//show text telling you to press i for info for a bit
+		if (m_tiInfo.GetTimeSince() < 2.0f) {
+			IFadetext();
 		}
 	}
 }
@@ -91,4 +97,20 @@ void PlayerStats::InfoText()
 
 	//print abilites
 	UIHelpers::DrawAlignedText(abilities.c_str(), Vector2(x, y + h / 2.0f + 3.0f), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::BlueViolet);
+}
+
+//show i for info
+void PlayerStats::IFadetext()
+{
+	float x = (600.0f / 5.0f) - 30.0f;
+	float y = 600.0f;
+	float h = 200.0f;
+
+	//strings to print
+	std::string info = "press I for info";
+
+	//print keys
+	UIHelpers::DrawAlignedText(info.c_str(), Vector2(x, y + h / 2.0f + 3.0f), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::BlueViolet);
+
+
 }

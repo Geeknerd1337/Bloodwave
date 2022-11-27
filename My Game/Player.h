@@ -163,7 +163,7 @@ public:
 	~CPlayer();
 
 	//decides if we draw info text in playerstats
-	bool showInfo = true;
+	bool showInfo = false;
 
 	//Implement BuildInput
 	virtual void buildInput() override;

@@ -29,8 +29,8 @@ void MiniBossStats::DrawHealthBar() {
 		float vertStatPadding = 10.0f;
 		Vector2 pos = Vector2(x + 35.0f, y + vertStatPadding / 2.0f);
 		Vector2 size = Vector2(315.0f, h - vertStatPadding);
-		UIHelpers::DrawRectangle(pos, size, Vector4(0, 1, 0, 1));
-		UIHelpers::DrawStatBar(pos, size, m_pMiniBoss->GetDisplayLastHealth(), 100.0f, Vector4(1,0,0,1));
+		UIHelpers::DrawRectangle(Vector2(x + 50.0, y + vertStatPadding / 2.0f), Vector2(w - 60, h - vertStatPadding), Vector4(108.0 / 255.0, 35.0 / 255.0, 48.0 / 255.0, 1.0));
+		UIHelpers::DrawStatBar(pos, size, m_pMiniBoss->GetDisplayLastHealth(), 100.0f, Vector4(255 / 255.0, 235 / 255.0f, 87 / 255.0f, 1.0f));
 		UIHelpers::DrawStatBar(pos, size, m_pMiniBoss->GetDisplayHealth(), 100.0f, Vector4(190.0/255.0, 39.0/255.0, 67.0/255.0, 1.0));
 	}
 	

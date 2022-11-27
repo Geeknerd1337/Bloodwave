@@ -225,6 +225,8 @@ void CPlayer::simulate() {
 		//call gameover eventually
 		//reload the game
 		m_bDead = true;
+		//set it to false since game ended
+		m_pObjectManager->gameStatus = false;
 		//DeathScreen();
 		break;
 

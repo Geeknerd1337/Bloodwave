@@ -65,6 +65,11 @@ protected:
 	Vector2 inputAtStateTransition = Vector2(0, 0);
 
 	virtual void CollisionResponse(const Vector2&, float, CObject* = nullptr); ///< Collision response.
+
+	/// <summary>
+	/// Game over death screen
+	/// </summary>
+	void DeathScreen();
 	
 	/// <summary>
 	/// The player's attack animation

@@ -10,8 +10,8 @@
 #include "Utility/GameCamera.h"
 #include "Utility/CMouse.h"
 #include "Objects/FadeObject.h"
-
-
+#include "Particle.h"
+#include "ParticleEngine.h"
 
 /// <summary>
 /// Construct the player at a given position
@@ -47,10 +47,23 @@ void CPlayer::TakeDamage(int damage) {
 
 		//if health is less than 0 mark as dead
 		if (m_iHealth <= 0) {
-			m_bDead = true;
-
+			m_ePlayerState = ePlayerState::Dead;
 		}
 	}
+}
+
+void CPlayer::DeathScreen() {
+	LParticleDesc2D d; //particle descriptor
+
+	d.m_nSpriteIndex = (UINT)eSprite::Loose;
+	d.m_vPos = Vector2(1280.0, 720.0);
+	d.m_fLifeSpan = 5.0f;
+	d.m_fMaxScale = 1.8f;
+	d.m_fScaleInFrac = 0.0f;
+	d.m_fFadeOutFrac = 0.8f;
+	d.m_fScaleOutFrac = d.m_fFadeOutFrac;
+
+	m_pParticleEngine->create(d);
 }
 
 void CPlayer::PlayAttackAnimation() {
@@ -209,9 +222,10 @@ void CPlayer::simulate() {
 		break;
 	case ePlayerState::Dead:
 		//Player Dead State
-		m_iHealth = 0;
 		//call gameover eventually
 		//reload the game
+		m_bDead = true;
+		//DeathScreen();
 		break;
 
 	}

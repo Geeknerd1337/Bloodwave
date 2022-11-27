@@ -114,6 +114,7 @@
 	<sprite name="small_circle" file="small_circle.png"/>
 	<sprite name="acid" file="acid.png"/>
 	<sprite name="win" file="win.png"/>
+	<sprite name="loose" file="death_screen.png"/>
 	
 	
 	<sprite name="tile" file="tile.png"/>

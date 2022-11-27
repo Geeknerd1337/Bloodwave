@@ -35,7 +35,6 @@ void WaveManager::Simulate() {
 			StartWave();
 			m_bWaveStarted = true;
 		}
-
 		
 	}
 

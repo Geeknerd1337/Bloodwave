@@ -11,4 +11,5 @@ public:
 	void DrawHealthBar();
 	void DrawStaminaBar();
 	void DrawBloodBar();
+	void InfoText();
 };

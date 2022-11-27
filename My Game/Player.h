@@ -138,9 +138,9 @@ protected:
 	//blood abilites
 	void BloodBeam();
 
-	const int bloodStatBuffCost = 555;
-	const int bloodShieldCost = 666;
-	const int bloodBeamCost = 444;
+	const int bloodStatBuffCost = 444;
+	const int bloodShieldCost = 555;
+	const int bloodBeamCost = 666;
 	const int bloodHealCost = 999;
 
 	const int bloodHealAmount = 66;
@@ -156,6 +156,9 @@ protected:
 public:
 	CPlayer(const Vector2& p); ///< Constructor.
 	~CPlayer();
+
+	//decides if we draw info text in playerstats
+	bool showInfo = true;
 
 	//Implement BuildInput
 	virtual void buildInput() override;

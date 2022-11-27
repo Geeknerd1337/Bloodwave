@@ -341,6 +341,16 @@ void CPlayer::buildInput() {
 		horizontal += 1.0f;
 	}
 
+	//invert showInfo when I is pressed
+	if (m_pKeyboard->TriggerDown('I')) {
+		if (showInfo) {
+			showInfo = false;
+		}
+		else {
+			showInfo = true;
+		}
+	}
+
 	//dash trigger
 	//and set input
 	if (m_pKeyboard->TriggerDown(' ') && DashAvailable()) {

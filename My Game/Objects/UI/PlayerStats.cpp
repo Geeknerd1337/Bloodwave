@@ -7,11 +7,17 @@
 
 void PlayerStats::Draw()
 {
+	//show bars if game is running
 	if (m_pObjectManager->gameStatus) {
 		const float t = m_pTimer->GetTime();
 		DrawHealthBar();
 		DrawStaminaBar();
 		DrawBloodBar();
+
+		//show info if the bool is toggled on
+		if (m_pPlayer->showInfo) {
+			InfoText();
+		}
 	}
 }
 
@@ -64,4 +70,25 @@ void PlayerStats::DrawBloodBar() {
 	UIHelpers::DrawRectangle(pos, size, Vector4(87 / 255.0, 28 / 255.0f, 39/ 255.0f, 1.0f));
 	UIHelpers::DrawStatBar(pos, size, m_pPlayer->getDisplayLastBlood(), 1000.0f, Vector4(255 / 255.0, 235 / 255.0f, 87 / 255.0f, 1.0f));
 	UIHelpers::DrawStatBar(pos, size, m_pPlayer->getDisplayBlood(), 1000.0f, Vector4(245 / 255.0, 85 / 255.0f, 93 / 255.0f, 1.0f));
+}
+
+//info text for keys and abilties
+void PlayerStats::InfoText()
+{
+	float x = (600.0f / 5.0f) - 30.0f;
+	float y = 600.0f;
+	float h = 200.0f;
+
+	//strings to print
+	std::string moves = "WASD - move    space - dash    left click - attack    I - toggle info"; 
+	std::string abilities = "1 - stat buff - 444 blood    2 - shield - 555 blood    3 - beam attack - 666 blood    4 - heal - 999";
+
+	//print keys
+	UIHelpers::DrawAlignedText(moves.c_str(), Vector2(x, y + h / 2.0f + 3.0f), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::BlueViolet);
+
+	//move height to below first string
+	h = 150.0f;
+
+	//print abilites
+	UIHelpers::DrawAlignedText(abilities.c_str(), Vector2(x, y + h / 2.0f + 3.0f), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::BlueViolet);
 }

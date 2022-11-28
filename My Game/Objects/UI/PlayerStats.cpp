@@ -83,24 +83,28 @@ void PlayerStats::InfoText()
 {
 	float x = 500.0f;
 	float h = 150.0f;
+	float y = 0.0f;
+	float w = 700.0f;
+
+	UIHelpers::DrawRectangle(Vector2(x, y), Vector2(w, h), Vector4(0.0, 0.0, 0.0, 0.5));
 
 	//strings to print
 	std::string moves = "WASD - move    space - dash    left click - attack    I - toggle info"; 
 	std::string abilities = "1 - stat buff - 444 blood    2 - shield - 555 blood";
 
 	//print keys
-	UIHelpers::DrawAlignedText(moves.c_str(), Vector2(x, h ), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::BlueViolet);
+	UIHelpers::DrawAlignedText(moves.c_str(), Vector2(x, h ), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::GhostWhite);
 
 	//move height to below first string
 	h = 100.0f;
 
 	//print abilites
-	UIHelpers::DrawAlignedText(abilities.c_str(), Vector2(x, h ), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::BlueViolet);
+	UIHelpers::DrawAlignedText(abilities.c_str(), Vector2(x, h ), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::GhostWhite);
 
 	abilities = "3 - beam attack - 666 blood    4 - heal - 999";
 	h = 50.0f;
 	//print abilites
-	UIHelpers::DrawAlignedText(abilities.c_str(), Vector2(x, h ), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::BlueViolet);
+	UIHelpers::DrawAlignedText(abilities.c_str(), Vector2(x, h ), HorizontalAlignment::Left, VerticalAlignment::Top, Colors::GhostWhite);
 }
 
 //show i for info

@@ -181,6 +181,9 @@ void CGame::LoadSounds() {
 	m_pAudio->Load(eSound::Gun, "gun");
 	m_pAudio->Load(eSound::Ricochet, "ricochet");
 	m_pAudio->Load(eSound::Synth, "synth");
+	m_pAudio->Load(eSound::PowerUp, "powerup");
+	m_pAudio->Load(eSound::Hit, "hit");
+	m_pAudio->Load(eSound::Whoosh, "whoosh");
 } //LoadSounds
 
 /// Release all of the DirectX12 objects by deleting the renderer.

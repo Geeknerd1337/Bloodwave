@@ -136,5 +136,8 @@
     <sound name="grunt" file="umph.wav" instances="4"/>
     <sound name="ow" file="ow.wav" instances="8"/>
     <sound name="synth" file="Synthwave.wav" instances="1"/>
+	<sound name="hit" file="hit.wav" instances="1"/>
+	<sound name="whoosh" file="whoosh.wav" instances="1"/>
+	<sound name="powerup" file="powerup.wav" instances="1"/>
   </sounds>
 </settings>

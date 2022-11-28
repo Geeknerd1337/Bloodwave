@@ -45,6 +45,8 @@ void CPlayer::TakeDamage(int damage) {
 
 		m_tiFrame.SetTimeSince(0.0f);
 
+		m_pAudio->play(eSound::Hit);
+
 		//if health is less than 0 mark as dead
 		if (m_iHealth <= 0) {
 			m_ePlayerState = ePlayerState::Dead;
@@ -387,6 +389,8 @@ void CPlayer::buildInput() {
 		m_tTimeSinceDashEffect.SetTimeSince(0.0f);
 
 		StaminaDepletion(m_nDashCost);
+
+		m_pAudio->play(eSound::Whoosh);
 		
 
 		if (horizontal != 0 || vertical != 0) {
@@ -417,6 +421,8 @@ void CPlayer::buildInput() {
 		m_iAttackPoints = 55;
 		m_fMoveSpeed = 300.0f;
 		m_nDashCost = 150.0f;
+
+		m_pAudio->play(eSound::PowerUp);
 	}
 
 	//end stat buff
@@ -435,6 +441,8 @@ void CPlayer::buildInput() {
 		m_tiShield.SetTimeSince(0.0f);
 
 		m_nBlood -= bloodShieldCost;
+
+		m_pAudio->play(eSound::PowerUp);
 	}
 
 	//end shield
@@ -453,6 +461,7 @@ void CPlayer::buildInput() {
 			m_pObjectManager->FireBeam(this, eSprite::Bullet, false);
 		}
 
+		m_pAudio->play(eSound::PowerUp);
 	}
 
 	//blood heal ability
@@ -465,6 +474,8 @@ void CPlayer::buildInput() {
 		if (m_iHealth > 100) {
 			m_iHealth = 100;
 		}
+
+		m_pAudio->play(eSound::PowerUp);
 	}
 
 	if (m_pMouse->TriggerDown(eMouseButton::Left) && CanAttack()) {

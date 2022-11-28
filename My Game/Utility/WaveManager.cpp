@@ -57,6 +57,7 @@ void WaveManager::EndWave() {
 	m_bWaveStarted = false;
 	m_tTimeSinceLastWave.SetTimeSince(0.0f);
 	m_iEnemiesPerWave += 5;
+	m_fsEnemyChance += 0.1f;
 	//printf("wave Ended\n");
 }
 
@@ -91,7 +92,13 @@ void WaveManager::StartWave() {
 				break;
 			}
 
-			m_pObjectManager->create(eSprite::SpitterEnemy_Idle, pos);
+			if (m_pRandom->randf() < m_fsEnemyChance) {
+				m_pObjectManager->create(eSprite::SpitterEnemy_Idle, pos);
+			}
+			else {
+				m_pObjectManager->create(eSprite::Enemy_Idle, pos);
+			}
+			
 		}
 	}
 	

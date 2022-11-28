@@ -391,9 +391,6 @@ void CPlayer::buildInput() {
 
 		StaminaDepletion(m_nDashCost);
 
-		m_pAudio->play(eSound::Whoosh);
-		
-
 		if (horizontal != 0 || vertical != 0) {
 			inputAtStateTransition = Vector2(horizontal, vertical);
 		}

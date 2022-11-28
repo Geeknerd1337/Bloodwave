@@ -11,6 +11,8 @@ public:
 	TimeSince m_tTimeSinceLastWave;
 	int m_iCurrentWave = 0;
 	int m_iEnemiesPerWave = 10;
+
+	float m_fsEnemyChance = 0.1f;
 	
 	void StartWave();
 	int EnemyCount();

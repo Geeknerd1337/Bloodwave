@@ -139,5 +139,6 @@
 	<sound name="hit" file="hit.wav" instances="1"/>
 	<sound name="whoosh" file="whoosh.wav" instances="1"/>
 	<sound name="powerup" file="powerup.wav" instances="1"/>
+	<sound name="gameover" file="game_over.wav" instances="1"/>
   </sounds>
 </settings>

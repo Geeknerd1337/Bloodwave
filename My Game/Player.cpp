@@ -58,12 +58,12 @@ void CPlayer::DeathScreen() {
 	LParticleDesc2D d; //particle descriptor
 
 	d.m_nSpriteIndex = (UINT)eSprite::Loose;
-	d.m_vPos = Vector2(1280.0, 720.0);
-	d.m_fLifeSpan = 5.0f;
-	d.m_fMaxScale = 1.8f;
-	d.m_fScaleInFrac = 0.0f;
-	d.m_fFadeOutFrac = 0.8f;
-	d.m_fScaleOutFrac = d.m_fFadeOutFrac;
+	d.m_vPos = Vector2(m_pCamera->m_cameraPos.x, m_pCamera->m_cameraPos.y);
+	//d.m_fLifeSpan = 5.0f;
+	//d.m_fMaxScale = 1.8f;
+	//d.m_fScaleInFrac = 0.0f;
+	//d.m_fFadeOutFrac = 0.8f;
+	//d.m_fScaleOutFrac = d.m_fFadeOutFrac;
 
 	m_pParticleEngine->create(d);
 }
@@ -224,14 +224,15 @@ void CPlayer::simulate() {
 		break;
 	case ePlayerState::Dead:
 		//Player Dead State
-		//call gameover eventually
 		//reload the game
+		
+		//player pointer is dead
 		m_bDead = true;
 		//set it to false since game ended
 		m_pObjectManager->gameStatus = false;
-		//DeathScreen();
+		DeathScreen();
+		m_pAudio->play(eSound::GameOver);
 		break;
-
 	}
 
 }

@@ -13,8 +13,9 @@ void MiniBossStats::Draw() {
 	
 }
 
+//Draws the Mini Boss' health bar
 void MiniBossStats::DrawHealthBar() {
-	//Draws the Mini Boss' health bar
+	
 	CObject* d = m_pObjectManager->GetMiniBoss();
 
 	CMiniBoss* m_pMiniBoss = (CMiniBoss*)d;

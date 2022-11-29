@@ -111,7 +111,7 @@ void CMiniBoss::simulate() {
 
 	m_vPushVelocity = m_vPushVelocity * 0.9f;
 
-	//Finite state machine for dictating which manages the enemies state
+	//Finite state machine for dictating which manages the MB's state
 	switch (m_eEnemyState) {
 	case eEnemyState::Idle:
 		//Enemy Idle State

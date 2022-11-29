@@ -6,7 +6,11 @@
 
 void MiniBossStats::Draw() {
 	const float t = m_pTimer->GetTime();
-	DrawHealthBar();
+	//show bars if game is running
+	if (m_pObjectManager->gameStatus) {
+		DrawHealthBar();
+	}
+	
 }
 
 void MiniBossStats::DrawHealthBar() {

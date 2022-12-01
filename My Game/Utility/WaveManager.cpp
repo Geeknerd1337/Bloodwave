@@ -123,6 +123,6 @@ int WaveManager::EnemyCount(){
 
 void WaveManager::SpawnMiniBoss() {
 	for (int i = 0; i < 1; i++) {
-		m_pObjectManager->create(eSprite::Mini_Boss_Idle, Vector2(1024.0f, 1024.0f));
+		m_pMiniBoss = (CMiniBoss*) m_pObjectManager->create(eSprite::Mini_Boss_Idle, Vector2(1024.0f, 1024.0f));
 	}
 }

@@ -16,9 +16,9 @@ void MiniBossStats::Draw() {
 //Draws the Mini Boss' health bar
 void MiniBossStats::DrawHealthBar() {
 	
-	CObject* d = m_pObjectManager->GetMiniBoss();
+	//CObject* d = m_pObjectManager->GetMiniBoss();
 
-	CMiniBoss* m_pMiniBoss = (CMiniBoss*)d;
+	//CMiniBoss* m_pMiniBoss = (CMiniBoss*)d;
 
 	if (m_pMiniBoss != nullptr) {
 		float x = (1280.0f / 5.0f) - 30.0f;
@@ -37,6 +37,7 @@ void MiniBossStats::DrawHealthBar() {
 		UIHelpers::DrawRectangle(Vector2(x + 50.0, y + vertStatPadding / 2.0f), Vector2(w - 60, h - vertStatPadding), Vector4(108.0 / 255.0, 35.0 / 255.0, 48.0 / 255.0, 1.0));
 		UIHelpers::DrawStatBar(pos, size, m_pMiniBoss->GetDisplayLastHealth(), 100.0f, Vector4(255 / 255.0, 235 / 255.0f, 87 / 255.0f, 1.0f));
 		UIHelpers::DrawStatBar(pos, size, m_pMiniBoss->GetDisplayHealth(), 100.0f, Vector4(190.0/255.0, 39.0/255.0, 67.0/255.0, 1.0));
+
 	}
 	
 }

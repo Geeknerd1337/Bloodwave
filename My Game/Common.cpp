@@ -17,3 +17,5 @@ CPlayer* CCommon::m_pPlayer = nullptr;
 GameCamera* CCommon::m_pCamera = nullptr;
 Canvas* CCommon::m_pCanvas = nullptr;
 WaveManager* CCommon::m_pWaveManager = nullptr;
+
+CMiniBoss* CCommon::m_pMiniBoss = nullptr;

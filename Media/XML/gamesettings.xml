@@ -70,6 +70,14 @@
 	  <frame index="3" left="64"  top="0" right="128" bottom="97"/>>
     </sprite>
 	
+	<sprite name="melee_swipe_sheet" file="melee_swipe.png"/>
+	<sprite name="melee_swipe" sheet="melee_swipe_sheet" frames="4">
+      <frame index="0" left="0"   top="0" right="80"  bottom="32"/>>
+      <frame index="1" left="80"  top="0" right="160" bottom="32"/>>
+      <frame index="2" left="160" top="0" right="240" bottom="32"/>>
+	  <frame index="3" left="240" top="0" right="320" bottom="32"/>>
+    </sprite>
+	
 	<sprite name="small_square" file="SmallSquare.png"/>
 	<sprite name="health_pip" file="health_pip.png"/>
 	<sprite name="blood_particle" file="blood_particle.png"/>

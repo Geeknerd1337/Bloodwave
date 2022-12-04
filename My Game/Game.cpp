@@ -153,8 +153,10 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::SpitterEnemyWalkSpriteSheetRight, "spitterenemy_walk_sheet_right");
 	m_pRenderer->Load(eSprite::SpitterEnemy_Walk_Right, "spitterenemy_walk_right");
 
+	m_pRenderer->Load(eSprite::Melee_Swipe_Sheet, "melee_swipe_sheet");
+	m_pRenderer->Load(eSprite::Melee_Swipe, "melee_swipe");
+
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
-	m_pRenderer->Load(eSprite::Ant, "ant");
 	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
 	m_pRenderer->Load(eSprite::Single_Pixel, "single_pixel");
 	m_pRenderer->Load(eSprite::Small_Circle, "small_circle");

@@ -24,6 +24,10 @@ void Debris::draw() {
 	desc.m_nCurrentFrame = m_nCurrentFrame;
 	desc.m_fRoll = m_fRoll;
 	desc.m_fAlpha = m_fAlpha;
+	desc.m_fXScale = m_fXScale;
+	desc.m_fYScale = m_fYScale;
+	desc.m_f4Tint = m_f4Tint;
+	
 	
 	m_iDepth = (int)desc.m_vPos.y - z;
 	

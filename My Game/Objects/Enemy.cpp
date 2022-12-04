@@ -22,6 +22,7 @@ CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 
 	SetSprite(eSprite::Enemy_Idle);
 	
+	
 	m_fImageSpeed = 60 * 0.50f;
 } //constructor
 
@@ -54,6 +55,7 @@ void CEnemy::TakeDamage(int damage) {
 	//if health is less than 0 mark as dead
 	if (m_iHealth <= 0) {
 		m_bDead = true;
+		m_f4Tint = Vector4(1.0, 1.0, 1.0, 1.0);
 		DeathFX();
 	}
 }
@@ -92,6 +94,9 @@ void CEnemy::DeathFX() {
 	d.m_fScaleInFrac = 0.0f;
 	d.m_fFadeOutFrac = 0.8f;
 	d.m_fScaleOutFrac = 0;
+	d.m_f4Tint = m_f4Tint;
+	d.m_fXScale = m_fXScale;
+	d.m_fYScale = m_fYScale;
 	m_pParticleEngine->create(d);
 
 	CObject* torso = m_pObjectManager->createDirect(new Debris(m_vPos, eSprite::Monster_Gib));
@@ -100,6 +105,10 @@ void CEnemy::DeathFX() {
 	torso->m_fRoll = 0.0f;
 	//Set torso m_fRollSpeed to a random value between -100 and 100
 	((Debris*)torso)->m_fRollSpeed = (rand() % 20) - 10.0f;
+
+	torso->m_f4Tint = m_f4Tint;
+	torso->m_fXScale = m_fXScale;
+	torso->m_fYScale = m_fYScale;
 	
 } //DeathFX
 

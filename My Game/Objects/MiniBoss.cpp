@@ -57,6 +57,7 @@ void CMiniBoss::TakeDamage(int damage) {
 		//if health is less than 0 mark as dead
 		if (m_iHealth <= 0) {
 			m_bDead = true;
+			m_f4Tint = Vector4(0.5, 0.0, 1.0, 0.0);
 			DeathFX();
 		}
 	}

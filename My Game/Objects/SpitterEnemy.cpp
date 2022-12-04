@@ -98,4 +98,8 @@ void CSpitterEnemy::DeathFX() {
 	//Set torso m_fRollSpeed to a random value between -100 and 100
 	((Debris*)torso)->m_fRollSpeed = (rand() % 20) - 10.0f;
 
+	torso->m_f4Tint = Vector4(0.0, 0.5, 0.5, 1.0);
+	torso->m_fXScale = m_fXScale;
+	torso->m_fYScale = m_fYScale;
+
 } //DeathFX

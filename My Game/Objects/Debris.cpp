@@ -48,12 +48,14 @@ void Debris::simulate() {
 		velocity.y = Lerp(velocity.x, 0.0f, dt * 5);
 		m_fRollSpeed = Lerp(m_fRollSpeed, 0.0f, dt * 2.0f);
 
-		if (m_tTimeSinceLanded.GetTimeSince() > 1.0f) {
-			m_fAlpha = 1.0f - ((m_tTimeSinceLanded.GetTimeSince() - 1.0f) / 2.0f);
-		}
+		if (m_bFade) {
+			if (m_tTimeSinceLanded.GetTimeSince() > 1.0f) {
+				m_fAlpha = 1.0f - ((m_tTimeSinceLanded.GetTimeSince() - 1.0f) / 2.0f);
+			}
 
-		if (m_fAlpha <= 0.0f) {
-			m_bDead = true;
+			if (m_fAlpha <= 0.0f) {
+				destroy();
+			}
 		}
 	}
 
@@ -63,6 +65,10 @@ void Debris::simulate() {
 	//Update m_vPos
 	m_vPos += Vector2(velocity.x,velocity.y) * dt;
 	
+}
+
+void Debris::destroy() {
+	m_bDead = true;
 }
 
 void Debris::drawBegin() {

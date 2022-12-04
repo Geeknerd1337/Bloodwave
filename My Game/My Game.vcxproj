@@ -161,7 +161,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ant.cpp" />
     <ClCompile Include="Beam.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Objects\Acid.cpp" />
@@ -191,7 +190,6 @@
     <ClCompile Include="Utility\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ant.h" />
     <ClInclude Include="Beam.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Objects\Acid.h" />

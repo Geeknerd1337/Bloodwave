@@ -32,7 +32,6 @@ CObject* CObjectManager::create(eSprite t, const Vector2& pos) {
 	CObject* pObj = nullptr;
 
 	switch (t) { //create object of type t
-	case eSprite::Ant:     pObj = new CAnt(pos); break;
 	case eSprite::Player_Idle:  pObj = new CPlayer(pos); break;
 	case eSprite::Enemy_Idle: pObj = new CEnemy(pos); break;
 	case eSprite::Mini_Boss_Idle: pObj = new CMiniBoss(pos); break;

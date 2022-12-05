@@ -39,7 +39,6 @@ CBeam::CBeam(eSprite t, const Vector2& p) : CObject(t, p)
 	m_bIsBullet = true;
 	m_bStatic = false;
 	m_bIsTarget = false;
-	printf("beam");
 
 	killTimer.SetTimeSince(0.0f);
 }

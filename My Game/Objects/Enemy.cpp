@@ -8,7 +8,7 @@
 #include "ParticleEngine.h"
 #include <cmath>
 #include "Debris.h"
-
+#include "BloodParticle.h"
 
 CEnemy::CEnemy(const Vector2& p) : Actor(p) {
 	m_bIsTarget = true;
@@ -58,6 +58,12 @@ void CEnemy::TakeDamage(int damage) {
 		m_f4Tint = Vector4(1.0, 1.0, 1.0, 1.0);
 		DeathFX();
 	}
+
+	int numBlood = (rand() % 5) + 1;
+	for (int i = 0; i < numBlood; i++) {
+		CObject* drop = m_pObjectManager->createDirect(new BloodParticle(m_vPos, eSprite::Blood_Particle));
+		((BloodParticle*)drop)->SetRandomVelocity();
+	}
 }
 
 void CEnemy::HandleStun() {
@@ -105,6 +111,13 @@ void CEnemy::DeathFX() {
 	torso->m_fRoll = 0.0f;
 	//Set torso m_fRollSpeed to a random value between -100 and 100
 	((Debris*)torso)->m_fRollSpeed = (rand() % 20) - 10.0f;
+
+	//Generate a random int between 10 and 20
+	int numBlood = (rand() % 10) + 10;
+	for (int i = 0; i < numBlood; i++) {
+		CObject* drop = m_pObjectManager->createDirect(new BloodParticle(m_vPos, eSprite::Blood_Particle));
+		((BloodParticle*)drop)->SetRandomVelocity();
+	}
 
 	torso->m_f4Tint = m_f4Tint;
 	torso->m_fXScale = m_fXScale;

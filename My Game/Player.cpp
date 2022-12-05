@@ -40,7 +40,7 @@ int CPlayer::getPlayerHealth() {
 //override from actor
 void CPlayer::TakeDamage(int damage) {
 	if (m_tiFrame.GetTimeSince() > 1.0f && shieldOn == false) {
-		printf("player health: %d\n", m_iHealth);
+		//printf("player health: %d\n", m_iHealth);
 		m_iHealth -= damage;
 		m_tTimeSinceDamaged.SetTimeSince(0.0f);
 
@@ -88,7 +88,7 @@ void CPlayer::PlayAttackAnimation() {
 
 	m_vVelocity = inputAtStateTransition * m_fMoveSpeed;
 	
-	printf("But why %f %f\n", m_tTimeSinceLastAttack.GetTimeSince(), m_fImageSpeed * 2.0f);
+	
 	
 	if (m_tTimeSinceLastAttack.GetTimeSince() > (1/60.0f) * m_fImageSpeed * 2.0f) {
 		m_bAttacked = false;

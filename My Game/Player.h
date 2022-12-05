@@ -152,9 +152,6 @@ protected:
 
 	const int bloodHealAmount = 66;
 
-	bool statBuffOn = false;
-	bool shieldOn = false;
-
 	/// <summary>
 	/// The current state of the player
 	/// </summary>
@@ -166,6 +163,9 @@ public:
 
 	//decides if we draw info text in playerstats
 	bool showInfo = false;
+
+	bool statBuffOn = false;
+	bool shieldOn = false;
 
 	//Implement BuildInput
 	virtual void buildInput() override;

@@ -24,6 +24,18 @@ void PlayerStats::Draw()
 		if (m_tiInfo.GetTimeSince() < 2.0f) {
 			IFadetext();
 		}
+
+		//display shield icon
+		if (m_pPlayer->shieldOn) {
+			LSpriteDesc2D desc;
+			desc.m_nSpriteIndex = (UINT)eSprite::Shield;
+			desc.m_vPos = UIHelpers::GetScreenPos() + Vector2(100, 700);
+			desc.m_fXScale = 2.0f;
+			desc.m_fYScale = 2.0f;
+			
+
+			m_pRenderer->Draw(&desc);
+		}
 	}
 }
 

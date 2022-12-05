@@ -164,6 +164,7 @@
     <ClCompile Include="Beam.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Objects\Acid.cpp" />
+    <ClCompile Include="Objects\BloodParticle.cpp" />
     <ClCompile Include="Objects\Debris.cpp" />
     <ClCompile Include="Objects\Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\FadeObject.cpp" />
+    <ClCompile Include="Objects\MeleeSwipe.cpp" />
     <ClCompile Include="Objects\MiniBoss.cpp" />
     <ClCompile Include="Objects\SpitterEnemy.cpp" />
     <ClCompile Include="Objects\UI\Canvas.cpp" />
@@ -193,6 +195,7 @@
     <ClInclude Include="Beam.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Objects\Acid.h" />
+    <ClInclude Include="Objects\BloodParticle.h" />
     <ClInclude Include="Objects\Debris.h" />
     <ClInclude Include="Objects\Enemy.h" />
     <ClInclude Include="Game.h" />
@@ -202,6 +205,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\FadeObject.h" />
+    <ClInclude Include="Objects\MeleeSwipe.h" />
     <ClInclude Include="Objects\MiniBoss.h" />
     <ClInclude Include="Objects\SpitterEnemy.h" />
     <ClInclude Include="Objects\UI\MiniBossStats.h" />

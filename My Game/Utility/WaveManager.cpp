@@ -41,7 +41,7 @@ void WaveManager::Simulate() {
 
 	//Continually reset wave timer
 	if (!m_bWaveStarted) {
-		printf("%f Seconds Until Wave\n", m_fTimeBetweenWaves - m_tTimeSinceLastWave.GetTimeSince());
+		//printf("%f Seconds Until Wave\n", m_fTimeBetweenWaves - m_tTimeSinceLastWave.GetTimeSince());
 	}
 
 

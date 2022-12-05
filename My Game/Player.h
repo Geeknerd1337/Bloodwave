@@ -25,6 +25,8 @@ protected:
 	int m_nStamina = 1000;
 	float m_nBlood = 0.0f;
 
+	bool m_bAttacked = false;
+
 	/// <summary>
 	/// Our run speed
 	/// </summary>

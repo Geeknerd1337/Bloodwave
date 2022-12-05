@@ -144,6 +144,7 @@ void CObject::UpdateFramenumber() {
 	//This gets the number of frames in the current sprite sheet
 	const size_t n = m_pRenderer->GetNumFrames(m_nSpriteIndex); 
 
+
 	if (m_fImageSpeed <= 0.0f) {
 		return;
 	}
@@ -156,7 +157,7 @@ void CObject::UpdateFramenumber() {
 		//Check the next frame
 		int nextFrame = (m_nCurrentFrame + 1 & n);
 		//If the next frame is zero, then we've reached the end of the animation, do the image call back
-		if (m_nCurrentFrame == 0) {
+		if (m_nCurrentFrame != 0 && nextFrame == 0) {
 			ImageLooped((eSprite)m_nSpriteIndex);
 		}
 

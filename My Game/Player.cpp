@@ -12,6 +12,7 @@
 #include "Objects/FadeObject.h"
 #include "Particle.h"
 #include "ParticleEngine.h"
+#include "Objects/MeleeSwipe.h"
 
 /// <summary>
 /// Construct the player at a given position
@@ -65,7 +66,7 @@ void CPlayer::DeathScreen() {
 
 void CPlayer::PlayAttackAnimation() {
 	
-	m_fImageSpeed = 60 * 0.20f;
+	m_fImageSpeed = 60 * 0.1f;
 
 	if (inputAtStateTransition.x != 0.0f) {
 		if (inputAtStateTransition.x > 0.0) {
@@ -77,10 +78,25 @@ void CPlayer::PlayAttackAnimation() {
 	}
 
 	if (inputAtStateTransition.x == 0.0f) {
-		SetSprite(eSprite::Player_Idle);
+		if (inputAtStateTransition.y > 0.0) {
+			SetSprite(eSprite::Player_Attack_Right);
+		}
+		else {
+			SetSprite(eSprite::Player_Attack_Left);
+		}
 	}
 
-	m_vVelocity = m_vInput * m_fMoveSpeed;
+	m_vVelocity = inputAtStateTransition * m_fMoveSpeed;
+	
+	printf("But why %f %f\n", m_tTimeSinceLastAttack.GetTimeSince(), m_fImageSpeed * 2.0f);
+	
+	if (m_tTimeSinceLastAttack.GetTimeSince() > (1/60.0f) * m_fImageSpeed * 2.0f) {
+		m_bAttacked = false;
+		SetSprite(eSprite::Player_Idle);
+		//Set the state to idle
+		m_ePlayerState = ePlayerState::Idle;
+		
+	}
 }
 
 void CPlayer::PlayWalkAnimation() {
@@ -209,9 +225,12 @@ void CPlayer::simulate() {
 		HandleIdleTransitions();
 		break;
 	case ePlayerState::Attack:
+
 		//Player Attack State
+		if (!m_bAttacked) {
+			HandleAttack();
+		}
 		PlayAttackAnimation();
-		HandleAttack();
 		break;
 	case ePlayerState::Dash:
 		//Player Dash State
@@ -304,6 +323,14 @@ void CPlayer::HandleAttack() {
 
 	pObjects = m_pObjectManager->IntersectLine(start, end);
 
+	CObject* swipe = m_pObjectManager->createDirect(new MeleeSwipe(start + inputAtStateTransition * 50.0f, eSprite::Melee_Swipe));
+	
+	//Get an angle from the input
+	float angle = atan2f(inputAtStateTransition.y, inputAtStateTransition.x);
+	swipe->m_fRoll = angle;
+
+	
+
 	//Iterate over pObjects and draw a line to each one
 	for (auto pObject : pObjects) {
 		if (dynamic_cast<CEnemy*>(pObject) != nullptr) {
@@ -323,8 +350,10 @@ void CPlayer::HandleAttack() {
 			
 		}
 	}
+	m_tTimeSinceLastAttack.SetTimeSince(0.0f);
 
-	m_ePlayerState = ePlayerState::Idle;
+
+	m_bAttacked = true;
 }
 
 bool CPlayer::CanAttack() {
@@ -471,7 +500,7 @@ void CPlayer::buildInput() {
 		m_pAudio->play(eSound::PowerUp);
 	}
 
-	if (m_pMouse->TriggerDown(eMouseButton::Left) && CanAttack()) {
+	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {
 
 		Vector2 mousePos = m_pMouse->GetMouseWorldPos();
 		Vector2 playerPos = m_pPlayer->GetPos();

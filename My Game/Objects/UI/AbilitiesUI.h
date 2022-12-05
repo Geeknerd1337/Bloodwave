@@ -11,5 +11,7 @@ private:
 public:
 
 	virtual void Draw() override;
-	void DrawAbility(Vector2 pos);
+	void DrawAbility(Vector2 pos, eSprite);
+	//Array of 4 bump floats
+	float bump[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
 };

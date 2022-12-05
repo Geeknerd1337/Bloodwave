@@ -171,6 +171,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Shield, "shield");
 	m_pRenderer->Load(eSprite::IconDrop, "icondrop");
 	m_pRenderer->Load(eSprite::Diamond, "diamond");
+	m_pRenderer->Load(eSprite::Ability_Health, "ability_health");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages

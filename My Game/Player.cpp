@@ -446,7 +446,7 @@ void CPlayer::buildInput() {
 	}
 
 	//invincibility shield blood ability
-	if (m_pKeyboard->TriggerDown('2') && m_nBlood > bloodShieldCost) {
+	if (m_pKeyboard->TriggerDown('2') && m_nBlood > bloodShieldCost && !shieldOn) {
 		shieldOn = true;
 		m_tiShield.SetTimeSince(0.0f);
 

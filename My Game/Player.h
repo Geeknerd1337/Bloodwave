@@ -145,10 +145,7 @@ protected:
 	//blood abilites
 	void BloodBeam();
 
-	const int bloodStatBuffCost = 444;
-	const int bloodShieldCost = 555;
-	const int bloodBeamCost = 666;
-	const int bloodHealCost = 999;
+	
 
 	const int bloodHealAmount = 66;
 
@@ -188,7 +185,10 @@ public:
 	
 	virtual void drawBegin() override;
 
-	
+	const int bloodStatBuffCost = 444;
+	const int bloodShieldCost = 555;
+	const int bloodBeamCost = 666;
+	const int bloodHealCost = 999;
 
 	/// <summary>
 	/// Returns the players display health

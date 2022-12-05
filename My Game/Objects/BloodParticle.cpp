@@ -1,5 +1,8 @@
 #include "BloodParticle.h"
 #include "../Helpers.h"
+#include "BloodPool.h"
+#include "../Common.h"
+#include "../ObjectManager.h"
 
 BloodParticle::BloodParticle(const Vector2& p, eSprite spr) : Debris(p, spr) {
 	SetRandomVelocity();
@@ -15,7 +18,8 @@ void BloodParticle::simulate() {
 
 
 void BloodParticle::land() {
-	printf("WHAT???");
+	CObject* obj = m_pObjectManager->createDirect(new BloodPool(eSprite::Blood_Pool,m_vPos));
+	((BloodPool*)obj)->initialize();
 	m_bDead = true;
 }
 
@@ -27,6 +31,7 @@ void BloodParticle::drawBegin() {
 		desc.m_fYScale = 0.5f;
 		desc.m_f4Tint = Vector4(0.05f, 0.05f, 0.05f, 1.0f);
 		desc.m_fAlpha = 0.1f * m_fAlpha;
+		
 
 		m_pRenderer->Draw(&desc);
 

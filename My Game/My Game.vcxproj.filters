@@ -30,6 +30,7 @@
     <ClCompile Include="Beam.cpp" />
     <ClCompile Include="Objects\MeleeSwipe.cpp" />
     <ClCompile Include="Objects\BloodParticle.cpp" />
+    <ClCompile Include="Objects\BloodPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
@@ -61,6 +62,7 @@
     <ClInclude Include="Beam.h" />
     <ClInclude Include="Objects\MeleeSwipe.h" />
     <ClInclude Include="Objects\BloodParticle.h" />
+    <ClInclude Include="Objects\BloodPool.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

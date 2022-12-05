@@ -165,6 +165,7 @@
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Objects\Acid.cpp" />
     <ClCompile Include="Objects\BloodParticle.cpp" />
+    <ClCompile Include="Objects\BloodPool.cpp" />
     <ClCompile Include="Objects\Debris.cpp" />
     <ClCompile Include="Objects\Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Objects\Acid.h" />
     <ClInclude Include="Objects\BloodParticle.h" />
+    <ClInclude Include="Objects\BloodPool.h" />
     <ClInclude Include="Objects\Debris.h" />
     <ClInclude Include="Objects\Enemy.h" />
     <ClInclude Include="Game.h" />

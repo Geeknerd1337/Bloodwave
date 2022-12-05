@@ -25,7 +25,7 @@ enum class eSprite : UINT {
 	EnemyWalkSpriteSheetLeft, EnemyWalkSpriteSheetRight, Tile, TileSheet,
 	SpitterEnemyWalkSpriteSheetLeft, SpitterEnemyWalkSpriteSheetRight,
 	Melee_Swipe_Sheet, Melee_Swipe, Diamond,
-	Ability_Health, 
+	Ability_Health, Ability_Shield, Ability_Buff, Ability_Beam,
 	SpitterEnemy_Idle, SpitterEnemy_Idle_Right, SpitterEnemy_Walk_Left, SpitterEnemy_Walk_Right, SpitterEnemy_Dead,
 	SpitterMonster_Gib, Acid, Win, Loose, Shield, IconDrop, 
 	Size  //MUST BE LAST

@@ -119,6 +119,10 @@
 	<sprite name="icondrop" file="iconDrop.png"/>
 	<sprite name="diamond" file="diamond.png"/>
 	<sprite name="ability_health" file="ability_health.png"/>
+	<sprite name="ability_shield" file="ability_shield.png"/>
+	<sprite name="ability_buff" file="ability_buff.png"/>
+	<sprite name="ability_beam" file="ability_beam.png"/>
+	
 	
 	<sprite name="melee_swipe_sheet" file="melee_swipe.png"/>
 	<sprite name="melee_swipe" sheet="melee_swipe_sheet" frames="4">

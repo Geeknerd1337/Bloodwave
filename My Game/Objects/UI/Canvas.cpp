@@ -17,10 +17,11 @@ void Canvas::AddElement(UIElement* element)
 
 void Canvas::Initialize()
 {
+	AddElement(new AbilitiesUI());
 	AddElement(new PlayerStats());
 	AddElement(new WaveUI());
 	AddElement(new MiniBossStats());
-	AddElement(new AbilitiesUI());
+	
 }
 
 Canvas::~Canvas()

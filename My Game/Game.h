@@ -10,6 +10,7 @@
 #include "Settings.h"
 #include "Player.h"
 #include "Utility/GameCamera.h"
+#include "Utility/Rendering/BloodWaveRenderer.h"
 
 /// \brief The game class.
 ///
@@ -25,6 +26,7 @@ class CGame :
 	public LSettings,
 	public CCommon {
 	friend class GameCamera;
+	friend class CMouse;
 private:
 	bool m_bDrawFrameRate = false; ///< Draw the frame rate.
 	std::string m_sConsoleOutput = "";
@@ -38,6 +40,15 @@ private:
 	void DrawFrameRateText(); ///< Draw frame rate text to screen.
 	void CreateObjects(); ///< Create game objects.
 	void FollowCamera(); ///< Make camera follow player character.
+	void MouseHandler(); ///< The mouse handler.
+
+	//TODO: Move to its own class
+	void DrawTiles();
+	void InitializeTileMap();
+
+	//2d Int Array of the tilemap
+	int m_tileMap[64][64];
+	
 
 	static CGame* instance; // use nullptr since C++11
 
@@ -52,10 +63,12 @@ public:
 	void AddConsoleOutput(std::string s);
 
 	void DrawConsoleText();
+	void DrawHealthBar();
+
 
 	static CGame* Instance(); ///< Return the instance of the game.
 	//Static Game Camera
-	static GameCamera* camera;
+
 
 
 }; //CGame

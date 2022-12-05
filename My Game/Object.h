@@ -24,19 +24,41 @@ class CObject:
   public CCommon,
   public LBaseObject
 {
-  friend class CObjectManager; ///< Object manager needs access so it can manage.
+  friend class CObjectManager;
 
   protected:
     float m_fRadius = 0; ///< Bounding circle radius.
-
-    float m_fSpeed = 0; ///< Speed.
+    Vector3 m_vBounds = Vector3(0.0f, 0.0f, 0.0f);
     float m_fRotSpeed = 0; ///< Rotational speed.
-    Vector2 m_vVelocity; ///< Velocity.
+
+    
+    /// <summary>
+	/// Represents the velocity of the object where the x and y components make up the horizontal and vertical components of the velocity, respectively.
+    /// </summary>
+   Vector2 m_vVelocity;
+	
+	
+    //TODO: Remove these
     bool m_bStatic = true; ///< Is static (does not move).
     bool m_bIsTarget = true; ///< Is a target.
     bool m_bIsBullet = false; ///< Is a bullet.
 
-    LEventTimer* m_pGunFireEvent = nullptr; ///< Gun fire event.
+    /// <summary>
+    /// Scalar float representing how fast our image goes relative to 60 frames a second
+    /// </summary>
+    float m_fImageSpeed = 1;
+	
+    /// <summary>
+    /// An event for updating our frame number
+    /// </summary>
+    LEventTimer* m_pFrameEvent = nullptr;
+
+    /// <summary>
+    /// Updates the frame, called from simulate method.
+    /// </summary>
+    void UpdateFramenumber();
+
+    virtual void ImageLooped(eSprite);
     
     virtual void CollisionResponse(const Vector2&, float,
       CObject* = nullptr); ///< Collision response.
@@ -45,15 +67,40 @@ class CObject:
     const Vector2 GetViewVector() const; ///< Compute view vector.
 
   public:
+
     CObject(eSprite, const Vector2&); ///< Constructor.
     virtual ~CObject(); ///< Destructor.
-	//Virtual BuildINput method
-	virtual void buildInput();
+	
+    /// <summary>
+	/// Build Input is called every frame and is responsible for handling input on a per object basis. This is called before simulate.
+    /// </summary>
+    virtual void buildInput();
 
-    void move(); ///< Move object.
-    void draw(); ///< Draw object.
+    /// <summary>
+    /// This method handles the simulation of all objects. It is where we will put game logic for each individual object
+	/// and gets called after buildInput() and before draw()
+    /// </summary>
+    virtual void simulate();
+
+    /// <summary>
+    /// A method responsible for moving the object in the world. This is called after simulate.
+    /// </summary>
+    void move();
+
+    /// <summary>
+    /// A method which is responsible for actually drawing the object, called last
+    /// </summary>
+    virtual void draw();
+
+    virtual void drawEnd();
+
+    virtual void drawBegin();
+
+    int m_iDepth = 0;
 
     void SetSprite(eSprite);
+
+    const Vector2& GetPos() const; ///< Get position.
 
 
     const bool isBullet() const; ///< Is a bullet.

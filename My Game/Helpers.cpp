@@ -18,6 +18,14 @@ const Vector2 AngleToVector(const float theta){
   return Vector2(cosf(theta), sinf(theta));
 } //AngleToVector
 
+/// <summary>
+/// Lerps from one float value to another using a delta
+/// </summary>
+float Lerp(float x, float y, float t)
+{
+    return x* (1.0 - t) + (y* t);
+}
+
 /// Compute the counterclockwise unit perpendicular to a vector.
 /// If \f$\vec{v} = [v_x, v_y]\f$, then both dot products 
 /// \f$\vec{v} \cdot [-v_y, v_x]\f$ and \f$\vec{v} \cdot [v_y, -v_x]\f$ are

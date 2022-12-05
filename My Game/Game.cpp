@@ -2,7 +2,7 @@
 /// \brief Code for the game class CGame.
 
 #include "Game.h"
-
+#include <random>
 #include "GameDefines.h"
 #include "SpriteRenderer.h"
 #include "ComponentIncludes.h"
@@ -10,10 +10,18 @@
 
 #include "shellapi.h"
 #include <iostream>
+#include "Utility/TimeSince.h"
+#include "Utility/CMouse.h"
+#include "Objects/Enemy.h"
+#include "Objects/MiniBoss.h"
+#include "Objects/SpitterEnemy.h"
+#include "Objects/UI/Canvas.h"
+#include "Objects/UI/UIElement.h"
+#include "Utility/WaveManager.h"
 
 //Singleton
 CGame* CGame::instance = nullptr;
-GameCamera* CGame::camera = nullptr;
+
 
 //This is a singleton instance which can be accessed via any class that includes
 //game.h. This is so we can access any global functions if needed.
@@ -28,7 +36,9 @@ CGame* CGame::Instance() {
 CGame::~CGame() {
 	delete m_pParticleEngine;
 	delete m_pObjectManager;
-	delete camera;
+	delete m_pCanvas;
+	delete m_pCamera;
+	delete m_pMouse;
 } //destructor
 
 /// Create the renderer, the object manager, and the particle engine, load
@@ -36,8 +46,12 @@ CGame::~CGame() {
 /// 
 void CGame::Initialize() {
 
-	m_pRenderer = new LSpriteRenderer(eSpriteMode::Batched2D);
+
+	m_pRenderer = new BloodWaveRenderer(eSpriteMode::Batched2D);
 	m_pRenderer->Initialize(eSprite::Size);
+	m_pMouse = new CMouse;
+	m_pMouse->Initialize();
+
 	LoadImages(); //load images from xml file list
 
 	m_pObjectManager = new CObjectManager; //set up the object manager 
@@ -49,7 +63,20 @@ void CGame::Initialize() {
 	instance = this;
 
 	//Set the camera
-	camera = new GameCamera();
+	m_pCamera = new GameCamera();
+
+	//Set the canvas
+	m_pCanvas = new Canvas(Vector2(m_nWinWidth, m_nWinHeight));
+	m_pCanvas->Initialize();
+
+	//m_pAudio->play(eSound::Synth);
+	m_pAudio->loop(eSound::Synth);
+
+	//Set the wave manager
+	m_pWaveManager = new WaveManager();
+	m_pWaveManager->Initialize();
+
+	InitializeTileMap();
 
 	BeginGame();
 
@@ -66,6 +93,10 @@ void CGame::LoadImages() {
 	m_pRenderer->BeginResourceUpload();
 
 	m_pRenderer->Load(eSprite::Background, "floor");
+	m_pRenderer->Load(eSprite::Small_Square, "small_square");
+
+	//Someone ask me why I load small_square twice, I'll explain it then. - Josh Wilson
+	m_pRenderer->Load(eSprite::Fade_Object, "small_square");
 
 	m_pRenderer->Load(eSprite::SpriteSheet, "spritesheet"); //must be loaded before its sprites
 
@@ -74,15 +105,76 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::Bullet2, "bullet2");
 	m_pRenderer->Load(eSprite::Smoke, "smoke");
 	m_pRenderer->Load(eSprite::Spark, "spark");
-	m_pRenderer->Load(eSprite::Turret, "turret");
+	m_pRenderer->Load(eSprite::Acid, "acid");
 
 	//Player
 	m_pRenderer->Load(eSprite::Player_Idle, "player_idle");
 	m_pRenderer->Load(eSprite::Player_Idle_Left, "player_idle_left");
 	m_pRenderer->Load(eSprite::Player_Idle_Right, "player_idle_right");
 
+	//Player walk
+	m_pRenderer->Load(eSprite::PlayerWalkSpriteSheetLeft, "player_walk_sheet_left");
+	m_pRenderer->Load(eSprite::Player_Walk_Left, "player_walk_left");
+
+	m_pRenderer->Load(eSprite::PlayerWalkSpriteSheetRight, "player_walk_sheet_right");
+	m_pRenderer->Load(eSprite::Player_Walk_Right, "player_walk_right");
+
+	//Player attack
+	m_pRenderer->Load(eSprite::PlayerAttackSpriteSheetLeft, "player_attack_sheet_left");
+	m_pRenderer->Load(eSprite::Player_Attack_Left, "player_attack_left");
+
+	m_pRenderer->Load(eSprite::PlayerAttackSpriteSheetRight, "player_attack_sheet_right");
+	m_pRenderer->Load(eSprite::Player_Attack_Right, "player_attack_right");
+
+	//Enemy
+	m_pRenderer->Load(eSprite::Enemy_Idle, "enemy_idle");
+	m_pRenderer->Load(eSprite::Enemy_Idle_Left, "enemy_idle_left");
+	m_pRenderer->Load(eSprite::Enemy_Idle_Right, "enemy_idle_right");
+	m_pRenderer->Load(eSprite::Enemy_Dead, "enemy_dead");
+
+	//Enemy walk
+	m_pRenderer->Load(eSprite::EnemyWalkSpriteSheetLeft, "enemy_walk_sheet_left");
+	m_pRenderer->Load(eSprite::Enemy_Walk_Left, "enemy_walk_left");
+
+	m_pRenderer->Load(eSprite::EnemyWalkSpriteSheetRight, "enemy_walk_sheet_right");
+	m_pRenderer->Load(eSprite::Enemy_Walk_Right, "enemy_walk_right");
+
+	//Mini Boss
+	m_pRenderer->Load(eSprite::Mini_Boss_Idle, "miniboss_idle");
+
+	//spitter enemy
+	m_pRenderer->Load(eSprite::SpitterEnemy_Idle, "spitterenemy_idle");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Idle_Right, "spitterenemy_idle_right");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Dead, "spitterenemy_dead");
+
+	m_pRenderer->Load(eSprite::SpitterEnemyWalkSpriteSheetLeft, "spitterenemy_walk_sheet_left");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Walk_Left, "spitterenemy_walk_left");
+
+	m_pRenderer->Load(eSprite::SpitterEnemyWalkSpriteSheetRight, "spitterenemy_walk_sheet_right");
+	m_pRenderer->Load(eSprite::SpitterEnemy_Walk_Right, "spitterenemy_walk_right");
+
+	m_pRenderer->Load(eSprite::Melee_Swipe_Sheet, "melee_swipe_sheet");
+	m_pRenderer->Load(eSprite::Melee_Swipe, "melee_swipe");
+
 	m_pRenderer->Load(eSprite::AntSpriteSheet, "antwalk"); //must be loaded before its sprites
-	m_pRenderer->Load(eSprite::Ant, "ant");
+	m_pRenderer->Load(eSprite::Health_Pip, "health_pip");
+	m_pRenderer->Load(eSprite::Single_Pixel, "single_pixel");
+	m_pRenderer->Load(eSprite::Small_Circle, "small_circle");
+	m_pRenderer->Load(eSprite::Blood_Particle, "blood_particle");
+	m_pRenderer->Load(eSprite::Blood_Pool, "blood_pool");
+	m_pRenderer->Load(eSprite::Monster_Gib, "monster_gib");
+	m_pRenderer->Load(eSprite::SpitterMonster_Gib, "spittermonster_gib");
+	m_pRenderer->Load(eSprite::Tile, "tile");
+	m_pRenderer->Load(eSprite::TileSheet, "tileSheet");
+	m_pRenderer->Load(eSprite::Win, "win");
+	m_pRenderer->Load(eSprite::Loose, "loose");
+	m_pRenderer->Load(eSprite::Shield, "shield");
+	m_pRenderer->Load(eSprite::IconDrop, "icondrop");
+	m_pRenderer->Load(eSprite::Diamond, "diamond");
+	m_pRenderer->Load(eSprite::Ability_Health, "ability_health");
+	m_pRenderer->Load(eSprite::Ability_Beam, "ability_beam");
+	m_pRenderer->Load(eSprite::Ability_Shield, "ability_shield");
+	m_pRenderer->Load(eSprite::Ability_Buff, "ability_buff");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages
@@ -97,6 +189,14 @@ void CGame::LoadSounds() {
 	m_pAudio->Load(eSound::Clang, "clang");
 	m_pAudio->Load(eSound::Gun, "gun");
 	m_pAudio->Load(eSound::Ricochet, "ricochet");
+	m_pAudio->Load(eSound::Synth, "synth");
+	m_pAudio->Load(eSound::PowerUp, "powerup");
+	m_pAudio->Load(eSound::Hit, "hit");
+	m_pAudio->Load(eSound::Whoosh, "whoosh");
+	m_pAudio->Load(eSound::GameOver, "gameover");
+	m_pAudio->Load(eSound::Sword, "sword");
+	m_pAudio->Load(eSound::eHit, "ehit");
+	m_pAudio->Load(eSound::buff, "buff");
 } //LoadSounds
 
 /// Release all of the DirectX12 objects by deleting the renderer.
@@ -109,19 +209,12 @@ void CGame::Release() {
 /// Ask the object manager to create a player object, some ants, and a turret.
 
 void CGame::CreateObjects() {
-	//m_pRenderer->GetSize(eSprite::Background, m_vWorldSize.x, m_vWorldSize.y); //init m_vWorldSize
-	m_vWorldSize.x = 4096;
-	m_vWorldSize.y = 4096;
 
-	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(64.0f, 64.0f));
-	m_pObjectManager->create(eSprite::Turret, Vector2(430.0f, 430.0f));
+	m_vWorldSize.x = 2048;
+	m_vWorldSize.y = 2048;
 
-	Vector2 v(128.0f, 64.0f); //initial ant position
+	m_pPlayer = (CPlayer*)m_pObjectManager->create(eSprite::Player_Idle, Vector2(1024.0f, 1024.0f));
 
-	for (int i = 0; i < 12; i++) {
-		m_pObjectManager->create(eSprite::Ant, v);
-		v.x += 64.0f;
-	} //for
 } //CreateObjects
 
 /// Call this function to start a new game. This should be re-entrant so that
@@ -135,20 +228,25 @@ void CGame::BeginGame() {
 	CreateObjects(); //create new objects 
 } //BeginGame
 
-/// Poll the keyboard state and respond to the key presses that happened since
-/// the last frame.
 
-void CGame::KeyboardHandler() {
-	m_pKeyboard->GetState(); //get current keyboard state 
 
-	if (m_pKeyboard->TriggerDown(VK_F2)) //toggle frame rate
-		m_bDrawFrameRate = !m_bDrawFrameRate;
-
-	if (m_pKeyboard->TriggerDown(VK_BACK)) //start game
-		BeginGame(); 
+void CGame::MouseHandler() {
+	m_pMouse->GetState();
 }
 
-/// Poll the XBox controller state and respond to the controls there.
+void CGame::KeyboardHandler() {
+	if (m_pObjectManager->gameStatus) {
+		m_pKeyboard->GetState(); //get current keyboard state 
+
+		if (m_pKeyboard->TriggerDown(VK_F2)) //toggle frame rate
+			m_bDrawFrameRate = !m_bDrawFrameRate;
+
+		if (m_pKeyboard->TriggerDown(VK_BACK)) //start game
+			BeginGame();
+	}
+}
+
+
 
 void CGame::ControllerHandler() {
 	if (!m_pController->IsConnected())return;
@@ -178,17 +276,68 @@ void CGame::DrawConsoleText() {
 /// pipelining jiggery-pokery.
 
 void CGame::RenderFrame() {
-	m_pRenderer->BeginFrame(); //required before rendering
 
-	m_pRenderer->Draw(eSprite::Background, m_vWorldSize / 2.0f); //draw background
-	m_pObjectManager->draw(); //draw objects 
-	m_pParticleEngine->Draw(); //draw particles
-	//Useful method for drawing frame text
-	if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
-	DrawConsoleText(); //draw console output
+		m_pRenderer->BeginFrame(); //required before rendering
 
-	m_pRenderer->EndFrame(); //required after rendering
+		DrawTiles();
+
+
+		m_pObjectManager->drawBegin(); //draw objects
+		m_pObjectManager->draw(); //draw objects 
+		m_pParticleEngine->Draw(); //draw particles
+		m_pObjectManager->drawEnd(); //draw objects 
+
+		//Useful method for drawing frame text
+		if (m_bDrawFrameRate)DrawFrameRateText(); //draw frame rate, if required
+		DrawConsoleText(); //draw console output
+
+		Vector2 mousePos = m_pMouse->GetMouseWorldPos();
+		Vector2 playerPos = m_pPlayer->GetPos();
+
+		Vector2 mouseDir = mousePos - playerPos;
+		mouseDir.Normalize();
+
+		//Round the x and y components of the mouse dir
+		mouseDir.x = round(mouseDir.x);
+		mouseDir.y = round(mouseDir.y);
+
+		mouseDir.Normalize();
+
+		m_pCanvas->Draw();
+
+		m_pRenderer->EndFrame(); //required after rendering
+	
 } //RenderFrame
+
+void CGame::DrawHealthBar() {
+	float health = (float)m_pPlayer->getDisplayHealth();
+	float maxHealth = 100.0;
+
+	float numPips = 30.0f;
+	Vector2 windowOffset = Vector2(m_nWinWidth / 2.0, m_nWinHeight / 2.0);
+	Vector2 screenPos = m_pCamera->m_cameraPos - windowOffset;
+
+	float lastHealthPercentage = m_pPlayer->getDisplayLastHealth() / 100.0f;
+	float healthPercentage = m_pPlayer->getDisplayHealth() / 100.0f;
+
+	for (int i = 0; i < (int)(numPips * lastHealthPercentage); i++) {
+		Vector2 pos = Vector2(screenPos.x + 15 + 10 * i, screenPos.y + 20);
+
+		LSpriteDesc2D spr;
+		spr.m_nSpriteIndex = (UINT)eSprite::Health_Pip;
+		spr.m_vPos = pos;
+		spr.m_f4Tint = Vector4(0.5, 0.5, 0.5, 1.0);
+
+		m_pRenderer->Draw(&spr);
+	}
+
+	for (int i = 0; i < (int)(numPips * healthPercentage); i++) {
+		Vector2 pos = Vector2(screenPos.x + 15 + 10 * i, screenPos.y + 20);
+		m_pRenderer->Draw(eSprite::Health_Pip, pos);
+	}
+}
+
+
 
 /// Make the camera follow the player, but don't let it get too close to the
 /// edge unless the world is smaller than the window, in which case we just
@@ -222,20 +371,62 @@ void CGame::FollowCamera() {
 void CGame::ProcessFrame() {
 	ControllerHandler(); //handle controller input
 	KeyboardHandler(); //handle keyboard input;
-	
+	MouseHandler();
+
 	m_pObjectManager->BuildInput();
-	
+
 	m_pAudio->BeginFrame(); //notify audio player that frame has begun
 
 	m_pTimer->Tick([&]() { //all time-dependent function calls should go here
+		m_pObjectManager->Simulate();
 		m_pObjectManager->move(); //move all objects
-		//FollowCamera(); //make camera follow player
-		camera->HandleCamera();
+		m_pCamera->HandleCamera();
+		m_pWaveManager->Simulate();
 		m_pParticleEngine->step(); //advance particle animation
 		});
 
 	RenderFrame(); //render a frame of animation
 } //ProcessFrame
+
+void CGame::DrawTiles() {
+	//Iterate over the entire map in 32x32 tiles
+	for (int i = 0; i < 2048; i+= 32) {
+		for (int j = 0; j < 2048; j+= 32) {
+			LSpriteDesc2D spr;
+			spr.m_vPos = Vector2(i, j);
+			spr.m_nSpriteIndex = (UINT)eSprite::TileSheet;
+
+			//Get the tile index from the map
+			int x = i / 32;
+			int y = j / 32;
+			spr.m_nCurrentFrame = m_tileMap[x][y];
+
+
+			m_pRenderer->Draw(&spr);
+		}
+	}
+}
+
+void CGame::InitializeTileMap() {
+	//Initialize the 2d Array
+	for (int i = 0; i < 64; i += 1) {
+		for (int j = 0; j < 64; j += 1) {
+			std::random_device rd;
+			std::mt19937 gen(rd());
+			std::uniform_real_distribution<> dis(0.0f, 1.0f);
+
+			m_tileMap[i][j] = 3;
+
+			if (dis(gen) < 0.05) {
+				m_tileMap[i][j] = 0;
+			}
+
+			if (dis(gen) < 0.025) {
+				m_tileMap[i][j] = 2;
+			}
+		}
+	}
+}
 
 
 void CGame::AddConsoleOutput(const std::string s) {

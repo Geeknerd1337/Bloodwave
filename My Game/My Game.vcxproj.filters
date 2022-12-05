@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Ant.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Helpers.cpp" />
@@ -10,11 +9,31 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Turret.cpp" />
     <ClCompile Include="Utility\GameCamera.cpp" />
+    <ClCompile Include="Objects\Actor.cpp" />
+    <ClCompile Include="Objects\Enemy.cpp" />
+    <ClCompile Include="Utility\TimeSince.cpp" />
+    <ClCompile Include="Utility\CMouse.cpp" />
+    <ClCompile Include="Objects\FadeObject.cpp" />
+    <ClCompile Include="Objects\UI\Canvas.cpp" />
+    <ClCompile Include="Objects\UI\UIElement.cpp" />
+    <ClCompile Include="Objects\UI\PlayerStats.cpp" />
+    <ClCompile Include="Objects\UI\UIHelpers.cpp" />
+    <ClCompile Include="Utility\Rendering\BloodWaveRenderer.cpp" />
+    <ClCompile Include="Objects\Debris.cpp" />
+    <ClCompile Include="Utility\WaveManager.cpp" />
+    <ClCompile Include="Objects\UI\WaveUI.cpp" />
+    <ClCompile Include="Objects\MiniBoss.cpp" />
+    <ClCompile Include="Objects\SpitterEnemy.cpp" />
+    <ClCompile Include="Objects\Acid.cpp" />
+    <ClCompile Include="Objects\UI\MiniBossStats.cpp" />
+    <ClCompile Include="Beam.cpp" />
+    <ClCompile Include="Objects\MeleeSwipe.cpp" />
+    <ClCompile Include="Objects\BloodParticle.cpp" />
+    <ClCompile Include="Objects\BloodPool.cpp" />
+    <ClCompile Include="Objects\UI\AbilitiesUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ant.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDefines.h" />
@@ -23,8 +42,29 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Turret.h" />
     <ClInclude Include="Utility\GameCamera.h" />
+    <ClInclude Include="Objects\Actor.h" />
+    <ClInclude Include="Objects\Enemy.h" />
+    <ClInclude Include="Utility\TimeSince.h" />
+    <ClInclude Include="Utility\CMouse.h" />
+    <ClInclude Include="Objects\FadeObject.h" />
+    <ClInclude Include="Objects\UI\Canvas.h" />
+    <ClInclude Include="Objects\UI\UIElement.h" />
+    <ClInclude Include="Objects\UI\PlayerStats.h" />
+    <ClInclude Include="Objects\UI\UIHelpers.h" />
+    <ClInclude Include="Utility\Rendering\BloodWaveRenderer.h" />
+    <ClInclude Include="Objects\Debris.h" />
+    <ClInclude Include="Utility\WaveManager.h" />
+    <ClInclude Include="Objects\UI\WaveUI.h" />
+    <ClInclude Include="Objects\MiniBoss.h" />
+    <ClInclude Include="Objects\SpitterEnemy.h" />
+    <ClInclude Include="Objects\Acid.h" />
+    <ClInclude Include="Objects\UI\MiniBossStats.h" />
+    <ClInclude Include="Beam.h" />
+    <ClInclude Include="Objects\MeleeSwipe.h" />
+    <ClInclude Include="Objects\BloodParticle.h" />
+    <ClInclude Include="Objects\BloodPool.h" />
+    <ClInclude Include="Objects\UI\AbilitiesUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My Game.rc" />

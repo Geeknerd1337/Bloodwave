@@ -115,6 +115,7 @@
 	<sprite name="acid" file="acid.png"/>
 	<sprite name="win" file="win.png"/>
 	<sprite name="loose" file="death_screen.png"/>
+	<sprite name="shield" file="shield.png"/>
 	
 	<sprite name="melee_swipe_sheet" file="melee_swipe.png"/>
 	<sprite name="melee_swipe" sheet="melee_swipe_sheet" frames="4">

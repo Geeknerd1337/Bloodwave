@@ -26,7 +26,7 @@ enum class eSprite : UINT {
 	SpitterEnemyWalkSpriteSheetLeft, SpitterEnemyWalkSpriteSheetRight,
 	Melee_Swipe_Sheet, Melee_Swipe,
 	SpitterEnemy_Idle, SpitterEnemy_Idle_Right, SpitterEnemy_Walk_Left, SpitterEnemy_Walk_Right, SpitterEnemy_Dead,
-	SpitterMonster_Gib, Acid, Win, Loose,
+	SpitterMonster_Gib, Acid, Win, Loose, Shield,
 	Size  //MUST BE LAST
 }; //eSprite
 

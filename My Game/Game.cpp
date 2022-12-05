@@ -168,6 +168,7 @@ void CGame::LoadImages() {
 	m_pRenderer->Load(eSprite::TileSheet, "tileSheet");
 	m_pRenderer->Load(eSprite::Win, "win");
 	m_pRenderer->Load(eSprite::Loose, "loose");
+	m_pRenderer->Load(eSprite::Shield, "shield");
 
 	m_pRenderer->EndResourceUpload();
 } //LoadImages

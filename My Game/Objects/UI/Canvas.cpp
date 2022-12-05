@@ -2,6 +2,7 @@
 #include "PlayerStats.h"
 #include "WaveUI.h"
 #include "MiniBossStats.h"
+#include "AbilitiesUI.h"
 
 Canvas::Canvas(Vector2 size)
 {
@@ -19,6 +20,7 @@ void Canvas::Initialize()
 	AddElement(new PlayerStats());
 	AddElement(new WaveUI());
 	AddElement(new MiniBossStats());
+	AddElement(new AbilitiesUI());
 }
 
 Canvas::~Canvas()

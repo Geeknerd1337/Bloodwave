@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClCompile Include="Beam.cpp" />
     <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Objects\UI\AbilitiesUI.cpp" />
     <ClCompile Include="Objects\Acid.cpp" />
     <ClCompile Include="Objects\BloodParticle.cpp" />
     <ClCompile Include="Objects\BloodPool.cpp" />
@@ -195,6 +196,7 @@
   <ItemGroup>
     <ClInclude Include="Beam.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Objects\UI\AbilitiesUI.h" />
     <ClInclude Include="Objects\Acid.h" />
     <ClInclude Include="Objects\BloodParticle.h" />
     <ClInclude Include="Objects\BloodPool.h" />

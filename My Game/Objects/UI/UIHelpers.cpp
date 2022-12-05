@@ -45,6 +45,16 @@ void UIHelpers::DrawSprite(eSprite spr, Vector2 pos)
 	m_pRenderer->Draw(&sprDesc);
 }
 
+void UIHelpers::DrawSprite(LSpriteDesc2D spr, Vector2 pos)
+{
+	float x = GetScreenPos().x + pos.x;
+	float y = GetScreenPos().y + pos.y;
+	spr.m_vPos = Vector2(x, y);
+
+	m_pRenderer->Draw(&spr);
+}
+
+
 void UIHelpers::DrawAlignedText(const char* text, Vector2 pos, HorizontalAlignment hAlign, VerticalAlignment vAlign, XMVECTORF32 color)
 {
 	float x = pos.x;

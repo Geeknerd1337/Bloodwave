@@ -117,6 +117,8 @@
 	<sprite name="loose" file="death_screen.png"/>
 	<sprite name="shield" file="shield.png"/>
 	<sprite name="icondrop" file="iconDrop.png"/>
+	<sprite name="diamond" file="diamond.png"/>
+	<sprite name="ability_health" file="ability_health.png"/>
 	
 	<sprite name="melee_swipe_sheet" file="melee_swipe.png"/>
 	<sprite name="melee_swipe" sheet="melee_swipe_sheet" frames="4">

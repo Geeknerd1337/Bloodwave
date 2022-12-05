@@ -6,6 +6,7 @@
 #include "./ParticleEngine.h"
 #include "GameCamera.h"
 #include "../ObjectManager.h"
+#include "../Objects/SpitterEnemy.h"
 
 
 void WaveManager::Initialize() {
@@ -17,19 +18,15 @@ void WaveManager::Simulate() {
 	
 	//Start the wave if it hasn't been started yet
 	if (m_tTimeSinceLastWave.GetTimeSince() > m_fTimeBetweenWaves) {
-		if (m_iCurrentWave == 10 && EnemyCount() <= 0) {
-			m_pObjectManager->gameStatus = false;
-
+		if (m_iCurrentWave == 10 && !m_bWaveStarted && EnemyCount() <= 0) {
 			LParticleDesc2D d; //particle descriptor
 
 			d.m_nSpriteIndex = (UINT)eSprite::Win;
 			d.m_vPos = Vector2(m_pCamera->m_cameraPos.x,m_pCamera->m_cameraPos.y);
-			d.m_fLifeSpan = 5.0f;
-			d.m_fMaxScale = 1.8f;
-			d.m_fScaleInFrac = 0.0f;
 			
-
 			m_pParticleEngine->create(d);
+
+			m_pObjectManager->gameStatus = false;
 		}
 		else if (!m_bWaveStarted) {
 			StartWave();
@@ -115,6 +112,11 @@ int WaveManager::EnemyCount(){
 	//Iterate over m_stdObjectList on the object manager and increment count if the object is an enemy
 	for (auto it = m_pObjectManager->m_stdObjectList.begin(); it != m_pObjectManager->m_stdObjectList.end(); it++) {
 		if (dynamic_cast<CEnemy*>(*it) != nullptr) {
+			count++;
+		} else if (dynamic_cast<CSpitterEnemy*>(*it) != nullptr) {
+			count++;
+		}
+		else if (dynamic_cast<CMiniBoss*>(*it) != nullptr) {
 			count++;
 		}
 	}

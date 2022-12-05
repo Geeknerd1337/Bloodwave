@@ -30,7 +30,7 @@ void AbilitiesUI::Draw()
 	}
 	for (int i = 0; i < 4; i++) {
 		//Lerp the 4 values of bump back down to 1
-		bump[i] = Lerp(bump[i], 1.0f, dt * 5.0f);
+		bump[i] = Lerp(bump[i], 1.0f, dt * 2.5f);
 	}
 }
 
@@ -59,7 +59,7 @@ void AbilitiesUI::DrawAbility(Vector2 pos, eSprite abilitySpr)
 	
 		if (m_pPlayer->getDisplayBlood() > m_pPlayer->bloodHealCost) {
 			if (!haveBumped[3]) {
-				bump[3] = 1.5f;
+				bump[3] = 3.0f;
 				haveBumped[3] = true;
 			}
 			ability.m_f4Tint = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -81,7 +81,7 @@ void AbilitiesUI::DrawAbility(Vector2 pos, eSprite abilitySpr)
 
 		if (m_pPlayer->getDisplayBlood() > m_pPlayer->bloodStatBuffCost) {
 			if (!haveBumped[0]) {
-				bump[0] = 1.5f;
+				bump[0] = 3.0f;
 				haveBumped[0] = true;
 			}
 			ability.m_f4Tint = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -103,7 +103,7 @@ void AbilitiesUI::DrawAbility(Vector2 pos, eSprite abilitySpr)
 
 		if (m_pPlayer->getDisplayBlood() > m_pPlayer->bloodShieldCost) {
 			if (!haveBumped[1]) {
-				bump[1] = 1.5f;
+				bump[1] = 3.0f;
 				haveBumped[1] = true;
 			}
 			ability.m_f4Tint = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -125,7 +125,7 @@ void AbilitiesUI::DrawAbility(Vector2 pos, eSprite abilitySpr)
 
 		if (m_pPlayer->getDisplayBlood() > m_pPlayer->bloodBeamCost) {
 			if (!haveBumped[2]) {
-				bump[2] = 1.5f;
+				bump[2] = 3.0f;
 				haveBumped[2] = true;
 			}
 			ability.m_f4Tint = Vector4(1.0f, 1.0f, 1.0f, 1.0f);

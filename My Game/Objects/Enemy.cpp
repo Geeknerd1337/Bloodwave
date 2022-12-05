@@ -59,7 +59,7 @@ void CEnemy::TakeDamage(int damage) {
 		DeathFX();
 	}
 
-	int numBlood = (rand() % 5) + 1;
+	int numBlood = (rand() % 3) + 1;
 	for (int i = 0; i < numBlood; i++) {
 		CObject* drop = m_pObjectManager->createDirect(new BloodParticle(m_vPos, eSprite::Blood_Particle));
 		((BloodParticle*)drop)->SetRandomVelocity();
@@ -113,7 +113,7 @@ void CEnemy::DeathFX() {
 	((Debris*)torso)->m_fRollSpeed = (rand() % 20) - 10.0f;
 
 	//Generate a random int between 10 and 20
-	int numBlood = (rand() % 10) + 10;
+	int numBlood = (rand() % 5) + 5;
 	for (int i = 0; i < numBlood; i++) {
 		CObject* drop = m_pObjectManager->createDirect(new BloodParticle(m_vPos, eSprite::Blood_Particle));
 		((BloodParticle*)drop)->SetRandomVelocity();

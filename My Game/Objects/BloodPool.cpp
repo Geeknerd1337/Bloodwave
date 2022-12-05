@@ -10,20 +10,21 @@ BloodPool::BloodPool(eSprite spr, const Vector2& p) : CObject(spr, p) {
 
 void BloodPool::initialize() {
 	m_fRoll = rand() % 360;
+	m_fAlpha = 0.5f;
 }
 
 void BloodPool::simulate() {
-	if (m_tTimeSinceSpawn.GetTimeSince() > 5.0f) {
+	if (m_tTimeSinceSpawn.GetTimeSince() > 3.0f) {
 		m_bDead = true;
 	}
 
 	//Lerp between 0.5 and 2.5 for m_fxscale and m_fyscale
-	if (m_tTimeSinceSpawn.GetTimeSince() < 4.0f) {
-		m_fXScale = Lerp(1.0f, 3.0f, m_tTimeSinceSpawn.GetTimeSince() / 4.0f);
-		m_fYScale = Lerp(1.0f, 3.0f, m_tTimeSinceSpawn.GetTimeSince() / 4.0f);
+	if (m_tTimeSinceSpawn.GetTimeSince() < 2.0f) {
+		m_fXScale = Lerp(1.0f, 2.0f, m_tTimeSinceSpawn.GetTimeSince() / 2.0f);
+		m_fYScale = Lerp(1.0f, 2.0f, m_tTimeSinceSpawn.GetTimeSince() / 2.0f);
 	}
 	else {
-		m_fAlpha = 1.0f - (m_tTimeSinceSpawn.GetTimeSince() - 4.0f) / 1.0f;
+		m_fAlpha = Lerp(0.5f,0.0f,(m_tTimeSinceSpawn.GetTimeSince() - 2.0f) / 1.0f);
 	}
 }
 

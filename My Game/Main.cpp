@@ -31,7 +31,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
   #ifdef USE_DEBUG_CONSOLE
     const bool console = true;
   #else
-    const bool console = true;
+    const bool console = false;
   #endif //USE_DEBUG_CONSOLE
 
   auto init    = [&](){g_cGame.Initialize();};

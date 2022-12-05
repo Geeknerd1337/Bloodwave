@@ -12,6 +12,8 @@
 #include "Objects/FadeObject.h"
 #include "Particle.h"
 #include "ParticleEngine.h"
+#include <cmath>
+#include <random>
 #include "Objects/MeleeSwipe.h"
 
 /// <summary>
@@ -23,7 +25,7 @@ CPlayer::CPlayer(const Vector2& p) : Actor(p) {
 	//Set the angle to 0 so carmilla isn't just standing there
 	m_fRoll = 0.0;
 	m_vBounds = Vector3(32.0f, m_pRenderer->GetHeight(eSprite::Player_Idle), 0.0f);
-
+	m_tTimeSinceBuff = 4.0f;
 	m_fImageSpeed = 60 * 0.50f;
 } //constructor
 
@@ -216,6 +218,7 @@ void CPlayer::simulate() {
 
 		//Player Attack State
 		if (!m_bAttacked) {
+			m_pAudio->play(eSound::Sword);
 			HandleAttack();
 		}
 		PlayAttackAnimation();
@@ -235,6 +238,30 @@ void CPlayer::simulate() {
 		DeathScreen();
 		m_pAudio->play(eSound::GameOver);
 		break;
+	}
+
+	if (m_tTimeSinceBuff.GetTimeSince() < 1.0f) {
+		float sin = std::sin(m_pTimer->GetTime() * 100.0f);
+
+		if (sin > 0) {
+			//Set the image tint to red
+			m_f4Tint = tint * 255.0f;
+		}
+		else {
+
+			m_f4Tint = Vector4(1.0,1.0,1.0,1.0);
+		}
+
+		//Generate a random number between 0 and 0.5
+		float rnd = (rand() % 50) / 100.0f;
+		m_fXScale = 1.0f + rnd;
+		
+	}
+	else {
+		tint = Colors::White;
+		m_f4Tint = tint;
+		m_fXScale = 1.0f;
+		m_fYScale = 1.0f;
 	}
 
 }
@@ -432,7 +459,9 @@ void CPlayer::buildInput() {
 		m_fMoveSpeed = 300.0f;
 		m_nDashCost = 150.0f;
 
-		m_pAudio->play(eSound::PowerUp);
+		m_pAudio->play(eSound::buff);
+		m_tTimeSinceBuff = 0.0f;
+		tint = Vector4(0.0,1.0,0.0,1.0);
 	}
 
 	//end stat buff
@@ -452,7 +481,9 @@ void CPlayer::buildInput() {
 
 		m_nBlood -= bloodShieldCost;
 
-		m_pAudio->play(eSound::PowerUp);
+		m_pAudio->play(eSound::buff);
+		m_tTimeSinceBuff = 0.0f;
+		tint = Vector4(1.0, 0.0, 1.0, 1.0);
 	}
 
 	//end shield
@@ -471,7 +502,9 @@ void CPlayer::buildInput() {
 			m_pObjectManager->FireBeam(this, eSprite::Bullet, false);
 		}
 
-		m_pAudio->play(eSound::PowerUp);
+		m_pAudio->play(eSound::buff);
+		m_tTimeSinceBuff = 0.0f;
+		tint = Vector4(0.0, 1.0, 1.0, 1.0);
 	}
 
 	//blood heal ability
@@ -486,6 +519,10 @@ void CPlayer::buildInput() {
 		}
 
 		m_pAudio->play(eSound::PowerUp);
+		m_tTimeSinceBuff = 0.0f;
+		tint = Vector4(1.0, 0.5, 1.0, 1.0);
+		m_tTimeSinceBuff = 0.0f;
+		
 	}
 
 	if (m_pMouse->TriggerPressed(eMouseButton::Left) && CanAttack()) {
@@ -504,7 +541,7 @@ void CPlayer::buildInput() {
 
 		inputAtStateTransition = mouseDir;
 
-		m_pAudio->play(eSound::Sword);
+		
 
 		m_ePlayerState = ePlayerState::Attack;
 	}

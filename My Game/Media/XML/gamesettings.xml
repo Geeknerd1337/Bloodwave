@@ -148,5 +148,7 @@
 	<sound name="whoosh" file="whoosh.wav" instances="1"/>
 	<sound name="powerup" file="powerup.wav" instances="1"/>
 	<sound name="gameover" file="game_over.wav" instances="1"/>
+	<sound name="sword" file="sword.wav" instances="1"/>
+	<sound name="ehit" file="enemyHit.wav" instances="1"/>
   </sounds>
 </settings>

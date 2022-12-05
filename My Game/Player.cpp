@@ -516,6 +516,8 @@ void CPlayer::buildInput() {
 
 		inputAtStateTransition = mouseDir;
 
+		m_pAudio->play(eSound::Sword);
+
 		m_ePlayerState = ePlayerState::Attack;
 	}
 

@@ -43,6 +43,8 @@ void CEnemy::buildInput() {}
 void CEnemy::TakeDamage(int damage) {
 	m_iHealth -= damage;
 
+	m_pAudio->play(eSound::eHit);
+
 	//Get the direction to the player
 	Vector2 dir = (m_pPlayer->m_vPos - m_vPos);
 	dir.Normalize();

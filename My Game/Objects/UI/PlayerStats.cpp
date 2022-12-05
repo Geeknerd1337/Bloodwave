@@ -36,6 +36,17 @@ void PlayerStats::Draw()
 
 			m_pRenderer->Draw(&desc);
 		}
+
+		if (m_pPlayer->statBuffOn) {
+			LSpriteDesc2D desc;
+			desc.m_nSpriteIndex = (UINT)eSprite::IconDrop;
+			desc.m_vPos = UIHelpers::GetScreenPos() + Vector2(150, 700);
+			desc.m_fXScale = 2.0f;
+			desc.m_fYScale = 2.0f;
+
+
+			m_pRenderer->Draw(&desc);
+		}
 	}
 }
 

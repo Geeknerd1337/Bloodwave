@@ -197,18 +197,6 @@ void CPlayer::simulate() {
 	
 	StaminaRegeneration();
 
-	//tint based on abilities
-	if (shieldOn) {
-		m_f4Tint = Vector4(0.5, 0, 0.8, 1);
-	}
-	else if (statBuffOn) {
-		m_f4Tint = Vector4(0, 0.8, 0, 1);
-	}
-	else {
-		m_f4Tint = Vector4(1, 1, 1, 1);
-	}
-
-
 	if (m_nBlood > 0 && m_tTimeSinceLastAttack.GetTimeSince() > 1.0f) {
 		m_nBlood -= 100.0f * m_pTimer->GetFrameTime();
 	}

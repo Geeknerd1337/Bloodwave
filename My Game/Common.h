@@ -9,6 +9,7 @@
 
 
 //forward declarations to make the compiler less stroppy
+//comment for github
 
 class CObjectManager; 
 class LSpriteRenderer;
